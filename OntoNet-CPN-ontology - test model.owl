@@ -1,0 +1,1374 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     versionIRI="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy/0.0.1">
+    <Prefix name="" IRI="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Arc"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Attribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Expression"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Marking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Operand"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Operator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pattern"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Place"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Token"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Transition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Variable"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#comes_from"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#comes_to"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_attribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_condition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_marking"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_operand1"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_operand2"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_operator"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_pattern"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_token"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_variable"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#is_expression"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#has_data"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#has_index"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#has_name"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#is_value"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#is_variable"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ADD"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AND"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DIV"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EQ"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MUL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NOT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OR"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SUB"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#arc1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#arc2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#arc3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#arc4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr1_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr1_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr2_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr2_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr6_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#attr6_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#expr1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#expr1_1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#expr1_2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#m1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#m2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#m3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#m4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#op1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#op2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#op_10"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#op_x"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#op_y"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#p1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#p2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#p3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#p4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#patt1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#patt2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#patt3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#t1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token4"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token5"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#token6"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#var_x1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#var_x2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#var_y1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#var_y2"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Operator"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#ADD"/>
+            <NamedIndividual IRI="#AND"/>
+            <NamedIndividual IRI="#DIV"/>
+            <NamedIndividual IRI="#EQ"/>
+            <NamedIndividual IRI="#GE"/>
+            <NamedIndividual IRI="#GT"/>
+            <NamedIndividual IRI="#LE"/>
+            <NamedIndividual IRI="#LT"/>
+            <NamedIndividual IRI="#MUL"/>
+            <NamedIndividual IRI="#NE"/>
+            <NamedIndividual IRI="#NOT"/>
+            <NamedIndividual IRI="#OR"/>
+            <NamedIndividual IRI="#SUB"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Arc"/>
+        <ObjectIntersectionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#comes_from"/>
+                <Class IRI="#Place"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#comes_to"/>
+                <Class IRI="#Transition"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Arc"/>
+        <ObjectIntersectionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#comes_from"/>
+                <Class IRI="#Transition"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#comes_to"/>
+                <Class IRI="#Place"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Arc"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#has_pattern"/>
+            <Class IRI="#Pattern"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Attribute"/>
+        <ObjectIntersectionOf>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#has_data"/>
+                <Datatype abbreviatedIRI="xsd:string"/>
+            </DataExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#has_index"/>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+            </DataExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Expression"/>
+        <ObjectIntersectionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operand1"/>
+                <Class IRI="#Operand"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operand2"/>
+                <Class IRI="#Operand"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operator"/>
+                <Class IRI="#Operator"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Marking"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#has_token"/>
+            <Class IRI="#Token"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Operand"/>
+        <ObjectUnionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#is_expression"/>
+                <Class IRI="#Expression"/>
+            </ObjectExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#is_value"/>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+            </DataExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#is_value"/>
+                <Datatype abbreviatedIRI="xsd:string"/>
+            </DataExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#is_variable"/>
+                <Datatype abbreviatedIRI="xsd:string"/>
+            </DataExactCardinality>
+        </ObjectUnionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pattern"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#has_variable"/>
+            <Class IRI="#Variable"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Place"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#has_marking"/>
+            <Class IRI="#Marking"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Token"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#has_attribute"/>
+            <Class IRI="#Attribute"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Transition"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="#has_condition"/>
+            <Class IRI="#Expression"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Variable"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="#has_name"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Arc"/>
+        <ObjectComplementOf>
+            <Class IRI="#Arc"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Attribute"/>
+        <ObjectComplementOf>
+            <Class IRI="#Attribute"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Expression"/>
+        <ObjectComplementOf>
+            <Class IRI="#Expression"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Marking"/>
+        <ObjectComplementOf>
+            <Class IRI="#Marking"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Operand"/>
+        <ObjectComplementOf>
+            <Class IRI="#Operand"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Pattern"/>
+        <ObjectComplementOf>
+            <Class IRI="#Pattern"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Place"/>
+        <ObjectComplementOf>
+            <Class IRI="#Place"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Token"/>
+        <ObjectComplementOf>
+            <Class IRI="#Token"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Transition"/>
+        <ObjectComplementOf>
+            <Class IRI="#Transition"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Variable"/>
+        <ObjectComplementOf>
+            <Class IRI="#Variable"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#ADD"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#AND"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#DIV"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#EQ"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#GE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#GT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#LE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#LT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#MUL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#NE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#NOT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#OR"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#SUB"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Arc"/>
+        <NamedIndividual IRI="#arc1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Arc"/>
+        <NamedIndividual IRI="#arc2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Arc"/>
+        <NamedIndividual IRI="#arc3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Arc"/>
+        <NamedIndividual IRI="#arc4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr1_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr2_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr2_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr6_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Attribute"/>
+        <NamedIndividual IRI="#attr6_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Expression"/>
+        <NamedIndividual IRI="#expr1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Expression"/>
+        <NamedIndividual IRI="#expr1_1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Expression"/>
+        <NamedIndividual IRI="#expr1_2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Marking"/>
+        <NamedIndividual IRI="#m1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Marking"/>
+        <NamedIndividual IRI="#m2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Marking"/>
+        <NamedIndividual IRI="#m3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Marking"/>
+        <NamedIndividual IRI="#m4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operand"/>
+        <NamedIndividual IRI="#op1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operand"/>
+        <NamedIndividual IRI="#op2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operand"/>
+        <NamedIndividual IRI="#op_10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operand"/>
+        <NamedIndividual IRI="#op_x"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operand"/>
+        <NamedIndividual IRI="#op_y"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Place"/>
+        <NamedIndividual IRI="#p1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Place"/>
+        <NamedIndividual IRI="#p2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Place"/>
+        <NamedIndividual IRI="#p3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Place"/>
+        <NamedIndividual IRI="#p4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pattern"/>
+        <NamedIndividual IRI="#patt1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pattern"/>
+        <NamedIndividual IRI="#patt2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pattern"/>
+        <NamedIndividual IRI="#patt3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Transition"/>
+        <NamedIndividual IRI="#t1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token4"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token5"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Token"/>
+        <NamedIndividual IRI="#token6"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Variable"/>
+        <NamedIndividual IRI="#var_x1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Variable"/>
+        <NamedIndividual IRI="#var_x2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Variable"/>
+        <NamedIndividual IRI="#var_y1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Variable"/>
+        <NamedIndividual IRI="#var_y2"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#m1"/>
+        <NamedIndividual IRI="#m2"/>
+        <NamedIndividual IRI="#m3"/>
+        <NamedIndividual IRI="#m4"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#p1"/>
+        <NamedIndividual IRI="#p2"/>
+        <NamedIndividual IRI="#p3"/>
+        <NamedIndividual IRI="#p4"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#patt1"/>
+        <NamedIndividual IRI="#patt2"/>
+        <NamedIndividual IRI="#patt3"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#token1"/>
+        <NamedIndividual IRI="#token2"/>
+        <NamedIndividual IRI="#token3"/>
+        <NamedIndividual IRI="#token4"/>
+        <NamedIndividual IRI="#token5"/>
+        <NamedIndividual IRI="#token6"/>
+    </DifferentIndividuals>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_from"/>
+        <NamedIndividual IRI="#arc1"/>
+        <NamedIndividual IRI="#p1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_to"/>
+        <NamedIndividual IRI="#arc1"/>
+        <NamedIndividual IRI="#t1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_pattern"/>
+        <NamedIndividual IRI="#arc1"/>
+        <NamedIndividual IRI="#patt1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_from"/>
+        <NamedIndividual IRI="#arc2"/>
+        <NamedIndividual IRI="#p2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_to"/>
+        <NamedIndividual IRI="#arc2"/>
+        <NamedIndividual IRI="#t1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_pattern"/>
+        <NamedIndividual IRI="#arc2"/>
+        <NamedIndividual IRI="#patt2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_from"/>
+        <NamedIndividual IRI="#arc3"/>
+        <NamedIndividual IRI="#t1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_to"/>
+        <NamedIndividual IRI="#arc3"/>
+        <NamedIndividual IRI="#p3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_pattern"/>
+        <NamedIndividual IRI="#arc3"/>
+        <NamedIndividual IRI="#patt2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_from"/>
+        <NamedIndividual IRI="#arc4"/>
+        <NamedIndividual IRI="#t1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#comes_to"/>
+        <NamedIndividual IRI="#arc4"/>
+        <NamedIndividual IRI="#p4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_pattern"/>
+        <NamedIndividual IRI="#arc4"/>
+        <NamedIndividual IRI="#patt3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand1"/>
+        <NamedIndividual IRI="#expr1"/>
+        <NamedIndividual IRI="#op1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand2"/>
+        <NamedIndividual IRI="#expr1"/>
+        <NamedIndividual IRI="#op2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operator"/>
+        <NamedIndividual IRI="#expr1"/>
+        <NamedIndividual IRI="#OR"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand1"/>
+        <NamedIndividual IRI="#expr1_1"/>
+        <NamedIndividual IRI="#op_x"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand2"/>
+        <NamedIndividual IRI="#expr1_1"/>
+        <NamedIndividual IRI="#op_y"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operator"/>
+        <NamedIndividual IRI="#expr1_1"/>
+        <NamedIndividual IRI="#GT"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand1"/>
+        <NamedIndividual IRI="#expr1_2"/>
+        <NamedIndividual IRI="#op_x"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operand2"/>
+        <NamedIndividual IRI="#expr1_2"/>
+        <NamedIndividual IRI="#op_10"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_operator"/>
+        <NamedIndividual IRI="#expr1_2"/>
+        <NamedIndividual IRI="#EQ"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m1"/>
+        <NamedIndividual IRI="#token1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m1"/>
+        <NamedIndividual IRI="#token2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m2"/>
+        <NamedIndividual IRI="#token3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m2"/>
+        <NamedIndividual IRI="#token4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m3"/>
+        <NamedIndividual IRI="#token5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_token"/>
+        <NamedIndividual IRI="#m4"/>
+        <NamedIndividual IRI="#token6"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#is_expression"/>
+        <NamedIndividual IRI="#op1"/>
+        <NamedIndividual IRI="#expr1_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#is_expression"/>
+        <NamedIndividual IRI="#op2"/>
+        <NamedIndividual IRI="#expr1_2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_marking"/>
+        <NamedIndividual IRI="#p1"/>
+        <NamedIndividual IRI="#m1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_variable"/>
+        <NamedIndividual IRI="#patt1"/>
+        <NamedIndividual IRI="#var_x1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_variable"/>
+        <NamedIndividual IRI="#patt1"/>
+        <NamedIndividual IRI="#var_y2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_variable"/>
+        <NamedIndividual IRI="#patt2"/>
+        <NamedIndividual IRI="#var_x1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_variable"/>
+        <NamedIndividual IRI="#patt3"/>
+        <NamedIndividual IRI="#var_x2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_variable"/>
+        <NamedIndividual IRI="#patt3"/>
+        <NamedIndividual IRI="#var_y1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token1"/>
+        <NamedIndividual IRI="#attr1_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token1"/>
+        <NamedIndividual IRI="#attr1_2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token2"/>
+        <NamedIndividual IRI="#attr2_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token2"/>
+        <NamedIndividual IRI="#attr2_2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token3"/>
+        <NamedIndividual IRI="#attr3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token4"/>
+        <NamedIndividual IRI="#attr4"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token5"/>
+        <NamedIndividual IRI="#attr5"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token6"/>
+        <NamedIndividual IRI="#attr6_1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#has_attribute"/>
+        <NamedIndividual IRI="#token6"/>
+        <NamedIndividual IRI="#attr6_2"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr1_1"/>
+        <Literal>a</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr1_1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr1_2"/>
+        <Literal>b</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr1_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr2_1"/>
+        <Literal>a</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr2_1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr2_2"/>
+        <Literal>c</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr2_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr3"/>
+        <Literal>a</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr3"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr4"/>
+        <Literal>b</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr4"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr5"/>
+        <Literal>a</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr5"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr6_1"/>
+        <Literal>b</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr6_1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_data"/>
+        <NamedIndividual IRI="#attr6_2"/>
+        <Literal>a</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#attr6_2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#is_value"/>
+        <NamedIndividual IRI="#op_10"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#is_variable"/>
+        <NamedIndividual IRI="#op_x"/>
+        <Literal>x</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#is_variable"/>
+        <NamedIndividual IRI="#op_y"/>
+        <Literal>y</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#var_x1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_name"/>
+        <NamedIndividual IRI="#var_x1"/>
+        <Literal>x</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#var_x2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_name"/>
+        <NamedIndividual IRI="#var_x2"/>
+        <Literal>x</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#var_y1"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_name"/>
+        <NamedIndividual IRI="#var_y1"/>
+        <Literal>y</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_index"/>
+        <NamedIndividual IRI="#var_y2"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#has_name"/>
+        <NamedIndividual IRI="#var_y2"/>
+        <Literal>y</Literal>
+    </DataPropertyAssertion>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#comes_from"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#comes_to"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_condition"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_marking"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operand1"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operand2"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_pattern"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#is_expression"/>
+    </FunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_attribute"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_condition"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_marking"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operand1"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operand2"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_token"/>
+    </InverseFunctionalObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#comes_from"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#comes_to"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_attribute"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_condition"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_marking"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_operand1"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_operand2"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_pattern"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_token"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_variable"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#is_expression"/>
+    </AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#comes_from"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#comes_to"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_attribute"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_condition"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_marking"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_operand1"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_operand2"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_pattern"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_token"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_variable"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#is_expression"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#comes_from"/>
+        <Class IRI="#Arc"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#comes_to"/>
+        <Class IRI="#Arc"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_attribute"/>
+        <Class IRI="#Token"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_condition"/>
+        <Class IRI="#Transition"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_marking"/>
+        <Class IRI="#Place"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_operand1"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_operand2"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_operator"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_pattern"/>
+        <Class IRI="#Arc"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_token"/>
+        <Class IRI="#Marking"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_variable"/>
+        <Class IRI="#Pattern"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#is_expression"/>
+        <Class IRI="#Operand"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#comes_from"/>
+        <Class IRI="#Place"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#comes_from"/>
+        <Class IRI="#Transition"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#comes_to"/>
+        <Class IRI="#Place"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#comes_to"/>
+        <Class IRI="#Transition"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_condition"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_marking"/>
+        <Class IRI="#Marking"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_operand1"/>
+        <Class IRI="#Operand"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_operand2"/>
+        <Class IRI="#Operand"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_operator"/>
+        <Class IRI="#Operator"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_pattern"/>
+        <Class IRI="#Pattern"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_token"/>
+        <Class IRI="#Token"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_variable"/>
+        <Class IRI="#Variable"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#is_expression"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#has_data"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#has_index"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#has_name"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#is_value"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#is_variable"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="#has_data"/>
+        <Class IRI="#Attribute"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#has_index"/>
+        <Class IRI="#Attribute"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#has_index"/>
+        <Class IRI="#Variable"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#has_name"/>
+        <Class IRI="#Variable"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#is_value"/>
+        <Class IRI="#Operand"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#is_variable"/>
+        <Class IRI="#Operand"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#has_data"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#has_index"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#has_name"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#is_value"/>
+        <DataUnionOf>
+            <Datatype abbreviatedIRI="xsd:integer"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataUnionOf>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#is_variable"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DisjointDataProperties>
+        <DataProperty IRI="#is_value"/>
+        <DataProperty IRI="#is_variable"/>
+    </DisjointDataProperties>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -29,6 +29,9 @@
         <Class IRI="#Operand"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Operator"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Pattern"/>
     </Declaration>
     <Declaration>
@@ -56,6 +59,9 @@
         <ObjectProperty IRI="#has_condition"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#has_expression"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#has_marking"/>
     </Declaration>
     <Declaration>
@@ -63,6 +69,9 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#has_operand2"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#has_operator"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#has_pattern"/>
@@ -83,7 +92,46 @@
         <DataProperty IRI="#has_name"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#has_operator"/>
+        <DataProperty IRI="#has_value"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ADD"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#AND"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DIV"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#EQ"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#GT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#LT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#MUL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NE"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NOT"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OR"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SUB"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#Arc"/>
@@ -132,11 +180,49 @@
         </ObjectIntersectionOf>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Expression"/>
+        <ObjectIntersectionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operand1"/>
+                <Class IRI="#Operand"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operand2"/>
+                <Class IRI="#Operand"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_operator"/>
+                <Class IRI="#Operator"/>
+            </ObjectExactCardinality>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Marking"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="#has_token"/>
             <Class IRI="#Token"/>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Operand"/>
+        <ObjectUnionOf>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_expression"/>
+                <Class IRI="#Expression"/>
+            </ObjectExactCardinality>
+            <ObjectExactCardinality cardinality="1">
+                <ObjectProperty IRI="#has_variable"/>
+                <Class IRI="#Variable"/>
+            </ObjectExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#has_value"/>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+            </DataExactCardinality>
+            <DataExactCardinality cardinality="1">
+                <DataProperty IRI="#has_value"/>
+                <Datatype abbreviatedIRI="xsd:string"/>
+            </DataExactCardinality>
+        </ObjectUnionOf>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Pattern"/>
@@ -180,9 +266,45 @@
         </ObjectComplementOf>
     </DisjointClasses>
     <DisjointClasses>
+        <Class IRI="#Attribute"/>
+        <ObjectComplementOf>
+            <Class IRI="#Attribute"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Expression"/>
+        <ObjectComplementOf>
+            <Class IRI="#Expression"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Marking"/>
+        <ObjectComplementOf>
+            <Class IRI="#Marking"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Operand"/>
+        <ObjectComplementOf>
+            <Class IRI="#Operand"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Pattern"/>
+        <ObjectComplementOf>
+            <Class IRI="#Pattern"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
         <Class IRI="#Place"/>
         <ObjectComplementOf>
             <Class IRI="#Place"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Token"/>
+        <ObjectComplementOf>
+            <Class IRI="#Token"/>
         </ObjectComplementOf>
     </DisjointClasses>
     <DisjointClasses>
@@ -191,6 +313,64 @@
             <Class IRI="#Transition"/>
         </ObjectComplementOf>
     </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Variable"/>
+        <ObjectComplementOf>
+            <Class IRI="#Variable"/>
+        </ObjectComplementOf>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#ADD"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#AND"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#DIV"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#EQ"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#GE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#GT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#LE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#LT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#MUL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#NE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#NOT"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#OR"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Operator"/>
+        <NamedIndividual IRI="#SUB"/>
+    </ClassAssertion>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#comes_from"/>
     </FunctionalObjectProperty>
@@ -199,6 +379,9 @@
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#has_condition"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_expression"/>
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#has_marking"/>
@@ -210,6 +393,9 @@
         <ObjectProperty IRI="#has_operand2"/>
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
         <ObjectProperty IRI="#has_pattern"/>
     </FunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
@@ -217,6 +403,9 @@
     </InverseFunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
         <ObjectProperty IRI="#has_condition"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#has_expression"/>
     </InverseFunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
         <ObjectProperty IRI="#has_marking"/>
@@ -249,6 +438,9 @@
         <ObjectProperty IRI="#has_condition"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_expression"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
         <ObjectProperty IRI="#has_marking"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
@@ -256,6 +448,9 @@
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#has_operand2"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#has_pattern"/>
@@ -279,6 +474,9 @@
         <ObjectProperty IRI="#has_condition"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_expression"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#has_marking"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
@@ -286,6 +484,9 @@
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#has_operand2"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="#has_operator"/>
     </IrreflexiveObjectProperty>
     <IrreflexiveObjectProperty>
         <ObjectProperty IRI="#has_pattern"/>
@@ -313,6 +514,10 @@
         <Class IRI="#Transition"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_expression"/>
+        <Class IRI="#Operand"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#has_marking"/>
         <Class IRI="#Place"/>
     </ObjectPropertyDomain>
@@ -322,6 +527,10 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#has_operand2"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#has_operator"/>
         <Class IRI="#Expression"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
@@ -357,6 +566,10 @@
         <Class IRI="#Expression"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_expression"/>
+        <Class IRI="#Expression"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#has_marking"/>
         <Class IRI="#Marking"/>
     </ObjectPropertyRange>
@@ -367,6 +580,10 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="#has_operand2"/>
         <Class IRI="#Operand"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#has_operator"/>
+        <Class IRI="#Operator"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#has_pattern"/>
@@ -390,7 +607,7 @@
         <DataProperty IRI="#has_name"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
-        <DataProperty IRI="#has_operator"/>
+        <DataProperty IRI="#has_value"/>
     </FunctionalDataProperty>
     <DataPropertyDomain>
         <DataProperty IRI="#has_data"/>
@@ -409,8 +626,8 @@
         <Class IRI="#Variable"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="#has_operator"/>
-        <Class IRI="#Expression"/>
+        <DataProperty IRI="#has_value"/>
+        <Class IRI="#Operand"/>
     </DataPropertyDomain>
     <DataPropertyRange>
         <DataProperty IRI="#has_data"/>
@@ -425,7 +642,11 @@
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
-        <DataProperty IRI="#has_operator"/>
+        <DataProperty IRI="#has_value"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#has_value"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
 </Ontology>
