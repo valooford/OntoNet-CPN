@@ -1,0 +1,49 @@
+PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?place_i (sample(?token_i) as ?first_token_i)
+WHERE {
+  ?transition rdf:type m:Transition.		# getting all transitions
+  ?arc_i m:comes_to ?transition;			# getting PT-arcs (input)
+		 m:comes_from ?place_i;				# getting input places
+  		 m:has_pattern ?patt_i.				# getting PT-arcs patterns
+  ?place_i m:has_marking ?marking_i.
+  ?marking_i m:has_token ?token_i.			# getting input tokens
+  ?token_i m:has_attribute ?attr_i.			# getting input tokens attributes
+  {
+    SELECT ?token_i ?var_i_name
+    WHERE {
+      {
+        SELECT ?token_i (COUNT(?attr_i) as ?attr_i_count)	# getting attribute count
+        WHERE {
+          SELECT DISTINCT ?token_i ?attr_i					# getting rid of duplicates
+          WHERE {
+            ?token_i m:has_attribute ?attr_i.				# getting input tokens attributes
+          }
+        }
+        GROUP BY ?token_i
+      }
+      {
+        SELECT ?arc_i (COUNT(?var_i) as ?var_i_count)	# getting variable count
+        WHERE {
+           SELECT DISTINCT ?arc_i ?var_i				# getting rid of duplicates
+            WHERE {
+                ?arc_i m:has_pattern ?patt_i.			# getting PT-arcs patterns
+                ?patt_i m:has_variable ?var_i.			# getting input patterns variables
+            }
+        }
+        GROUP BY ?arc_i
+      }
+      FILTER (?attr_i_count = ?var_i_count)				# filtering appliable tokens
+    }
+  }
+  
+  ?patt_i m:has_variable ?var_i.			# getting input patterns variables
+  ?var_i m:has_name ?var_i_name;
+         m:has_index ?var_i_index.
+  
+  ?attr_i m:has_data ?attr_i_data;
+          m:has_index ?attr_i_index;
+  FILTER (?var_i_index = ?attr_i_index)		# filtering variable-attribute pairs by index
+}
+GROUP BY ?place_i

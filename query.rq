@@ -1,7 +1,7 @@
 PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?place ?token ?attr ?data
+SELECT ?place ?token ?attr ?data ?index
 WHERE {
   ?place rdf:type m:Place.
   ?place m:has_marking ?marking.
