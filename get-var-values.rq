@@ -1,0 +1,27 @@
+PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?place_i ?x (COUNT(?x) as ?x_count)
+WHERE {
+  ?arc_i m:comes_to m:t1;				# <-- m:t1
+         m:comes_from ?place_i;
+         m:has_pattern ?patt_i.
+  
+  ?place_i m:has_marking ?marking_i.
+  
+  ?marking_i m:has_token ?token_i.
+  ?token_i m:has_attribute ?attr_i.
+  
+#  ?attr_i m:has_data ?attr_i_data;
+#          m:has_index ?attr_i_index.
+  ?attr_i m:has_index ?attr_i_index.
+  
+  ?patt_i m:has_variable ?var_i.
+  ?var_i m:has_name ?var_i_name;
+          m:has_index ?var_i_index.
+  
+  ?attr_i m:has_data ?x.				# <-- ?x
+  FILTER(?var_i_name = "x" && ?attr_i_index = ?var_i_index)		# <-- "x"
+  
+}
+GROUP BY ?x ?place_i

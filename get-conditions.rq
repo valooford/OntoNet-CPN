@@ -1,0 +1,27 @@
+PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?transition ?condition_data ?variables
+WHERE {
+  ?transition rdf:type m:Transition.
+  
+  ?transition m:has_condition ?condition.
+  ?condition m:has_data ?condition_data
+  
+  {
+    SELECT ?transition (GROUP_CONCAT(?var_i_name; SEPARATOR=",") as ?variables)
+    WHERE {
+      {
+        SELECT DISTINCT ?transition ?var_i_name
+        WHERE {
+          ?arc_i m:comes_to ?transition;
+                 m:has_pattern ?patt_i.
+          ?patt_i m:has_variable ?var_i.
+          ?var_i m:has_name ?var_i_name.
+        }
+      }
+    }
+    GROUP BY ?transition
+  }
+}
+LIMIT 25

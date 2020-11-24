@@ -70,7 +70,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
     </owl:ObjectProperty>
     
 
@@ -84,44 +84,6 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand1 -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand1">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand2 -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand2">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operator -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operator">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
     </owl:ObjectProperty>
     
 
@@ -161,18 +123,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_expression -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_expression">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -189,6 +139,7 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -210,34 +161,6 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_value -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_value">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <rdfs:range>
-            <rdfs:Datatype>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#integer"/>
-                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
-                </owl:unionOf>
-            </rdfs:Datatype>
-        </rdfs:range>
-        <owl:propertyDisjointWith rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_variable"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_variable -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_variable">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -333,36 +256,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression">
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand1"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operand2"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_operator"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <owl:disjointWith>
-            <owl:Class>
-                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-            </owl:Class>
-        </owl:disjointWith>
-    </owl:Class>
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
     
 
 
@@ -380,70 +276,6 @@
                 <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
             </owl:Class>
         </owl:disjointWith>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand">
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_expression"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_value"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_value"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#is_variable"/>
-                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    </owl:Restriction>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <owl:disjointWith>
-            <owl:Class>
-                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-            </owl:Class>
-        </owl:disjointWith>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:oneOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#ADD"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#AND"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#DIV"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#EQ"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GE"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GT"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LE"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LT"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#MUL"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NE"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NOT"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#OR"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#SUB"/>
-                </owl:oneOf>
-            </owl:Class>
-        </owl:equivalentClass>
     </owl:Class>
     
 
@@ -506,13 +338,6 @@
     <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_condition"/>
-                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith>
             <owl:Class>
                 <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
@@ -549,110 +374,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#ADD -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#ADD">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#AND -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#AND">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#DIV -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#DIV">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#EQ -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#EQ">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GE -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GE">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GT -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GT">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LE -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LE">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LT -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#LT">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#MUL -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#MUL">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NE -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NE">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NOT -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#NOT">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#OR -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#OR">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#SUB -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#SUB">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operator"/>
-    </owl:NamedIndividual>
     
 
 
@@ -700,9 +421,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_1 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_1">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>a</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -710,9 +431,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_2 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_2">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>b</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</OntoNet-CPN-onlotogy:has_index>
@@ -720,9 +441,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_1 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_1">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>a</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -730,9 +451,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_2 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_2">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>c</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</OntoNet-CPN-onlotogy:has_index>
@@ -740,9 +461,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>a</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -750,9 +471,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>b</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -760,9 +481,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr5 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr5">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>a</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -770,9 +491,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_1 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_1">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>b</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
@@ -780,9 +501,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_2 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_2">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
         <OntoNet-CPN-onlotogy:has_data>a</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</OntoNet-CPN-onlotogy:has_index>
@@ -790,35 +511,11 @@
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#cond1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <OntoNet-CPN-onlotogy:has_operand1 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op1"/>
-        <OntoNet-CPN-onlotogy:has_operand2 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op2"/>
-        <OntoNet-CPN-onlotogy:has_operator rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#OR"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <OntoNet-CPN-onlotogy:has_operand1 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_x"/>
-        <OntoNet-CPN-onlotogy:has_operand2 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_y"/>
-        <OntoNet-CPN-onlotogy:has_operator rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#GT"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Expression"/>
-        <OntoNet-CPN-onlotogy:has_operand1 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_x"/>
-        <OntoNet-CPN-onlotogy:has_operand2 rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_10"/>
-        <OntoNet-CPN-onlotogy:has_operator rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#EQ"/>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#cond1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#string">?x &gt; ?y || ?x = &quot;10&quot;</OntoNet-CPN-onlotogy:has_data>
     </owl:NamedIndividual>
     
 
@@ -827,8 +524,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-1"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-2"/>
     </owl:NamedIndividual>
     
 
@@ -837,8 +534,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-1"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-2"/>
     </owl:NamedIndividual>
     
 
@@ -847,7 +544,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m3">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token5"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3-1"/>
     </owl:NamedIndividual>
     
 
@@ -856,52 +553,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m4">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
-        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token6"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <OntoNet-CPN-onlotogy:is_expression rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <OntoNet-CPN-onlotogy:is_expression rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#expr1_2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_10 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_10">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <OntoNet-CPN-onlotogy:is_value rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</OntoNet-CPN-onlotogy:is_value>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_x -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_x">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <OntoNet-CPN-onlotogy:is_variable>x</OntoNet-CPN-onlotogy:is_variable>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_y -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#op_y">
-        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Operand"/>
-        <OntoNet-CPN-onlotogy:is_variable>y</OntoNet-CPN-onlotogy:is_variable>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4-1"/>
     </owl:NamedIndividual>
     
 
@@ -975,63 +627,64 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#cond1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_1"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1_2"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_1"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-1_2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_1"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2_2"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_1"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr1-2_2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-2">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr2-2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token5 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token5">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr5"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr3-1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token6 -->
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4-1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token6">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4-1">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_1"/>
-        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr6_2"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_1"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr4-1_2"/>
     </owl:NamedIndividual>
     
 
@@ -1113,12 +766,12 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token5"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token6"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token1-2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token2-2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token3-1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#token4-1"/>
         </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
