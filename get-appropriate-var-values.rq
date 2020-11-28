@@ -1,0 +1,29 @@
+PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?x
+WHERE {
+  values ?x { "a" "b" "c" }
+  FILTER NOT EXISTS {
+    SELECT ?place2_i ?x (COUNT(?attr2_i_data) as ?x2_count)
+    WHERE {
+      ?arc2_i m:comes_to m:t1;				# <-- m:t1
+              m:comes_from ?place2_i;
+              m:has_pattern ?patt2_i.
+      ?place2_i m:has_marking ?marking2_i.
+      ?marking2_i m:has_token ?token2_i.
+      ?token2_i m:has_attribute ?attr2_i.
+      ?attr2_i m:has_index ?attr2_i_index.
+      ?patt2_i m:has_variable ?var2_i.
+      ?var2_i m:has_name ?var2_i_name;
+              m:has_index ?var2_i_index.
+      FILTER(?var2_i_name = "x" && ?attr2_i_index = ?var2_i_index)
+      OPTIONAL {
+        ?attr2_i m:has_data ?attr2_i_data;
+                 FILTER(?attr2_i_data = ?x)
+      }
+    }
+    GROUP BY ?place2_i ?x
+    HAVING (?x2_count = 0)
+  }
+}
