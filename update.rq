@@ -1,0 +1,70 @@
+PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+DELETE {
+  ?marking_i :has_token ?token_i.
+  ?token_i rdf:type :Token;
+           :has_attribute ?token_i_attr.
+  ?token_i_attr rdf:type :Attribute;
+                :has_data ?token_i_attr_data;
+                :has_index ?token_i_attr_index.
+}
+#INSERT {
+#  ?marking_o :has_token ?token_new.
+#  ?token_new rdf:type :Token;
+#             :has_attribute ?token_new_attr.
+#  ?x rdf:type :Attribute;
+#                :has_data "a";
+#                :has_index ?var_o_index.
+#  ?y rdf:type :Attribute;
+#                :has_data "b";
+#                :has_index ?var_o_index.
+#}
+WHERE {
+  VALUES ?token_i { :token1-1 :token2-1 }				# <-- :token1-1 :token2-1
+  
+  ?arc_i :comes_to :t1;									# <-- :t1
+         :comes_from ?place_i;
+         :has_pattern ?patt_i.
+  ?place_i :has_marking ?marking_i.
+  ?marking_i :has_token ?token_i.
+  ?token_i :has_attribute ?token_i_attr.
+  ?token_i_attr :has_data ?token_i_attr_data;
+                :has_index ?token_i_attr_index.
+  
+#  ?arc_o :comes_from :t1;
+#         :comes_to ?place_o;
+#         :has_pattern ?patt_o.
+#  ?place_o :has_marking ?marking_o.
+#  
+#  ?patt_o :has_variable ?var_o.
+#  ?var_o :has_name ?var_o_name;
+#         :has_index ?var_o_index.
+#  
+#  BIND(UUID() as ?token_new)
+#  ?marking_o :has_token ?token_new.
+#  OPTIONAL {
+#    SELECT ?patt_o ?x
+#    WHERE {
+#      ?patt_o :has_variable ?var_o.
+#  	  ?var_o :has_name ?var_o_name;
+#             :has_index ?var_o_index.
+#      BIND(UUID() as ?x)
+#      ?token_new :has_attribute ?x.
+#      FILTER(?var_o_name = 'x')
+#    }
+#  }
+#  OPTIONAL {
+#    SELECT ?patt_o ?y
+#    WHERE {
+#      ?patt_o :has_variable ?var_o.
+#  	  ?var_o :has_name ?var_o_name;
+#             :has_index ?var_o_index.
+#      BIND(UUID() as ?y)
+#      ?token_new :has_attribute ?y.
+#      FILTER(?var_o_name = 'y')
+#    }
+#  }
+  
+  # UUID, STRUUID
+}
