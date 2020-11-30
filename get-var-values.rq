@@ -1,7 +1,7 @@
 PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?place_i ?token_i ?values
+SELECT ?place_i ?token_i ?values ?x ?y
 WHERE {
   ### finding appropriate variable values combination to match the condition
   {
@@ -40,8 +40,8 @@ WHERE {
   }
   
   # binding a condition match
-#  BIND((?x = "a") as ?res)
-  BIND((true) as ?res)
+  BIND((?x = "a") as ?res)
+#  BIND((true) as ?res)
   
   ### finding appropriate tokens to pass through transition
   ?arc_i :comes_to :t1;														# <-- :t1
@@ -134,6 +134,6 @@ WHERE {
   ### binding a variable values set
   BIND((?x + ", " + ?y) as ?values)
 }
-GROUP BY ?place_i ?token_i ?res ?values
+GROUP BY ?place_i ?token_i ?res ?values ?x ?y
 HAVING (?res = true)
 ORDER BY ?values
