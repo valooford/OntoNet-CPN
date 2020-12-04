@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    // "outDir": "./dist", // put results to the specified dir
+    "noImplicitAny": true, // disallow implicit fall back to any
+    "module": "ES6", // ES6 module system for proper tree shaking
+    "target": "ES5", // transpile to ES5
+    // "allowJs": true,
+    "sourceMap": true,
+    "esModuleInterop": true // allows default CommonJS imports (ES6 compliant)
+  },
+  "include": ["src/**/*.ts"]
+}

@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base", // turn on rules which are compliant to 'Airbnb JavaScript Style Guide'
+    "prettier" // turn off conflicting rules
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-console": "off" // temp
+  },
+  "overrides": [
+    {
+      "files": "*.css.d.ts", // turn off the rule for css module declarations
+      "rules": {
+        "import/prefer-default-export": "off"
+      }
+    }
+  ]
+}
