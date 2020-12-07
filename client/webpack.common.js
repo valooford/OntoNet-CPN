@@ -6,6 +6,10 @@ module.exports = {
   // entry
   resolve: {
     extensions: [".ts", ".js", ".json"], // the default extensions list (.js must be included)
+    alias: {
+      // aliases for elegant import (__dirname is required)
+      "@components": path.resolve(__dirname, "./src/components/"),
+    },
   },
   module: {
     rules: [

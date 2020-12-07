@@ -2,7 +2,23 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2021": true
+    "es2020": true
+  },
+  "settings": {
+    // hande import/no-unresolved error
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js", ".json"]
+      },
+      // eslint-import-resolver-webpack
+      "webpack": {
+        "config": "./webpack.common.js"
+      }
+      // + VS Code ESLint settings (restart is recommended):
+      // "eslint.workingDirectories": [
+      //   { "directory": "./client", "changeProcessCWD": true }
+      // ]
+    }
   },
   "extends": [
     "eslint:recommended",
@@ -17,6 +33,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "import/extensions": ["error", "ignorePackages", { "ts": "never" }], // handle missing extensions error
     "no-console": "off" // temp
   },
   "overrides": [
