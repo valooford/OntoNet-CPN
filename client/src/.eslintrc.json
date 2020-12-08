@@ -42,6 +42,14 @@
       "rules": {
         "import/prefer-default-export": "off"
       }
+    },
+    {
+      "files": "*.ts",
+      "rules": {
+        // because it shows up when setting method parameters inside type declaration
+        // @typescript-eslint has its own rule for that
+        "no-unused-vars": "off"
+      }
     }
   ]
 }
