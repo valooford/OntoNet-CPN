@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 import UI from "@components/UI/UI";
-import OntoNet from "@components/OntoNet/OntoNet";
+import OntoNet, { Variables, Response } from "@components/OntoNet/OntoNet";
 
 export default class App {
   ontonet: OntoNet = new OntoNet();
@@ -24,6 +24,27 @@ export default class App {
         // console.log(`ontology loaded: ${file}`);
         this.ontonet.uploadCpnOntology(file);
       },
+    });
+    const statePromise: Promise<Response> = this.ontonet.getCpnState();
+    statePromise.then((state) => {
+      this.ui.setData({
+        columns: state.head.vars,
+        rows: state.results.bindings.map((b) => {
+          return Object.keys(b).reduce(
+            (row: { [key: string]: string }, colName: Variables) => {
+              let { value } = b[colName];
+              if (b[colName].type === "uri") {
+                const i = value.indexOf("#");
+                value = value.slice(i + 1);
+              }
+              // eslint-disable-next-line no-param-reassign
+              row[colName] = value;
+              return row;
+            },
+            {}
+          );
+        }),
+      });
     });
   }
 }

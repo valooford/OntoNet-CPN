@@ -47,8 +47,10 @@
       "files": "*.ts",
       "rules": {
         // because it shows up when setting method parameters inside type declaration
-        // @typescript-eslint has its own rule for that
-        "no-unused-vars": "off"
+        // @typescript-eslint has its own rules for that
+        "no-unused-vars": "off",
+        // because it shows up when creating enums
+        "no-shadow": "off"
       }
     }
   ]

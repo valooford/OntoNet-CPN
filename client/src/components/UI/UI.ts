@@ -1,6 +1,7 @@
 import JQuery from "jquery";
 import TextInput from "@components/TextInput/TextInput";
 import FileInput from "@components/FileInput/FileInput";
+import Table, { Data as TableData } from "@components/Table/Table";
 
 const $ = JQuery;
 
@@ -19,6 +20,8 @@ export default class UI {
   datasetInput: TextInput;
 
   ontologyLoader: FileInput = new FileInput();
+
+  table: Table = new Table();
 
   constructor($root: JQuery, callbacks: Callbacks = {}) {
     this.hostnameInput = new TextInput("hostname", {
@@ -41,7 +44,11 @@ export default class UI {
       this.datasetInput.element,
       this.ontologyLoader.element
     );
-    const $main: JQuery = $("<main>").append("Hello OntoNet");
+    const $main: JQuery = $("<main>").append(this.table.$element);
     $root.append($header.get(0), $main.get(0));
+  }
+
+  setData(data: TableData): void {
+    this.table.setData(data);
   }
 }
