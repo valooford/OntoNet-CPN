@@ -1,7 +1,10 @@
 import $ from "jquery";
 
 import UI from "@components/UI/UI";
-import OntoNet, { Variables, Response } from "@components/OntoNet/OntoNet";
+import OntoNet, {
+  StateVariables,
+  StateResponse,
+} from "@components/OntoNet/OntoNet";
 
 export default class App {
   ontonet: OntoNet = new OntoNet();
@@ -21,17 +24,25 @@ export default class App {
         console.log("datased changed");
       },
       onCpnOntologyLoad: (file: File) => {
-        // console.log(`ontology loaded: ${file}`);
-        this.ontonet.uploadCpnOntology(file);
+        this.ontonet.uploadCpnOntology(file).then(() => {
+          this.updateUI();
+          this.ontonet.getTransitionData().then((td) => {
+            console.log(td);
+          });
+        });
       },
     });
-    const statePromise: Promise<Response> = this.ontonet.getCpnState();
+    this.updateUI();
+  }
+
+  updateUI(): void {
+    const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.setData({
         columns: state.head.vars,
         rows: state.results.bindings.map((b) => {
           return Object.keys(b).reduce(
-            (row: { [key: string]: string }, colName: Variables) => {
+            (row: { [key: string]: string }, colName: StateVariables) => {
               let { value } = b[colName];
               if (b[colName].type === "uri") {
                 const i = value.indexOf("#");

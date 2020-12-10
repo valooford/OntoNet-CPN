@@ -2,6 +2,7 @@ import JQuery from "jquery";
 import TextInput from "@components/TextInput/TextInput";
 import FileInput from "@components/FileInput/FileInput";
 import Table, { Data as TableData } from "@components/Table/Table";
+import ActionPanel from "@components/ActionPanel/ActionPanel";
 
 const $ = JQuery;
 
@@ -22,6 +23,8 @@ export default class UI {
   ontologyLoader: FileInput = new FileInput();
 
   table: Table = new Table();
+
+  actionPanel: ActionPanel = new ActionPanel();
 
   constructor($root: JQuery, callbacks: Callbacks = {}) {
     this.hostnameInput = new TextInput("hostname", {
@@ -44,7 +47,10 @@ export default class UI {
       this.datasetInput.element,
       this.ontologyLoader.element
     );
-    const $main: JQuery = $("<main>").append(this.table.$element);
+    const $main: JQuery = $("<main>").append(
+      this.table.$element,
+      this.actionPanel.$element
+    );
     $root.append($header.get(0), $main.get(0));
   }
 
