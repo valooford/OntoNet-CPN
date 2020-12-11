@@ -25,17 +25,18 @@ export default class App {
       },
       onCpnOntologyLoad: (file: File) => {
         this.ontonet.uploadCpnOntology(file).then(() => {
-          this.updateUI();
-          this.ontonet.getTransitionData().then((td) => {
-            console.log(td);
-          });
+          this.updateUIData();
+          // this.ontonet.getTransitionData().then((td) => {
+          //   console.log(td);
+          // });
+          this.ontonet.getTransitionData();
         });
       },
     });
-    this.updateUI();
+    this.updateUIData();
   }
 
-  updateUI(): void {
+  updateUIData(): void {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.setData({
@@ -58,4 +59,6 @@ export default class App {
       });
     });
   }
+
+  // updateUITransitionData() {}
 }
