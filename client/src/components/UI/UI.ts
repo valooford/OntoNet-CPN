@@ -2,7 +2,9 @@ import JQuery from "jquery";
 import TextInput from "@components/TextInput/TextInput";
 import FileInput from "@components/FileInput/FileInput";
 import Table, { Data as TableData } from "@components/Table/Table";
-import ActionPanel from "@components/ActionPanel/ActionPanel";
+import ActionPanel, {
+  Data as ActionPanelData,
+} from "@components/ActionPanel/ActionPanel";
 
 const $ = JQuery;
 
@@ -54,7 +56,11 @@ export default class UI {
     $root.append($header.get(0), $main.get(0));
   }
 
-  setData(data: TableData): void {
+  updateState(data: TableData): void {
     this.table.setData(data);
+  }
+
+  updateActions(data: ActionPanelData): void {
+    this.actionPanel.setData(data);
   }
 }

@@ -4,6 +4,7 @@ import UI from "@components/UI/UI";
 import OntoNet, {
   StateVariables,
   StateResponse,
+  EnabledTransitionData,
 } from "@components/OntoNet/OntoNet";
 
 export default class App {
@@ -25,21 +26,18 @@ export default class App {
       },
       onCpnOntologyLoad: (file: File) => {
         this.ontonet.uploadCpnOntology(file).then(() => {
-          this.updateUIData();
-          // this.ontonet.getTransitionData().then((td) => {
-          //   console.log(td);
-          // });
-          this.ontonet.getTransitionData();
+          this.updateUIState();
+          this.updateUIActions();
         });
       },
     });
-    this.updateUIData();
+    this.updateUIState();
   }
 
-  updateUIData(): void {
+  updateUIState(): void {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
-      this.ui.setData({
+      this.ui.updateState({
         columns: state.head.vars,
         rows: state.results.bindings.map((b) => {
           return Object.keys(b).reduce(
@@ -60,5 +58,24 @@ export default class App {
     });
   }
 
-  // updateUITransitionData() {}
+  updateUIActions(): void {
+    this.ontonet
+      .getEnabledTransitionsData()
+      .then((etsd: EnabledTransitionData[]) => {
+        this.ui.updateActions(
+          etsd.map((etd) => {
+            return {
+              value: etd.id,
+              options: Object.keys(etd.groups).map((vals) => ({
+                value: vals,
+                options: Object.keys(etd.groups[vals]).map((place) => ({
+                  value: place,
+                  options: etd.groups[vals][place],
+                })),
+              })),
+            };
+          })
+        );
+      });
+  }
 }
