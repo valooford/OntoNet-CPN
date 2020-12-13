@@ -51,6 +51,7 @@ export type VarValuesResponse = {
 
 export type EnabledTransitionData = {
   id: string; // t1
+  variables: string[]; // ["x", "y"]
   groups: {
     // "a, b"
     [values: string]:

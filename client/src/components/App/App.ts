@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import UI from "@components/UI/UI";
+import UI, { ActionPanelData } from "@components/UI/UI";
 import OntoNet, {
   StateVariables,
   StateResponse,
@@ -8,33 +8,51 @@ import OntoNet, {
 } from "@components/OntoNet/OntoNet";
 
 export default class App {
-  ontonet: OntoNet = new OntoNet();
+  ontonet: OntoNet;
 
   ui: UI;
 
+  private readonly defaults = {
+    hostname: "localhost",
+    port: 3030,
+    dataset: "Petri",
+  };
+
   constructor() {
-    this.ontonet.setDataset("Petri");
-    this.ui = new UI($("body"), {
-      onHostnameChange() {
+    this.ontonet = new OntoNet(this.defaults);
+    this.ui = new UI($("body"), this.defaults, {
+      onHostnameChange: (hostname) => {
+        this.ontonet.setHostname(hostname);
         console.log("hostname changed");
       },
-      onPortChange() {
-        console.log("port changed");
+      onPortChange: (port: string) => {
+        if (Number.isInteger(Number(port))) {
+          this.ontonet.setPort(Number(port));
+          console.log("port changed");
+        } else {
+          console.log("port is not a number");
+        }
       },
-      onDatasetChange() {
+      onDatasetChange: (dataset) => {
+        this.ontonet.setDataset(dataset);
         console.log("datased changed");
       },
       onCpnOntologyLoad: (file: File) => {
         this.ontonet.uploadCpnOntology(file).then(() => {
-          this.updateUIState();
-          this.updateUIActions();
+          this.updateUI();
         });
       },
     });
-    this.updateUIState();
+    this.updateUI();
   }
 
-  updateUIState(): void {
+  updateUI(): void {
+    this.updateUIState();
+    this.updateUIActions();
+  }
+
+  // + move some logic into OntoNet
+  private updateUIState(): void {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.updateState({
@@ -43,6 +61,7 @@ export default class App {
           return Object.keys(b).reduce(
             (row: { [key: string]: string }, colName: StateVariables) => {
               let { value } = b[colName];
+              // + insert this functionality into OntoNet
               if (b[colName].type === "uri") {
                 const i = value.indexOf("#");
                 value = value.slice(i + 1);
@@ -58,23 +77,23 @@ export default class App {
     });
   }
 
-  updateUIActions(): void {
+  private updateUIActions(): void {
     this.ontonet
       .getEnabledTransitionsData()
       .then((etsd: EnabledTransitionData[]) => {
+        const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
+          // eslint-disable-next-line no-param-reassign
+          data[etd.id] = Object.keys(etd.groups);
+          // data[etd.id] = etd.groups;
+          return data;
+        }, {});
         this.ui.updateActions(
-          etsd.map((etd) => {
-            return {
-              value: etd.id,
-              options: Object.keys(etd.groups).map((vals) => ({
-                value: vals,
-                options: Object.keys(etd.groups[vals]).map((place) => ({
-                  value: place,
-                  options: etd.groups[vals][place],
-                })),
-              })),
-            };
-          })
+          actionPanelData,
+          (t: string, values: string): void => {
+            this.ontonet.performTransition(t, values).then(() => {
+              this.updateUI();
+            });
+          }
         );
       });
   }

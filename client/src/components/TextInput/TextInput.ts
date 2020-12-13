@@ -1,19 +1,28 @@
-import $ from "jquery";
+import JQuery from "jquery";
 
+const $ = JQuery;
+
+export type Callback = (val: string) => void;
 type Callbacks = {
-  onChange?(): void;
+  onChange?: Callback;
 };
 
 export default class TextInput {
-  element: HTMLElement;
+  readonly $element: JQuery;
 
-  constructor(placeholder: string, callbacks: Callbacks) {
-    const $element = $("<input>")
+  constructor(
+    placeholder: string,
+    defaultValue: string | number = "",
+    callbacks: Callbacks
+  ) {
+    this.$element = $("<input>")
       .attr({
         type: "text",
+        value: defaultValue,
         placeholder,
       })
-      .on("change", callbacks.onChange);
-    this.element = $element.get(0);
+      .on("change", () => {
+        callbacks.onChange(this.$element.prop("value"));
+      });
   }
 }

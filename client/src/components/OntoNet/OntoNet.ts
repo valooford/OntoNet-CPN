@@ -27,6 +27,8 @@ export default class OntoNet {
 
   protected dataset: string;
 
+  protected enabledTransitionsData: EnabledTransitionData[] = [];
+
   constructor(params: Parameters = undefined) {
     this.dataset = params?.dataset;
     this.hostname = params?.hostname ?? "localhost";
@@ -291,13 +293,102 @@ export default class OntoNet {
                     etd.groups[values][place].push(tokenId);
                     return etd;
                   },
-                  { id: t, groups: {} }
+                  { id: t, variables, groups: {} }
                 );
               }
             );
           })
         );
-        return enabledTransitionsData.filter((etd) => etd != null);
+        this.enabledTransitionsData = enabledTransitionsData.filter(
+          (etd) => etd != null
+        );
+        return this.enabledTransitionsData;
+      })
+    );
+  }
+
+  performTransition(t: string, values: string): Promise<void> {
+    // ! Array.prototype.find() requires polyfill
+    const td = this.enabledTransitionsData.find((etd) => etd.id === t);
+    const { variables } = td;
+    const varValues = values.split(", ");
+    const places = td.groups[values];
+    const tokens = Object.values(places).map((tokens) => tokens[0]);
+    return Promise.resolve(
+      $.post({
+        url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
+        data: {
+          update: `
+          PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          
+          DELETE {
+            ?marking_i :has_token ?token_i.
+            ?token_i rdf:type :Token;
+                    :has_attribute ?token_i_attr.
+            ?token_i_attr rdf:type :Attribute;
+                          :has_data ?token_i_attr_data;
+                          :has_index ?token_i_attr_index.
+          }
+          INSERT {
+            ?marking_o :has_token ?token_new.
+            ?token_new rdf:type :Token;
+                      ${variables
+                        .map((v) => `:has_attribute ?${v}`)
+                        .join(";\n")}.
+            ${variables
+              .map(
+                (v, i) => `
+            ?${v} rdf:type :Attribute;
+                  :has_data "${varValues[i]}";
+                  :has_index ?${v}_index.
+            `
+              )
+              .join("")}
+          }
+          WHERE {
+            {
+              VALUES ?token_i { ${tokens
+                .map((t) => `:${t}`)
+                .join(" ")} }				# <-- :token1-1 :token2-1
+          
+              ?arc_i :comes_to :${t};								# <-- :t1
+                    :comes_from ?place_i;
+                    :has_pattern ?patt_i.
+              ?place_i :has_marking ?marking_i.
+              ?marking_i :has_token ?token_i.
+              ?token_i :has_attribute ?token_i_attr.
+              ?token_i_attr :has_data ?token_i_attr_data;
+                            :has_index ?token_i_attr_index.
+            }
+            UNION
+            {
+              ?arc_o :comes_from :${t};								# <-- :t1
+                    :comes_to ?place_o;
+                    :has_pattern ?patt_o.
+              ?place_o :has_marking ?marking_o.
+          
+              BIND(UUID() as ?token_new)
+          
+              ${variables.reduce(
+                (vars, v) => `${vars}
+                  OPTIONAL {
+                    SELECT ?patt_o ?${v} ?${v}_index
+                    WHERE {
+                      ?patt_o :has_variable ?var_o.
+                      ?var_o :has_name ?var_o_name;
+                            :has_index ?${v}_index.
+                      FILTER(?var_o_name = "${v}")						# <-- "x"
+                      BIND(UUID() as ?${v})
+                    }
+                  }
+                `,
+                ""
+              )}
+            }
+          }
+        `,
+        },
       })
     );
   }
