@@ -44,6 +44,7 @@ export default class App {
       },
     });
     this.updateUI();
+    this.ontonet.addTokenToPlace("Control_codes", ["0"]);
   }
 
   updateUI(): void {

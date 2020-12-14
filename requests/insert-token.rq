@@ -1,0 +1,21 @@
+PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+INSERT {
+  ?marking :has_token ?token_new.
+  ?token_new rdf:type :Token;
+             :has_attribute ?x;
+             :has_attribute ?y.
+  ?x rdf:type :Attribute;
+                :has_data "a";
+                :has_index "1".
+  ?y rdf:type :Attribute;
+                :has_data "b";
+                :has_index "2".
+}
+WHERE {
+  :p1 :has_marking ?marking.								# <-- :p1
+  BIND(UUID() as ?token_new)
+  BIND(UUID() as ?x)
+  BIND(UUID() as ?y)
+}

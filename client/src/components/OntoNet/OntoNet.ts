@@ -307,6 +307,40 @@ export default class OntoNet {
     );
   }
 
+  addTokenToPlace(place: string, data: string[]): Promise<void> {
+    return Promise.resolve(
+      $.post({
+        url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
+        data: {
+          update: `
+          PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
+          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          
+          INSERT {
+            ?marking :has_token ?token_new.
+            ?token_new rdf:type :Token;
+                      ${data
+                        .map((d, i) => `:has_attribute ?var${i}`)
+                        .join(";\n")}.
+            ${data.reduce(
+              (vars, d, i) => `${vars}
+            ?var${i} rdf:type :Attribute;
+                          :has_data "${d}";
+                          :has_index "${i}".`,
+              ""
+            )}
+          }
+          WHERE {
+            :${place} :has_marking ?marking.								# <-- :p1
+            BIND(UUID() as ?token_new)
+            ${data.map((d, i) => `BIND(UUID() as ?var${i})`).join("\n")}
+          }
+        `,
+        },
+      })
+    );
+  }
+
   performTransition(t: string, values: string): Promise<void> {
     // ! Array.prototype.find() requires polyfill
     const td = this.enabledTransitionsData.find((etd) => etd.id === t);
