@@ -1,0 +1,1916 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     xml:base="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:OntoNet-CPN-onlotogy="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy/0.0.2"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_condition -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_condition">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition">
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code4"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Control_codes"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-off"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-on"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-equal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-greater"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-lesser"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <OntoNet-CPN-onlotogy:has_condition rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-not_equal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:off"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:on"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action:action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action:action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action:action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:cooling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:cooling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:cooling"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:heating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:heating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:heating"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:idle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:idle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:idle"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:cold"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:comparison -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:comparison">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:comparison"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:default -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:default">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:default"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:equality"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:hot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:hot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <OntoNet-CPN-onlotogy:has_marking rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:hot"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code0-Power_action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code0-Power_action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code4-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code4-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code0">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Control_codes-Code4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Control_codes"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code-Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Code4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Power-off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Power-off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Power-on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-Power-on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-off-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-off-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-on-Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-on-Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action-Power-off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action-Power-off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action-Power-on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action-Power-on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:OldStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:OldStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status-Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:OldStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-not_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-Temperature-not_equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-not_equal-Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-not_equal-Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code0-Power_action:action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code0-Power_action:action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action:action"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Temperature:default -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Temperature:default">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:default"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code1-Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Temperature:hot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code2-Temperature:hot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:hot"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Temperature:cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Temperature:cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:cold"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code3-Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code4-Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Code4-Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code4"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-off-Power:on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-off-Power:on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:on"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-on-Power:off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power-on-Power:off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:off"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power:off-Power-on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power:off-Power-on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:off"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-on"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power:on-Power-off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power:on-Power-off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power:on"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power-off"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action:action-Code0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Power_action:action-Code0">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Power_action:action"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code0"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:cooling-Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:cooling-Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:cooling"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:heating-Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:heating-Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:heating"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:idle-Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Status:idle-Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:idle"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Status:idle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-equal-Status:idle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:idle"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Status:heating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-greater-Status:heating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:heating"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Status:cooling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-lesser-Status:cooling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Status:cooling"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-not_equal-Temperature:comparison -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature-not_equal-Temperature:comparison">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:comparison"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:cold-Code3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:cold-Code3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:cold"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code3"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:comparison-Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:comparison-Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:comparison"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-greater"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:comparison-Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:comparison-Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:comparison"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-lesser"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:default-Code1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:default-Code1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:default"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code1"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:equality-Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:equality-Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:equality-Temperature-not_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:equality-Temperature-not_equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:equality"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature-not_equal"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:hot-Code2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#arc:Temperature:hot-Code2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <OntoNet-CPN-onlotogy:comes_from rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Temperature:hot"/>
+        <OntoNet-CPN-onlotogy:comes_to rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Code2"/>
+        <OntoNet-CPN-onlotogy:has_pattern rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>OFF</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>idle</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>OFF</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>ON</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power_action:action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power_action:action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:cooling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:cooling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>cooling</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:heating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:heating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>heating</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:idle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:idle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data>idle</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:default -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:default">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:hot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:hot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code0">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?code = &quot;0&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?code = &quot;1&quot; &amp;&amp; ?power = &quot;ON&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?code = &quot;2&quot; &amp;&amp; ?power = &quot;ON&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?code = &quot;3&quot; &amp;&amp; ?power = &quot;ON&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Code4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?code = &quot;4&quot; &amp;&amp; ?power = &quot;ON&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?power = &quot;OFF&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Power-on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?power = &quot;ON&quot;</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?newtemperature = ?temperature</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-greater -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-greater">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?newtemperature &gt; ?temperature</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-lesser -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-lesser">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?newtemperature &lt; ?temperature</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-not_equal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#c:Temperature-not_equal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <OntoNet-CPN-onlotogy:has_data>?newtemperature != ?temperature</OntoNet-CPN-onlotogy:has_data>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Control_codes -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Control_codes">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:off"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power:on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:on"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action:action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Power_action:action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power_action:action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:cooling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:cooling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:cooling"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:heating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:heating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:heating"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:idle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Status:idle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:idle"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:cold"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:comparison -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:comparison">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:default -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:default">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:default"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:equality -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:equality">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:hot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#m:Temperature:hot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <OntoNet-CPN-onlotogy:has_token rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:hot"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Code"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code-Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Code-Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Code"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewPower">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewPower"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:NewTemperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:OldStatus -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:OldStatus">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:OldStatus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#patt:Temperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <OntoNet-CPN-onlotogy:has_variable rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:off -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:off">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:off"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:on -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power:on">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power:on"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power_action:action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Power_action:action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power_action:action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:cooling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:cooling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:cooling"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:heating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:heating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:heating"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:idle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Status:idle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Status:idle"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:cold"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:default -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:default">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:default"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:hot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#t:Temperature:hot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <OntoNet-CPN-onlotogy:has_attribute rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Temperature:hot"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>action</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Code -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Code">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>code</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewPower -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewPower">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>newpower</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewTemperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:NewTemperature">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>newtemperature</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:OldStatus -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:OldStatus">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>oldstatus</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Power -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Power">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>power</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Status -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Status">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>status</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>temperature</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#var:Temperature2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</OntoNet-CPN-onlotogy:has_index>
+        <OntoNet-CPN-onlotogy:has_name>temperature</OntoNet-CPN-onlotogy:has_name>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
