@@ -1336,7 +1336,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#attr:Power_action:action">
         <rdf:type rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
-        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</OntoNet-CPN-onlotogy:has_data>
+        <OntoNet-CPN-onlotogy:has_data rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</OntoNet-CPN-onlotogy:has_data>
         <OntoNet-CPN-onlotogy:has_index rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</OntoNet-CPN-onlotogy:has_index>
     </owl:NamedIndividual>
     

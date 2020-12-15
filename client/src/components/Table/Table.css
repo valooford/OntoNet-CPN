@@ -1,0 +1,32 @@
+.table {
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 2em;
+  border: 1px solid rgba(0, 79, 124, 0.2);
+  border-collapse: collapse;
+}
+
+.table caption {
+  margin-bottom: 0.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.table thead {
+  color: #fff;
+  font-size: 1.2em;
+  background-color: rgb(0, 79, 124);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.table tr:nth-of-type(2n) {
+  background-color: rgb(233, 239, 243);
+}
+
+.table td {
+  padding: 0 0.5em;
+  border: 1px solid rgba(0, 79, 124, 0.2);
+  border-top: none;
+  border-bottom: none;
+}

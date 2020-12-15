@@ -1,5 +1,7 @@
 import JQuery from "jquery";
 
+import styles from "./Table.css";
+
 const $ = JQuery;
 
 export type Data = {
@@ -10,13 +12,19 @@ export type Data = {
 };
 
 export default class Table {
-  readonly $element: JQuery = $("<table>");
+  readonly $thead: JQuery = $("<thead>");
+
+  readonly $tbody: JQuery = $("<tbody>");
+
+  readonly $element: JQuery = $("<table>")
+    .addClass(styles.table)
+    .append($("<caption>").text("CPN State"), this.$thead, this.$tbody);
 
   setData(data: Data): void {
-    const $thead = $("<thead>").append(
-      data.columns.map((name) => `<th>${name}</th>`).join()
-    );
-    const $tbody = $("<tbody>").append(
+    this.$thead
+      .empty()
+      .append(data.columns.map((name) => `<th>${name}</th>`).join());
+    this.$tbody.empty().append(
       data.rows
         .map(
           (row) =>
@@ -26,6 +34,5 @@ export default class Table {
         )
         .join()
     );
-    this.$element.empty().append($thead, $tbody);
   }
 }

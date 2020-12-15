@@ -64,9 +64,9 @@ export default class OntoNet {
           contentType: false,
           complete(res, status) {
             if (status === "success") {
-              console.log("CPN Ontology was uploaded");
+              console.log("ontonet: CPN Ontology was uploaded");
             } else {
-              console.log("Error while uploading CPN Ontology");
+              console.log("ontonet: Error while uploading CPN Ontology");
             }
           },
         });
@@ -104,6 +104,9 @@ export default class OntoNet {
             ORDER BY ?place
           `,
         },
+        error() {
+          console.log("ontonet: Unable to get the CPN state");
+        },
       }).then(
         (res: StateResponse): StateResponse => {
           return res;
@@ -113,8 +116,9 @@ export default class OntoNet {
   }
 
   private static getIdFromURI(uri: string): string {
+    if (/^urn:uuid:.*/.test(uri)) return `<${uri}>`;
     const i = uri.indexOf("#");
-    return uri.slice(i + 1);
+    return `:${uri.slice(i + 1)}`;
   }
 
   getEnabledTransitionsData(): Promise<EnabledTransitionData[]> {
@@ -174,20 +178,20 @@ export default class OntoNet {
                       (vars, v: string) => `${vars}
                       ${`
                         {
-                          SELECT DISTINCT ?${v}
+                          SELECT DISTINCT ?${v} ?${v}_index
                           WHERE {
-                            ?arc_i :comes_to :${t};														# <-- :t1
+                            ?arc_i :comes_to ${t};														# <-- :t1
                                   :comes_from ?place_i;
                                   :has_pattern ?patt_i.
                             ?place_i :has_marking ?marking_i.
                             ?marking_i :has_token ?token_i.	
                             ?token_i :has_attribute ?attr_i.
                             ?attr_i :has_data ?${v};
-                                    :has_index ?attr_i_index.
+                                    :has_index ?${v}_index.
                             ?patt_i :has_variable ?var_i.
                             ?var_i :has_name ?var_i_name;
                                   :has_index ?var_i_index.
-                            FILTER(?var_i_name = "${v}" && ?attr_i_index = ?var_i_index)					# <-- "x"
+                            FILTER(?var_i_name = "${v}" && ?${v}_index = ?var_i_index)					# <-- "x"
                           }
                         }
                       `}`,
@@ -196,10 +200,9 @@ export default class OntoNet {
                     
                     # binding a condition match
                     BIND((${condition}) as ?res)
-                  #  BIND((true) as ?res)
                     
                     ### finding appropriate tokens to pass through transition
-                    ?arc_i :comes_to :${t};														# <-- :t1
+                    ?arc_i :comes_to ${t};														# <-- :t1
                           :comes_from ?place_i;
                           :has_pattern ?patt_i.
                     
@@ -207,29 +210,43 @@ export default class OntoNet {
                     ?marking_i :has_token ?token_i.	
                     
                     {
-                      SELECT ?token_i ?patt_i ${variables
-                        .map((v) => `?${v}`)
+                      SELECT ?token_i ?patt_i 
+                      (COUNT(?attr_i) as ?attr_i_count) (COUNT(?var_i) as ?var_i_count) 
+                      ${variables
+                        .map((v) => `?${v} ?${v}_index`)
                         .join(" ")}											# <-- ?x ?y
                       WHERE {
+                        ?patt_i :has_variable ?var_i.
+                        ?token_i :has_attribute ?attr_i.
                         ${variables.reduce(
                           (vars, v) => `${vars}
-                          # select ?${v}
                           OPTIONAL {
-                            SELECT ?token_i ?patt_i ?${v}
+                            SELECT ?token_i ?${v} ?${v}_index										# <-- ?x
                             WHERE {
                               ?token_i :has_attribute ?attr_i.
                               ?attr_i :has_data ?${v};
-                                      :has_index ?attr_i_index.
-                              ?patt_i :has_variable ?var_i.
-                              ?var_i :has_name ?var_i_name;
-                                    :has_index ?var_i_index.
-                              FILTER(?var_i_name = "${v}" && ?attr_i_index = ?var_i_index)			# <-- "x"
+                                      :has_index ?${v}_index.										# <-- ?x
                             }
                           }
                         `,
                           ""
                         )}
+                        FILTER(NOT EXISTS {
+                          ?token_i :has_attribute ?attrx_i.
+                          ?attrx_i :has_data ?_var;
+                              :has_index ?_var_index.
+                          FILTER (${variables
+                            .map(
+                              (v) =>
+                                `(?_var != ?${v} || ?_var_index != ?${v}_index)`
+                            )
+                            .join(" && ")})	# <-- ?x ?y
+                        })
                       }
+                      GROUP BY ?token_i ?patt_i ${variables
+                        .map((v) => `?${v} ?${v}_index`)
+                        .join(" ")}						# <-- ?x ?y
+	                    HAVING (?attr_i_count = ?var_i_count)
                     }
                     
                     ${variables.reduce(
@@ -238,7 +255,7 @@ export default class OntoNet {
                       FILTER (!BOUND(?${v}) || NOT EXISTS {
                         SELECT ?place2_i ?${v} (COUNT(?attr2_i_data) as ?${v}2_count)
                         WHERE {
-                          ?arc2_i :comes_to :${t};												# <-- :t1
+                          ?arc2_i :comes_to ${t};												# <-- :t1
                                   :comes_from ?place2_i;
                                   :has_pattern ?patt2_i.
                           ?place2_i :has_marking ?marking2_i.
@@ -316,6 +333,14 @@ export default class OntoNet {
           PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           
+          DELETE {
+            ?marking_old :has_token ?token_old.
+            ?token_old rdf:type :Token;
+                    :has_attribute ?token_old_attr.
+#!rethought attribute uniqueness  #!rethought attribute uniqueness  #?token_old_attr rdf:type :Attribute;
+            #               :has_data ?token_old_attr_data;
+            #               :has_index ?token_old_attr_index.
+          }
           INSERT {
             ?marking :has_token ?token_new.
             ?token_new rdf:type :Token;
@@ -326,14 +351,22 @@ export default class OntoNet {
               (vars, d, i) => `${vars}
             ?var${i} rdf:type :Attribute;
                           :has_data "${d}";
-                          :has_index "${i}".`,
+                          :has_index ${i + 1}.`,
               ""
             )}
           }
           WHERE {
-            :${place} :has_marking ?marking.								# <-- :p1
-            BIND(UUID() as ?token_new)
-            ${data.map((d, i) => `BIND(UUID() as ?var${i})`).join("\n")}
+            {
+              ${place} :has_marking ?marking_old.
+              ?marking_old :has_token ?token_old.
+              ?token_old :has_attribute ?token_old_attr.
+              ?token_old_attr :has_data ?token_old_attr_data;
+                            :has_index ?token_old_attr_index.
+            } UNION {
+              ${place} :has_marking ?marking.								# <-- :p1
+              BIND(UUID() as ?token_new)
+              ${data.map((d, i) => `BIND(UUID() as ?var${i})`).join("\n")}
+            }
           }
         `,
         },
@@ -348,6 +381,7 @@ export default class OntoNet {
     const varValues = values.split(", ");
     const places = td.groups[values];
     const tokens = Object.values(places).map((tokens) => tokens[0]);
+    console.log(tokens);
     return Promise.resolve(
       $.post({
         url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
@@ -360,9 +394,9 @@ export default class OntoNet {
             ?marking_i :has_token ?token_i.
             ?token_i rdf:type :Token;
                     :has_attribute ?token_i_attr.
-            ?token_i_attr rdf:type :Attribute;
-                          :has_data ?token_i_attr_data;
-                          :has_index ?token_i_attr_index.
+#!rethought attribute uniqueness  #?token_i_attr rdf:type :Attribute;
+            #              :has_data ?token_i_attr_data;
+            #              :has_index ?token_i_attr_index.
           }
           INSERT {
             ?marking_o :has_token ?token_new.
@@ -382,11 +416,9 @@ export default class OntoNet {
           }
           WHERE {
             {
-              VALUES ?token_i { ${tokens
-                .map((t) => `:${t}`)
-                .join(" ")} }				# <-- :token1-1 :token2-1
+              VALUES ?token_i { ${tokens.join(" ")} }				# <-- :token1-1 :token2-1
           
-              ?arc_i :comes_to :${t};								# <-- :t1
+              ?arc_i :comes_to ${t};								# <-- :t1
                     :comes_from ?place_i;
                     :has_pattern ?patt_i.
               ?place_i :has_marking ?marking_i.
@@ -397,7 +429,7 @@ export default class OntoNet {
             }
             UNION
             {
-              ?arc_o :comes_from :${t};								# <-- :t1
+              ?arc_o :comes_from ${t};								# <-- :t1
                     :comes_to ?place_o;
                     :has_pattern ?patt_o.
               ?place_o :has_marking ?marking_o.

@@ -1,5 +1,7 @@
 import JQuery from "jquery";
 
+import styles from "./TextInput.css";
+
 const $ = JQuery;
 
 export type Callback = (val: string) => void;
@@ -21,6 +23,7 @@ export default class TextInput {
         value: defaultValue,
         placeholder,
       })
+      .addClass(styles.textInput)
       .on("change", () => {
         callbacks.onChange(this.$element.prop("value"));
       });

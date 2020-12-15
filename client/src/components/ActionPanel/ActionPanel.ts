@@ -1,4 +1,7 @@
+import Button from "@components/Button/Button";
 import JQuery from "jquery";
+
+import styles from "./ActionPanel.css";
 
 const $ = JQuery;
 
@@ -8,15 +11,20 @@ export type Data = {
 export type Handler = (arg1: string, ...args: string[]) => void;
 
 export default class ActionPanel {
-  readonly $element: JQuery = $("<div>");
+  readonly $element: JQuery = $("<div>").addClass(styles.panel);
+
+  readonly $actions: JQuery = $("<div>").addClass(styles.actions);
+
+  constructor(text: string) {
+    this.$element.text(text).append(this.$actions);
+  }
 
   private fieldsData: string[] = [];
 
   private actionHandler: (...args: string[]) => void;
 
   private drawField(index: number, data: Data | string[]): void {
-    const $select = $("<select>");
-    this.$element.append($select);
+    const $select = $("<select>").addClass(styles.select);
     $select.append(
       $("<option>")
         .attr({
@@ -34,11 +42,15 @@ export default class ActionPanel {
           if (!this.fieldsData[index]) {
             $select.nextAll().remove();
             $select.after(
-              $("<button>")
-                .text("Step")
-                .on("click", () => {
-                  this.actionHandler(...this.fieldsData);
-                })
+              new Button(
+                "Fire",
+                {
+                  onClick: () => {
+                    this.actionHandler(...this.fieldsData);
+                  },
+                },
+                true
+              ).$element
             );
           }
           this.fieldsData = [...this.fieldsData.slice(0, index), fieldValue];
@@ -53,11 +65,12 @@ export default class ActionPanel {
           this.drawField(index + 1, (<Data>data)[fieldValue]);
         });
     }
+    this.$actions.append($select);
   }
 
   setData(data: Data, onAction: Handler): void {
     this.actionHandler = onAction;
-    this.$element.empty();
+    this.$actions.empty();
     this.drawField(0, data);
   }
 }

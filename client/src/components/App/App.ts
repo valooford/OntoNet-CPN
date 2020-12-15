@@ -38,13 +38,104 @@ export default class App {
         console.log("datased changed");
       },
       onCpnOntologyLoad: (file: File) => {
-        this.ontonet.uploadCpnOntology(file).then(() => {
-          this.updateUI();
-        });
+        this.ontonet.uploadCpnOntology(file).then(
+          () => {
+            this.updateUI();
+          },
+          () => {
+            alert(`An error occurred while uploading ontology file.`);
+          }
+        );
       },
     });
+
+    const addTokenToControlCodes = (attributes: string[]) => {
+      this.ontonet.addTokenToPlace(":Control_codes", attributes).then(() => {
+        this.updateUI();
+      });
+    };
+    const addTokenToTemperature = (attribute: string) => {
+      this.ontonet.addTokenToPlace(":Temperature", [attribute]).then(() => {
+        this.updateUI();
+      });
+    };
+    UI.addMutationActions(
+      "Remote controller: ",
+      {
+        Power: ["ON/OFF"],
+        Default: ["22"],
+        Hot: ["30"],
+        Cold: ["15"],
+        Custom: [
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+        ],
+      },
+      (key: string, value: string): void => {
+        switch (key) {
+          case "Power":
+            addTokenToControlCodes(["0"]);
+            console.log(`power on/off`);
+            break;
+          case "Default":
+            addTokenToControlCodes(["1"]);
+            break;
+          case "Hot":
+            addTokenToControlCodes(["2"]);
+            break;
+          case "Cold":
+            addTokenToControlCodes(["3"]);
+            break;
+          case "Custom":
+            addTokenToControlCodes(["4", value]);
+            break;
+          default:
+        }
+        console.log(`Sended by: ${key} and ${value}`);
+      }
+    );
+    UI.addMutationActions(
+      "Sensor: ",
+      {
+        Temperature: [
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+        ],
+      },
+      (_, temperature) => {
+        addTokenToTemperature(temperature);
+      }
+    );
+
     this.updateUI();
-    this.ontonet.addTokenToPlace("Control_codes", ["0"]);
   }
 
   updateUI(): void {
@@ -85,7 +176,6 @@ export default class App {
         const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
           // eslint-disable-next-line no-param-reassign
           data[etd.id] = Object.keys(etd.groups);
-          // data[etd.id] = etd.groups;
           return data;
         }, {});
         this.ui.updateActions(

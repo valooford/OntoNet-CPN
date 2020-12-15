@@ -5,7 +5,7 @@ SELECT ?place_i ?token_i ?values ?x ?y
 WHERE {
   ### finding appropriate variable values combination to match the condition
   {
-    SELECT DISTINCT ?x
+    SELECT DISTINCT ?x ?x_index
     WHERE {
       ?arc_i :comes_to :t1;														# <-- :t1
              :comes_from ?place_i;
@@ -14,34 +14,33 @@ WHERE {
       ?marking_i :has_token ?token_i.	
       ?token_i :has_attribute ?attr_i.
       ?attr_i :has_data ?x;
-              :has_index ?attr_i_index.
+              :has_index ?x_index.											# <-- ?x
       ?patt_i :has_variable ?var_i.
       ?var_i :has_name ?var_i_name;
              :has_index ?var_i_index.
-      FILTER(?var_i_name = "x" && ?attr_i_index = ?var_i_index)					# <-- "x"
+      FILTER(?var_i_name = "x" && ?x_index = ?var_i_index)					# <-- "x"
     }
   }
   {
-    SELECT DISTINCT ?y
+    SELECT DISTINCT ?y ?y_index
     WHERE {
-      ?arc_i :comes_to :t1;														# <-- :t1
+      ?arc_i :comes_to :t1;													# <-- :t1
              :comes_from ?place_i;
              :has_pattern ?patt_i.
       ?place_i :has_marking ?marking_i.
       ?marking_i :has_token ?token_i.	
       ?token_i :has_attribute ?attr_i.
       ?attr_i :has_data ?y;
-              :has_index ?attr_i_index.
+              :has_index ?y_index.											# <-- ?y
       ?patt_i :has_variable ?var_i.
       ?var_i :has_name ?var_i_name;
              :has_index ?var_i_index.
-      FILTER(?var_i_name = "y" && ?attr_i_index = ?var_i_index)					# <-- "y"
+      FILTER(?var_i_name = "y" && ?y_index = ?var_i_index)					# <-- "y"
     }
   }
   
   # binding a condition match
   BIND((?x = "a") as ?res)
-#  BIND((true) as ?res)
   
   ### finding appropriate tokens to pass through transition
   ?arc_i :comes_to :t1;														# <-- :t1
@@ -52,35 +51,37 @@ WHERE {
   ?marking_i :has_token ?token_i.	
   
   {
-    SELECT ?token_i ?patt_i ?x ?y											# <-- ?x ?y
+    SELECT ?token_i ?patt_i 
+    (COUNT(?attr_i) as ?attr_i_count) (COUNT(?var_i) as ?var_i_count) 
+    ?x ?x_index ?y ?y_index # <-- ?x ?y
     WHERE {
-      # select ?x
+      ?patt_i :has_variable ?var_i.
+      ?token_i :has_attribute ?attr_i.
       OPTIONAL {
-        SELECT ?token_i ?patt_i ?x
+        SELECT ?token_i ?x ?x_index											# <-- ?x
         WHERE {
           ?token_i :has_attribute ?attr_i.
           ?attr_i :has_data ?x;
-                  :has_index ?attr_i_index.
-          ?patt_i :has_variable ?var_i.
-          ?var_i :has_name ?var_i_name;
-                 :has_index ?var_i_index.
-          FILTER(?var_i_name = "x" && ?attr_i_index = ?var_i_index)			# <-- "x"
+                  :has_index ?x_index.										# <-- ?x
         }
       }
-      # select ?y
       OPTIONAL {
-        SELECT ?token_i ?patt_i ?y
+        SELECT ?token_i ?y ?y_index											# <-- ?y
         WHERE {
           ?token_i :has_attribute ?attr_i.
           ?attr_i :has_data ?y;
-                  :has_index ?attr_i_index.
-          ?patt_i :has_variable ?var_i.
-          ?var_i :has_name ?var_i_name;
-                 :has_index ?var_i_index.
-          FILTER(?var_i_name = "y" && ?attr_i_index = ?var_i_index)			# <-- "y"
+                  :has_index ?y_index.										# <-- ?y
         }
       }
+      FILTER(NOT EXISTS {
+        ?token_i :has_attribute ?attrx_i.
+        ?attrx_i :has_data ?_var;
+		        :has_index ?_var_index.
+        FILTER ((?_var != ?x || ?_var_index != ?x_index) && (?_var != ?y || ?_var_index != ?y_index))	# <-- ?x ?y
+      })
     }
+    GROUP BY ?token_i ?patt_i ?x ?x_index ?y ?y_index						# <-- ?x ?y
+	HAVING (?attr_i_count = ?var_i_count)
   }
   
   # filter ?x (checking for '?x' value existing in every position)

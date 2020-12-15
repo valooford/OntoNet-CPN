@@ -34,7 +34,8 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "import/extensions": ["error", "ignorePackages", { "ts": "never" }], // handle missing extensions error
-    "no-console": "off" // temp
+    "no-console": "off", // temp
+    "no-alert": "off" // temp
   },
   "overrides": [
     {

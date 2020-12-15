@@ -2,15 +2,17 @@ import JQuery from "jquery";
 import TextInput, {
   Callback as TextInputCallback,
 } from "@components/TextInput/TextInput";
-import FileInput, {
-  Callback as FileInputCallback,
-} from "@components/FileInput/FileInput";
+import FileButton, {
+  Callback as FileButtonCallback,
+} from "@components/Button/FileButton/FileButton";
 import Table, { Data as TableData } from "@components/Table/Table";
 import ActionPanel, {
   Data as _ActionPanelData,
   Handler as _ActionPanelHandler,
 } from "@components/ActionPanel/ActionPanel";
 import Button from "@components/Button/Button";
+
+import styles from "./UI.css";
 
 export type ActionPanelData = _ActionPanelData;
 export type ActionPanelHandler = _ActionPanelHandler;
@@ -27,7 +29,7 @@ type Callbacks = {
   onHostnameChange?: TextInputCallback;
   onPortChange?: TextInputCallback;
   onDatasetChange?: TextInputCallback;
-  onCpnOntologyLoad?: FileInputCallback;
+  onCpnOntologyLoad?: FileButtonCallback;
 };
 
 export default class UI {
@@ -37,13 +39,13 @@ export default class UI {
 
   datasetInput: TextInput;
 
-  ontologyLoader: FileInput = new FileInput();
+  ontologyLoader: FileButton = new FileButton();
 
   reloadButton: Button;
 
   table: Table = new Table();
 
-  actionPanel: ActionPanel = new ActionPanel();
+  controls: ActionPanel = new ActionPanel("Actions: ");
 
   constructor(
     $root: JQuery,
@@ -59,26 +61,36 @@ export default class UI {
     this.datasetInput = new TextInput("dataset", configuration.dataset, {
       onChange: callbacks.onDatasetChange,
     });
-    this.ontologyLoader = new FileInput({
+    this.ontologyLoader = new FileButton({
       onLoad: (file) => {
         callbacks.onCpnOntologyLoad(file);
       },
     });
-    this.reloadButton = new Button("Reload", {
+    this.reloadButton = new Button("Reload Ontology", {
       onClick: () => {
         callbacks.onCpnOntologyLoad(this.ontologyLoader.getFile());
       },
     });
-    const $header: JQuery = $("<header>").append(
-      this.hostnameInput.$element,
-      this.portInput.$element,
-      this.datasetInput.$element,
-      this.ontologyLoader.$element,
-      this.reloadButton.$element
-    );
+    const $header: JQuery = $("<header>")
+      .addClass(styles.header)
+      .append(
+        $("<span>").addClass(styles.logo).text("OntoNet"),
+        $("<div>")
+          .addClass(styles.configuration)
+          .append(
+            this.hostnameInput.$element,
+            " : ",
+            this.portInput.$element,
+            " / ",
+            this.datasetInput.$element,
+            this.ontologyLoader.$element,
+            this.reloadButton.$element
+          )
+      );
     const $main: JQuery = $("<main>").append(
-      this.table.$element,
-      this.actionPanel.$element
+      $("<div>")
+        .addClass(styles.container)
+        .append(this.table.$element, this.controls.$element)
     );
     $root.append($header.get(0), $main.get(0));
   }
@@ -89,6 +101,16 @@ export default class UI {
   }
 
   updateActions(data: ActionPanelData, onAction: ActionPanelHandler): void {
-    this.actionPanel.setData(data, onAction);
+    this.controls.setData(data, onAction);
+  }
+
+  static addMutationActions(
+    mutation: string,
+    data: ActionPanelData,
+    onMutation: ActionPanelHandler
+  ): void {
+    const mutationControls = new ActionPanel(mutation);
+    mutationControls.setData(data, onMutation);
+    $(`.${styles.container}`).append(mutationControls.$element);
   }
 }
