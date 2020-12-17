@@ -103,14 +103,4 @@ export default class UI {
   updateActions(data: ActionPanelData, onAction: ActionPanelHandler): void {
     this.controls.setData(data, onAction);
   }
-
-  static addMutationActions(
-    mutation: string,
-    data: ActionPanelData,
-    onMutation: ActionPanelHandler
-  ): void {
-    const mutationControls = new ActionPanel(mutation);
-    mutationControls.setData(data, onMutation);
-    $(`.${styles.container}`).append(mutationControls.$element);
-  }
 }

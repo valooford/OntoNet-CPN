@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     xml:base="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:OntoNet-CPN-onlotogy="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy">
+        <owl:versionIRI rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy/0.0.1"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_condition -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_condition">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_from"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#comes_to"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_pattern"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Arc"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_data"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_index"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Condition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_token"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_variable"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Pattern"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_marking"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Marking"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Place"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_attribute"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Attribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Token"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition">
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Transition"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#has_name"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#Variable"/>
+            </owl:Class>
+        </owl:disjointWith>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

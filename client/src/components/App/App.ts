@@ -49,92 +49,6 @@ export default class App {
       },
     });
 
-    const addTokenToControlCodes = (attributes: string[]) => {
-      this.ontonet.addTokenToPlace(":Control_codes", attributes).then(() => {
-        this.updateUI();
-      });
-    };
-    const addTokenToTemperature = (attribute: string) => {
-      this.ontonet.addTokenToPlace(":Temperature", [attribute]).then(() => {
-        this.updateUI();
-      });
-    };
-    UI.addMutationActions(
-      "Remote controller: ",
-      {
-        Power: ["ON/OFF"],
-        Default: ["22"],
-        Hot: ["30"],
-        Cold: ["15"],
-        Custom: [
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30",
-        ],
-      },
-      (key: string, value: string): void => {
-        switch (key) {
-          case "Power":
-            addTokenToControlCodes(["0"]);
-            console.log(`power on/off`);
-            break;
-          case "Default":
-            addTokenToControlCodes(["1"]);
-            break;
-          case "Hot":
-            addTokenToControlCodes(["2"]);
-            break;
-          case "Cold":
-            addTokenToControlCodes(["3"]);
-            break;
-          case "Custom":
-            addTokenToControlCodes(["4", value]);
-            break;
-          default:
-        }
-        console.log(`Sended by: ${key} and ${value}`);
-      }
-    );
-    UI.addMutationActions(
-      "Sensor: ",
-      {
-        Temperature: [
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30",
-        ],
-      },
-      (_, temperature) => {
-        addTokenToTemperature(temperature);
-      }
-    );
-
     this.updateUI();
   }
 
@@ -148,10 +62,11 @@ export default class App {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.updateState({
-        columns: state.head.vars,
+        columns: state.head.vars.filter((v) => v !== "token"),
         rows: state.results.bindings.map((b) => {
           return Object.keys(b).reduce(
             (row: { [key: string]: string }, colName: StateVariables) => {
+              if (colName === "token") return row;
               let { value } = b[colName];
               // + insert this functionality into OntoNet
               if (b[colName].type === "uri") {
