@@ -7,11 +7,65 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.onto.net/"
      versionIRI="http://www.onto.net/1.0.0">
+    <Prefix name="" IRI="http://www.onto.net/"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="Arc"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Case"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Code"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ColorSet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ComplexColorSet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Constant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Function"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Guard"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Marking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Place"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SimpleColorSet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="State"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Token"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Transition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Variable"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="ComplexColorSet"/>
+        <Class IRI="ColorSet"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SimpleColorSet"/>
+        <Class IRI="ColorSet"/>
+    </SubClassOf>
 </Ontology>
 
 
