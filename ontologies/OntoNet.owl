@@ -17,37 +17,52 @@
         <Class IRI="Arc"/>
     </Declaration>
     <Declaration>
-        <Class IRI="Case"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="Code"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="ColorSet"/>
     </Declaration>
     <Declaration>
-        <Class IRI="ComplexColorSet"/>
+        <Class IRI="ColorSets"/>
     </Declaration>
     <Declaration>
         <Class IRI="Constant"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Constants"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Declarations"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Function"/>
     </Declaration>
     <Declaration>
-        <Class IRI="Guard"/>
+        <Class IRI="Functions"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="HLPN"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InitialMarking"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InitialMarkingOfPlace"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InputArc"/>
     </Declaration>
     <Declaration>
         <Class IRI="Marking"/>
     </Declaration>
     <Declaration>
+        <Class IRI="MarkingOfPlace"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Node"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OutputArc"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Place"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="SimpleColorSet"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="State"/>
     </Declaration>
     <Declaration>
         <Class IRI="Token"/>
@@ -58,14 +73,9 @@
     <Declaration>
         <Class IRI="Variable"/>
     </Declaration>
-    <SubClassOf>
-        <Class IRI="ComplexColorSet"/>
-        <Class IRI="ColorSet"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="SimpleColorSet"/>
-        <Class IRI="ColorSet"/>
-    </SubClassOf>
+    <Declaration>
+        <Class IRI="Variables"/>
+    </Declaration>
 </Ontology>
 
 

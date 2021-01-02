@@ -32,6 +32,6 @@ module.exports = merge(common, {
   optimization: { removeEmptyChunks: false, splitChunks: false }, // removing unwanted optimizations (2)
   output: {
     filename: '[name].js', // main.js
-    pathinfo: false, // no path info generation},
+    pathinfo: false, // no path info generation
   },
 });
