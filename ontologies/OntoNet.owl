@@ -17,25 +17,22 @@
         <Class IRI="Arc"/>
     </Declaration>
     <Declaration>
-        <Class IRI="ColorSet"/>
+        <Class IRI="BasisSet"/>
     </Declaration>
     <Declaration>
-        <Class IRI="ColorSets"/>
+        <Class IRI="ColorSet"/>
     </Declaration>
     <Declaration>
         <Class IRI="Constant"/>
     </Declaration>
     <Declaration>
-        <Class IRI="Constants"/>
+        <Class IRI="Data"/>
     </Declaration>
     <Declaration>
-        <Class IRI="Declarations"/>
+        <Class IRI="Declaration"/>
     </Declaration>
     <Declaration>
         <Class IRI="Function"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="Functions"/>
     </Declaration>
     <Declaration>
         <Class IRI="HLPN"/>
@@ -56,6 +53,15 @@
         <Class IRI="MarkingOfPlace"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Multiset"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="MultisetOfTerms"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="MultisetOfTokens"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Node"/>
     </Declaration>
     <Declaration>
@@ -63,6 +69,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="Place"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Statement"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Term"/>
     </Declaration>
     <Declaration>
         <Class IRI="Token"/>
@@ -73,9 +85,54 @@
     <Declaration>
         <Class IRI="Variable"/>
     </Declaration>
-    <Declaration>
-        <Class IRI="Variables"/>
-    </Declaration>
+    <SubClassOf>
+        <Class IRI="ColorSet"/>
+        <Class IRI="Statement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Constant"/>
+        <Class IRI="Statement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Function"/>
+        <Class IRI="Statement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InputArc"/>
+        <Class IRI="Arc"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MultisetOfTerms"/>
+        <Class IRI="Multiset"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MultisetOfTokens"/>
+        <Class IRI="Multiset"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="OutputArc"/>
+        <Class IRI="Arc"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Place"/>
+        <Class IRI="Node"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Term"/>
+        <Class IRI="Data"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Token"/>
+        <Class IRI="Data"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Transition"/>
+        <Class IRI="Node"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Variable"/>
+        <Class IRI="Statement"/>
+    </SubClassOf>
 </Ontology>
 
 
