@@ -17,6 +17,9 @@
         <Class IRI="Arc"/>
     </Declaration>
     <Declaration>
+        <Class IRI="ArcAnnotation"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="BasisSet"/>
     </Declaration>
     <Declaration>
@@ -36,12 +39,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="HLPN"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="InitialMarking"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="InitialMarkingOfPlace"/>
     </Declaration>
     <Declaration>
         <Class IRI="InputArc"/>
@@ -84,6 +81,84 @@
     </Declaration>
     <Declaration>
         <Class IRI="Variable"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="directed_from"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_annotation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_arc"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_colorSet"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_data"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_domain"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_guard"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_initialMarking"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_marking"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_multisetOfTerms"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_multisetOfTokens"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_node"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_range"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_sourceNode"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_targetNode"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="includes_basisSet"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="includes_markingOfPlace"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="includes_statement"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_action"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_arguments"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_cardinality"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_code"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_declaration"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_multiplicity"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_name"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="has_value"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="ColorSet"/>
