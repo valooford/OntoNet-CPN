@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
+     versionIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/1.0.0">
+    <Prefix name="" IRI="http://www.experimental.onto.net/net/1/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.onto.net/js-core/1.0.0</Import>
+    <Declaration>
+        <NamedIndividual IRI="Net"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P1-T1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P1-T2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P2-T1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="P3-T3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T1-P2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T1-P3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T2"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T2-P3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T3"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="T3-P1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="marking_0"/>
+    </Declaration>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <NamedIndividual IRI="Net"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Place"/>
+        <NamedIndividual IRI="P1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="P1-T1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="P1-T2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Place"/>
+        <NamedIndividual IRI="P2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="P2-T1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Place"/>
+        <NamedIndividual IRI="P3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="P3-T3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Transition"/>
+        <NamedIndividual IRI="T1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="T1-P2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="T1-P3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Transition"/>
+        <NamedIndividual IRI="T2"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="T2-P3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Transition"/>
+        <NamedIndividual IRI="T3"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Arc"/>
+        <NamedIndividual IRI="T3-P1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Marking"/>
+        <NamedIndividual IRI="marking_0"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P1-T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P1-T2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P2-T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P3-T3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T1-P2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T1-P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T2-P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T3-P1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="marking_0"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="marking_0"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
+        <NamedIndividual IRI="Net"/>
+        <NamedIndividual IRI="T3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="P1-T1"/>
+        <NamedIndividual IRI="P1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="P1-T1"/>
+        <NamedIndividual IRI="T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="P1-T2"/>
+        <NamedIndividual IRI="P1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="P1-T2"/>
+        <NamedIndividual IRI="T2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="P2-T1"/>
+        <NamedIndividual IRI="P2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="P2-T1"/>
+        <NamedIndividual IRI="T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="P3-T3"/>
+        <NamedIndividual IRI="P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="P3-T3"/>
+        <NamedIndividual IRI="T3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="T1-P2"/>
+        <NamedIndividual IRI="T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="T1-P2"/>
+        <NamedIndividual IRI="P2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="T1-P3"/>
+        <NamedIndividual IRI="T1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="T1-P3"/>
+        <NamedIndividual IRI="P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="T2-P3"/>
+        <NamedIndividual IRI="T2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="T2-P3"/>
+        <NamedIndividual IRI="P3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+        <NamedIndividual IRI="T3-P1"/>
+        <NamedIndividual IRI="T3"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+        <NamedIndividual IRI="T3-P1"/>
+        <NamedIndividual IRI="P1"/>
+    </ObjectPropertyAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
