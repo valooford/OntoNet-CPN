@@ -7,6 +7,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.onto.net/js-core/"
      versionIRI="http://www.onto.net/js-core/1.0.0">
+    <Prefix name="" IRI="http://www.onto.net/js-core/"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
@@ -22,22 +23,28 @@
         <Class IRI="http://www.onto.net/core/BasisSet"/>
     </Declaration>
     <Declaration>
+        <Class IRI="http://www.onto.net/core/Built-in"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.onto.net/core/CPN"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
     </Declaration>
     <Declaration>
         <Class IRI="http://www.onto.net/core/Constant"/>
     </Declaration>
     <Declaration>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="http://www.onto.net/core/Data"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://www.onto.net/core/Declaration"/>
+        <Class IRI="http://www.onto.net/core/Declarations"/>
     </Declaration>
     <Declaration>
         <Class IRI="http://www.onto.net/core/Function"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
     </Declaration>
     <Declaration>
         <Class IRI="http://www.onto.net/core/InputArc"/>
@@ -89,6 +96,9 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
@@ -157,138 +167,163 @@
         <DataProperty IRI="http://www.onto.net/core/has_value"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_boolean"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_enumerated"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_indexed"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_integer"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_string"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_unit"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/declaration"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_alias"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_list"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_product"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_record"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_union"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
     </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://www.onto.net/core/InputArc"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.onto.net/core/Arc"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+                <Class IRI="http://www.onto.net/core/Place"/>
+            </ObjectAllValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+                <Class IRI="http://www.onto.net/core/Transition"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.onto.net/core/Multiset"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="http://www.onto.net/core/BasisSet"/>
+                    <ObjectAllValuesFrom>
+                        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
+                        <Class IRI="http://www.onto.net/core/Term"/>
+                    </ObjectAllValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.onto.net/core/Multiset"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
+                <ObjectIntersectionOf>
+                    <Class IRI="http://www.onto.net/core/BasisSet"/>
+                    <ObjectAllValuesFrom>
+                        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
+                        <Class IRI="http://www.onto.net/core/Token"/>
+                    </ObjectAllValuesFrom>
+                </ObjectIntersectionOf>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://www.onto.net/core/OutputArc"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.onto.net/core/Arc"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
+                <Class IRI="http://www.onto.net/core/Transition"/>
+            </ObjectAllValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
+                <Class IRI="http://www.onto.net/core/Place"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://www.onto.net/core/Place"/>
+        <ObjectIntersectionOf>
+            <Class IRI="http://www.onto.net/core/Node"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
+                <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
     <SubClassOf>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Constant"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <SubClassOf>
+        <Class IRI="http://www.onto.net/core/Built-in"/>
         <Class IRI="http://www.onto.net/core/Function"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <Class IRI="http://www.onto.net/core/CPN"/>
         <ObjectAllValuesFrom>
             <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
             <Class IRI="http://www.onto.net/core/Marking"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.onto.net/core/InputArc"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
+        <Class IRI="http://www.onto.net/core/ColorSet"/>
+        <Class IRI="http://www.onto.net/core/Statement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.onto.net/core/Constant"/>
+        <Class IRI="http://www.onto.net/core/Statement"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <Class IRI="http://www.onto.net/core/Built-in"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.onto.net/core/Function"/>
+        <Class IRI="http://www.onto.net/core/Statement"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://www.onto.net/core/InputArc"/>
-        <ObjectIntersectionOf>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-                <Class IRI="http://www.onto.net/core/Place"/>
-            </ObjectAllValuesFrom>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-                <Class IRI="http://www.onto.net/core/Transition"/>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
+        <Class IRI="http://www.onto.net/core/Arc"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
         <Class IRI="http://www.onto.net/core/Multiset"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-            <ObjectIntersectionOf>
-                <Class IRI="http://www.onto.net/core/BasisSet"/>
-                <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-                    <Class IRI="http://www.onto.net/core/Term"/>
-                </ObjectAllValuesFrom>
-            </ObjectIntersectionOf>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
         <Class IRI="http://www.onto.net/core/Multiset"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-            <ObjectIntersectionOf>
-                <Class IRI="http://www.onto.net/core/BasisSet"/>
-                <ObjectAllValuesFrom>
-                    <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-                    <Class IRI="http://www.onto.net/core/Token"/>
-                </ObjectAllValuesFrom>
-            </ObjectIntersectionOf>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="http://www.onto.net/core/OutputArc"/>
         <Class IRI="http://www.onto.net/core/Arc"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/OutputArc"/>
-        <ObjectIntersectionOf>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-                <Class IRI="http://www.onto.net/core/Transition"/>
-            </ObjectAllValuesFrom>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-                <Class IRI="http://www.onto.net/core/Place"/>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://www.onto.net/core/Place"/>
         <Class IRI="http://www.onto.net/core/Node"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-            <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://www.onto.net/core/Term"/>
@@ -326,170 +361,265 @@
     </DisjointClasses>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_boolean"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_enumerated"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_indexed"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_integer"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_string"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_unit"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/declaration"/>
+        <Class IRI="http://www.onto.net/core/Declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_alias"/>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_list"/>
+        <Class IRI="http://www.onto.net/core/Built-in"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_product"/>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_record"/>
+        <Class IRI="http://www.onto.net/core/Built-in"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_union"/>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
     </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
+        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
+    </ObjectPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_boolean"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
         <Literal>Boolean</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_boolean"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
         <Literal>Boolean</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_enumerated"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
         <Literal>function Enumerated(...indices) {
   return {...indices};
 }</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_enumerated"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
         <Literal>Enumerated</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_indexed"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
         <Literal>function Indexed(name, from, to) {
   return new Array(from + to).fill(name, from);
 }</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_indexed"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
         <Literal>Indexed</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_integer"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
         <Literal>Number</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_integer"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
         <Literal>Integer</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_string"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
         <Literal>String</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_string"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
         <Literal>String</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_unit"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
         <Literal>Object</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/cs_unit"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
         <Literal>Unit</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_alias"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
         <Literal>return function(...params) {
   return colorSet(...params);
 };</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_alias"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
         <Literal>colorSet</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_alias"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
         <Literal>Alias</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_list"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
+        <Literal>this.multiplicity = multiplicity;
+this.data = data;</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
+        <Literal>data, multiplicity</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
+        <Literal>BasisSet</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_action"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
         <Literal>return function(...data) {
   return data.map(value =&gt; new colorSet(value));
 };</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_list"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
         <Literal>colorSet</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_list"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
         <Literal>List</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_product"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
+        <Literal>this.cardinality = basisSets.length;
+this.basisSets = basisSets;</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
+        <Literal>basisSets</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
+        <Literal>Multiset</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_action"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
         <Literal>return function(...data) {
   return data.map((value, i) =&gt; new colorSets[i](value))
 };</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_product"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
         <Literal>colorSets</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_product"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
         <Literal>Product</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_record"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
         <Literal>return function(data: {[id: string]: any}) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
@@ -499,17 +629,17 @@
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_record"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
         <Literal>namedColorSets</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_record"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
         <Literal>Record</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_union"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
         <Literal>return function(data: {[id: string]: any}) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
@@ -519,19 +649,26 @@
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_union"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
         <Literal>namedColorSets</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/js/fn_union"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
         <Literal>Union</Literal>
     </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
+    </InverseObjectProperties>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
@@ -593,7 +730,7 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <Class IRI="http://www.onto.net/core/CPN"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
@@ -602,6 +739,10 @@
             <Class IRI="http://www.onto.net/core/Place"/>
             <Class IRI="http://www.onto.net/core/Variable"/>
         </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <Class IRI="http://www.onto.net/core/ColorSet"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
@@ -617,12 +758,12 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <Class IRI="http://www.onto.net/core/CPN"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
         <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/HLPN"/>
+            <Class IRI="http://www.onto.net/core/CPN"/>
             <Class IRI="http://www.onto.net/core/Place"/>
         </ObjectUnionOf>
     </ObjectPropertyDomain>
@@ -636,7 +777,7 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <Class IRI="http://www.onto.net/core/CPN"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
@@ -660,7 +801,7 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <Class IRI="http://www.onto.net/core/Declaration"/>
+        <Class IRI="http://www.onto.net/core/Declarations"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
@@ -673,6 +814,10 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
         <Class IRI="http://www.onto.net/core/ColorSet"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <Class IRI="http://www.onto.net/core/Constructor"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="http://www.onto.net/core/has_data"/>

@@ -7,7 +7,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
      versionIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/1.0.0">
-    <Prefix name="" IRI="http://www.experimental.onto.net/net/1/"/>
+    <Prefix name="" IRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
@@ -60,10 +60,37 @@
         <NamedIndividual IRI="T3-P1"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="const_dataStructure"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="cs_count"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="cs_data"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="cs_values"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="fn_validate"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="marking_0"/>
     </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="var_c"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="var_d"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="var_l"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="var_res"/>
+    </Declaration>
     <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/HLPN"/>
+        <Class IRI="http://www.onto.net/core/CPN"/>
         <NamedIndividual IRI="Net"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -123,8 +150,44 @@
         <NamedIndividual IRI="T3-P1"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Constant"/>
+        <NamedIndividual IRI="const_dataStructure"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/ColorSet"/>
+        <NamedIndividual IRI="cs_count"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/ColorSet"/>
+        <NamedIndividual IRI="cs_data"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/ColorSet"/>
+        <NamedIndividual IRI="cs_values"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Function"/>
+        <NamedIndividual IRI="fn_validate"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="http://www.onto.net/core/Marking"/>
         <NamedIndividual IRI="marking_0"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Variable"/>
+        <NamedIndividual IRI="var_c"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Variable"/>
+        <NamedIndividual IRI="var_d"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Variable"/>
+        <NamedIndividual IRI="var_l"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://www.onto.net/core/Variable"/>
+        <NamedIndividual IRI="var_res"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
@@ -286,6 +349,120 @@
         <NamedIndividual IRI="T3-P1"/>
         <NamedIndividual IRI="P1"/>
     </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <NamedIndividual IRI="cs_count"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <NamedIndividual IRI="cs_data"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
+        <NamedIndividual IRI="cs_values"/>
+        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+        <NamedIndividual IRI="var_c"/>
+        <NamedIndividual IRI="cs_count"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+        <NamedIndividual IRI="var_d"/>
+        <NamedIndividual IRI="cs_data"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+        <NamedIndividual IRI="var_l"/>
+        <NamedIndividual IRI="cs_values"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
+        <NamedIndividual IRI="var_res"/>
+        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="const_dataStructure"/>
+        <Literal>dataStructure</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_value"/>
+        <NamedIndividual IRI="const_dataStructure"/>
+        <Literal>new Multiset([new BasisSet(&quot;{res: res, values: l}&quot;, 1)])</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
+        <NamedIndividual IRI="cs_count"/>
+        <Literal>Integer</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="cs_count"/>
+        <Literal>Count</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
+        <NamedIndividual IRI="cs_data"/>
+        <Literal>{
+  count: Count, 
+  res: String, 
+  values: Values
+}</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="cs_data"/>
+        <Literal>Data</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
+        <NamedIndividual IRI="cs_values"/>
+        <Literal>String</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="cs_values"/>
+        <Literal>Values</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_action"/>
+        <NamedIndividual IRI="fn_validate"/>
+        <Literal>return {...data, values: data.values.slice(0, 5)}; // last 5 results</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
+        <NamedIndividual IRI="fn_validate"/>
+        <Literal>data</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="fn_validate"/>
+        <Literal>validate</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="var_c"/>
+        <Literal>c</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="var_d"/>
+        <Literal>d</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="var_l"/>
+        <Literal>l</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="http://www.onto.net/core/has_name"/>
+        <NamedIndividual IRI="var_res"/>
+        <Literal>res</Literal>
+    </DataPropertyAssertion>
 </Ontology>
 
 
