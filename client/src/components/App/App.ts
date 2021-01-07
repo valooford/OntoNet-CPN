@@ -1,11 +1,11 @@
-import $ from "jquery";
+import $ from 'jquery';
 
-import UI, { ActionPanelData } from "@components/UI/UI";
+import UI, { ActionPanelData } from '@components/UI/UI';
 import OntoNet, {
   StateVariables,
   StateResponse,
   EnabledTransitionData,
-} from "@components/OntoNet/OntoNet";
+} from '@components/OntoNet/OntoNet';
 
 export default class App {
   ontonet: OntoNet;
@@ -13,29 +13,29 @@ export default class App {
   ui: UI;
 
   private readonly defaults = {
-    hostname: "localhost",
+    hostname: 'localhost',
     port: 3030,
-    dataset: "Petri",
+    dataset: 'ontonet',
   };
 
   constructor() {
     this.ontonet = new OntoNet(this.defaults);
-    this.ui = new UI($("body"), this.defaults, {
+    this.ui = new UI($('body'), this.defaults, {
       onHostnameChange: (hostname) => {
         this.ontonet.setHostname(hostname);
-        console.log("hostname changed");
+        console.log('hostname changed');
       },
       onPortChange: (port: string) => {
         if (Number.isInteger(Number(port))) {
           this.ontonet.setPort(Number(port));
-          console.log("port changed");
+          console.log('port changed');
         } else {
-          console.log("port is not a number");
+          console.log('port is not a number');
         }
       },
       onDatasetChange: (dataset) => {
         this.ontonet.setDataset(dataset);
-        console.log("datased changed");
+        console.log('datased changed');
       },
       onCpnOntologyLoad: (file: File) => {
         this.ontonet.uploadCpnOntology(file).then(
@@ -62,15 +62,15 @@ export default class App {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.updateState({
-        columns: state.head.vars.filter((v) => v !== "token"),
+        columns: state.head.vars.filter((v) => v !== 'token'),
         rows: state.results.bindings.map((b) => {
           return Object.keys(b).reduce(
             (row: { [key: string]: string }, colName: StateVariables) => {
-              if (colName === "token") return row;
+              if (colName === 'token') return row;
               let { value } = b[colName];
               // + insert this functionality into OntoNet
-              if (b[colName].type === "uri") {
-                const i = value.indexOf("#");
+              if (b[colName].type === 'uri') {
+                const i = value.indexOf('#');
                 value = value.slice(i + 1);
               }
               // eslint-disable-next-line no-param-reassign

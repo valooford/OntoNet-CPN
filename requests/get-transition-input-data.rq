@@ -1,0 +1,44 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX core: <http://www.onto.net/core/>
+PREFIX js: <http://www.onto.net/js/>
+PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+
+SELECT ?transition_name ?arc_i ?arcan_constant ?term_value ?multiplicity ?place_i ?code ?guard_value
+FROM <http://localhost:3030/ontonet/data/net>
+WHERE {
+  {
+    #name
+    :T1 core:has_name ?transition_name.
+    #code
+    OPTIONAL {
+      :T1 core:has_code ?code.
+    }
+    #guard
+    OPTIONAL {
+      :T1 core:has_guard ?guard.
+      ?guard core:has_value ?_guard_value.
+    }
+    BIND (if(!bound(?_guard_value), "true", ?_guard_value) as ?guard_value)
+  }
+  UNION
+  {
+    #input arcs
+    ?arc_i core:has_targetNode :T1;
+           core:has_sourceNode ?place_i.
+    OPTIONAL {
+      ?arc_i core:has_annotation ?arc_i_annotation.
+      ?arc_i_annotation core:has_multisetOfTerms ?arcan_multiset.
+      OPTIONAL {
+        ?arcan_multiset rdf:type core:Constant.
+        BIND (?arcan_multiset as ?arcan_constant)
+      }
+      OPTIONAL {
+        ?arcan_multiset core:includes_basisSet ?basisSet.
+        ?basisSet core:has_data ?term;
+                  core:has_multiplicity ?multiplicity.
+        ?term core:has_value ?term_value.
+      }
+    }
+  }
+  
+}

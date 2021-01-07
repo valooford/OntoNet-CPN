@@ -1,984 +1,880 @@
 <?xml version="1.0"?>
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+<rdf:RDF xmlns="http://www.onto.net/js-core/"
      xml:base="http://www.onto.net/js-core/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.onto.net/js-core/"
-     versionIRI="http://www.onto.net/js-core/1.0.0">
-    <Prefix name="" IRI="http://www.onto.net/js-core/"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/ArcAnnotation"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/BasisSet"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Built-in"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Constant"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Data"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Declarations"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/InputArc"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Marking"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Multiset"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/OutputArc"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Place"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Term"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Token"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_domain"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_guard"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTerms"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTokens"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_markingOfPlace"/>
-    </Declaration>
-    <Declaration>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_cardinality"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_code"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_multiplicity"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-    </Declaration>
-    <Declaration>
-        <DataProperty IRI="http://www.onto.net/core/has_value"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-    </Declaration>
-    <EquivalentClasses>
-        <Class IRI="http://www.onto.net/core/InputArc"/>
-        <ObjectIntersectionOf>
-            <Class IRI="http://www.onto.net/core/Arc"/>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-                <Class IRI="http://www.onto.net/core/Place"/>
-            </ObjectAllValuesFrom>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-                <Class IRI="http://www.onto.net/core/Transition"/>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-        <ObjectIntersectionOf>
-            <Class IRI="http://www.onto.net/core/Multiset"/>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-                <ObjectIntersectionOf>
-                    <Class IRI="http://www.onto.net/core/BasisSet"/>
-                    <ObjectAllValuesFrom>
-                        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-                        <Class IRI="http://www.onto.net/core/Term"/>
-                    </ObjectAllValuesFrom>
-                </ObjectIntersectionOf>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-        <ObjectIntersectionOf>
-            <Class IRI="http://www.onto.net/core/Multiset"/>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-                <ObjectIntersectionOf>
-                    <Class IRI="http://www.onto.net/core/BasisSet"/>
-                    <ObjectAllValuesFrom>
-                        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-                        <Class IRI="http://www.onto.net/core/Token"/>
-                    </ObjectAllValuesFrom>
-                </ObjectIntersectionOf>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="http://www.onto.net/core/OutputArc"/>
-        <ObjectIntersectionOf>
-            <Class IRI="http://www.onto.net/core/Arc"/>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-                <Class IRI="http://www.onto.net/core/Transition"/>
-            </ObjectAllValuesFrom>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-                <Class IRI="http://www.onto.net/core/Place"/>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <ObjectIntersectionOf>
-            <Class IRI="http://www.onto.net/core/Node"/>
-            <ObjectAllValuesFrom>
-                <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-                <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-            </ObjectAllValuesFrom>
-        </ObjectIntersectionOf>
-    </EquivalentClasses>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Built-in"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-            <Class IRI="http://www.onto.net/core/Marking"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Constant"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <Class IRI="http://www.onto.net/core/Built-in"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/InputArc"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-        <Class IRI="http://www.onto.net/core/Multiset"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-        <Class IRI="http://www.onto.net/core/Multiset"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/OutputArc"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Term"/>
-        <Class IRI="http://www.onto.net/core/Data"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Token"/>
-        <Class IRI="http://www.onto.net/core/Data"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </SubClassOf>
-    <DisjointClasses>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <Class IRI="http://www.onto.net/core/Constant"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-    </DisjointClasses>
-    <DisjointClasses>
-        <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-        <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-    </DisjointClasses>
-    <DisjointClasses>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-    </DisjointClasses>
-    <DisjointClasses>
-        <Class IRI="http://www.onto.net/core/Term"/>
-        <Class IRI="http://www.onto.net/core/Token"/>
-    </DisjointClasses>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Built-in"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Built-in"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-    </ClassAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <NamedIndividual IRI="http://www.onto.net/core/declarations"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-    </ObjectPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
-        <Literal>Boolean</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_boolean"/>
-        <Literal>Boolean</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
-        <Literal>function Enumerated(...indices) {
+     xmlns:core="http://www.onto.net/core/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.onto.net/js-core/">
+        <owl:versionIRI rdf:resource="http://www.onto.net/js-core/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/has_annotation -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_annotation">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_arc -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_arc">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Arc"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_colorSet -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_colorSet">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Constant"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Place"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Variable"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_constructor -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_constructor">
+        <owl:inverseOf rdf:resource="http://www.onto.net/core/has_range"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Constructor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_data -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_data">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_domain -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_domain">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_guard -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_guard">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Transition"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_initialMarking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialMarking">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_marking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_marking">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/CPN"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Place"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Marking"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_multisetOfTerms -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTerms">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Constant"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/MultisetOfTerms"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_multisetOfTokens -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTokens">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Constant"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/MultisetOfTokens"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_node -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_node">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_range -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_range">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_sourceNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceNode">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_targetNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetNode">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/includes_basisSet -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_basisSet">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Multiset"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/BasisSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/includes_markingOfPlace -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_markingOfPlace">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Marking"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/includes_statement -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_statement">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Declarations"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Statement"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/has_action -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_action">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_arguments -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_arguments">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_cardinality -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_cardinality">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Multiset"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_code -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_code">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Transition"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_declaration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_declaration">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_declarationOrder -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_declarationOrder">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Statement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_multiplicity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_multiplicity">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Node"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Statement"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_value -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_value">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Constant"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Data"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/Arc -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Arc"/>
+    
+
+
+    <!-- http://www.onto.net/core/ArcAnnotation -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/ArcAnnotation"/>
+    
+
+
+    <!-- http://www.onto.net/core/BasisSet -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/BasisSet"/>
+    
+
+
+    <!-- http://www.onto.net/core/Built-in -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Built-in">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/CPN -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/CPN">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_marking"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Marking"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/ColorSet -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/ColorSet">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Constant -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Constant">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Constructor -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Constructor">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Built-in"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Data -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Data"/>
+    
+
+
+    <!-- http://www.onto.net/core/Declarations -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Declarations"/>
+    
+
+
+    <!-- http://www.onto.net/core/Function -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Function">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/InputArc -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/InputArc">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Arc"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Transition"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Arc"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Marking -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Marking"/>
+    
+
+
+    <!-- http://www.onto.net/core/MarkingOfPlace -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+    
+
+
+    <!-- http://www.onto.net/core/Multiset -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Multiset"/>
+    
+
+
+    <!-- http://www.onto.net/core/MultisetOfTerms -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/MultisetOfTerms">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Multiset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/includes_basisSet"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.onto.net/core/BasisSet"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Multiset"/>
+        <owl:disjointWith rdf:resource="http://www.onto.net/core/MultisetOfTokens"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/MultisetOfTokens -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/MultisetOfTokens">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Multiset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/includes_basisSet"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.onto.net/core/BasisSet"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Token"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Multiset"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Node -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Node"/>
+    
+
+
+    <!-- http://www.onto.net/core/OutputArc -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/OutputArc">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Arc"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Transition"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Arc"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Place -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Place">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Node"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_marking"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+        <owl:disjointWith rdf:resource="http://www.onto.net/core/Transition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Statement -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Statement"/>
+    
+
+
+    <!-- http://www.onto.net/core/Term -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Term">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Data"/>
+        <owl:disjointWith rdf:resource="http://www.onto.net/core/Token"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Token -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Token">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Transition -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Transition">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Variable -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Variable">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/cs_boolean -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_boolean">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>Boolean</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Boolean</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_enumerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_enumerated">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>function Enumerated(...indices) {
   return {...indices};
-}</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_enumerated"/>
-        <Literal>Enumerated</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
-        <Literal>function Indexed(name, from, to) {
+}</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Enumerated</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_indexed -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_indexed">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>function Indexed(name, from, to) {
   return new Array(from + to).fill(name, from);
-}</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_indexed"/>
-        <Literal>Indexed</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
-        <Literal>Number</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_integer"/>
-        <Literal>Integer</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-        <Literal>String</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-        <Literal>String</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
-        <Literal>Object</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_unit"/>
-        <Literal>Unit</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-        <Literal>return function(...params) {
+}</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Indexed</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_integer -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_integer">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>Number</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Integer</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_string -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_string">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>String</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>String</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_unit -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_unit">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_declaration>Object</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Unit</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/declarations -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/declarations">
+        <rdf:type rdf:resource="http://www.onto.net/core/Declarations"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_boolean"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_enumerated"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_indexed"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_integer"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_string"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/cs_unit"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_alias"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_basisSet"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_list"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_multiset"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_product"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_record"/>
+        <core:includes_statement rdf:resource="http://www.onto.net/core/fn_union"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_alias -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_alias">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return function(...params) {
   return colorSet(...params);
-};</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-        <Literal>colorSet</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-        <Literal>Alias</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-        <Literal>this.multiplicity = multiplicity;
-this.data = data;</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-        <Literal>data, multiplicity</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-        <Literal>BasisSet</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-        <Literal>return function(...data) {
+};</core:has_action>
+        <core:has_arguments>colorSet</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Alias</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_basisSet -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_basisSet">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>this.multiplicity = multiplicity;
+this.data = data;</core:has_action>
+        <core:has_arguments>data, multiplicity</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>BasisSet</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_list -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_list">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return function(...data) {
   return data.map(value =&gt; new colorSet(value));
-};</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-        <Literal>colorSet</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-        <Literal>List</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-        <Literal>this.cardinality = basisSets.length;
-this.basisSets = basisSets;</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-        <Literal>basisSets</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-        <Literal>Multiset</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-        <Literal>return function(...data) {
+};</core:has_action>
+        <core:has_arguments>colorSet</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>List</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_multiset -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_multiset">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>this.cardinality = basisSets.length;
+this.basisSets = basisSets;</core:has_action>
+        <core:has_arguments>basisSets</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Multiset</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_product -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_product">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return function(...data) {
   return data.map((value, i) =&gt; new colorSets[i](value))
-};</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-        <Literal>colorSets</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_product"/>
-        <Literal>Product</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-        <Literal>return function(data: {[id: string]: any}) {
+};</core:has_action>
+        <core:has_arguments>colorSets</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Product</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_record -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_record">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return function(data) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
     return res;
   }, {});
-};</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-        <Literal>namedColorSets</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-        <Literal>Record</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-        <Literal>return function(data: {[id: string]: any}) {
+};</core:has_action>
+        <core:has_arguments>namedColorSets</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Record</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fn_union -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_union">
+        <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return function(data) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
     return res;
   }, {});
-};</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-        <Literal>namedColorSets</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-        <Literal>Union</Literal>
-    </DataPropertyAssertion>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
-    </InverseObjectProperties>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_guard"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTerms"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTokens"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-    </FunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_guard"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-    </InverseFunctionalObjectProperty>
-    <InverseFunctionalObjectProperty>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-    </InverseFunctionalObjectProperty>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Constant"/>
-            <Class IRI="http://www.onto.net/core/Place"/>
-            <Class IRI="http://www.onto.net/core/Variable"/>
-        </ObjectUnionOf>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-        <Class IRI="http://www.onto.net/core/BasisSet"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_domain"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_guard"/>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/CPN"/>
-            <Class IRI="http://www.onto.net/core/Place"/>
-        </ObjectUnionOf>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTerms"/>
-        <Class IRI="http://www.onto.net/core/ArcAnnotation"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTokens"/>
-        <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-        <Class IRI="http://www.onto.net/core/Multiset"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_markingOfPlace"/>
-        <Class IRI="http://www.onto.net/core/Marking"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <Class IRI="http://www.onto.net/core/Declarations"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_annotation"/>
-        <Class IRI="http://www.onto.net/core/ArcAnnotation"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <Class IRI="http://www.onto.net/core/Constructor"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_data"/>
-        <Class IRI="http://www.onto.net/core/Data"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_domain"/>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_guard"/>
-        <Class IRI="http://www.onto.net/core/Term"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-        <Class IRI="http://www.onto.net/core/Marking"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Marking"/>
-            <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-        </ObjectUnionOf>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTerms"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Constant"/>
-            <Class IRI="http://www.onto.net/core/MultisetOfTerms"/>
-        </ObjectUnionOf>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_multisetOfTokens"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Constant"/>
-            <Class IRI="http://www.onto.net/core/MultisetOfTokens"/>
-        </ObjectUnionOf>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_range"/>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <Class IRI="http://www.onto.net/core/Node"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_basisSet"/>
-        <Class IRI="http://www.onto.net/core/BasisSet"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_markingOfPlace"/>
-        <Class IRI="http://www.onto.net/core/MarkingOfPlace"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="http://www.onto.net/core/includes_statement"/>
-        <Class IRI="http://www.onto.net/core/Statement"/>
-    </ObjectPropertyRange>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_cardinality"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_code"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_multiplicity"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
-        <DataProperty IRI="http://www.onto.net/core/has_value"/>
-    </FunctionalDataProperty>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <Class IRI="http://www.onto.net/core/Function"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_cardinality"/>
-        <Class IRI="http://www.onto.net/core/Multiset"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_code"/>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_multiplicity"/>
-        <Class IRI="http://www.onto.net/core/BasisSet"/>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Node"/>
-            <Class IRI="http://www.onto.net/core/Statement"/>
-        </ObjectUnionOf>
-    </DataPropertyDomain>
-    <DataPropertyDomain>
-        <DataProperty IRI="http://www.onto.net/core/has_value"/>
-        <ObjectUnionOf>
-            <Class IRI="http://www.onto.net/core/Constant"/>
-            <Class IRI="http://www.onto.net/core/Data"/>
-        </ObjectUnionOf>
-    </DataPropertyDomain>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_cardinality"/>
-        <Datatype abbreviatedIRI="xsd:integer"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_code"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_multiplicity"/>
-        <Datatype abbreviatedIRI="xsd:integer"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="http://www.onto.net/core/has_value"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-</Ontology>
+};</core:has_action>
+        <core:has_arguments>namedColorSets</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>Union</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.onto.net/core/ColorSet"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Constant"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Function"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Variable"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
 
 
 

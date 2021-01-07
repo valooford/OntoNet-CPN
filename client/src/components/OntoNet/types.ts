@@ -1,4 +1,4 @@
-export type StateVariables = "place" | "token" | "token_data";
+export type StateVariables = 'place' | 'token' | 'token_data';
 export type StateResponse = {
   head: {
     vars: StateVariables[];
@@ -15,7 +15,53 @@ export type StateResponse = {
   };
 };
 
-type TransitionVariables = "transition" | "condition_data" | "variables";
+type ConfigurationKeys =
+  | 'type'
+  | 'colorSet'
+  | 'colorSet_name'
+  | 'colorSet_declaration'
+  | 'colorSet_constructor_name'
+  | 'variable_name'
+  | 'variable_colorSet_name'
+  | 'constant'
+  | 'constant_name'
+  | 'constant_value'
+  | 'constant_colorSet'
+  | 'function'
+  | 'function_type'
+  | 'function_name'
+  | 'function_arguments'
+  | 'function_action'
+  | 'function_domain'
+  | 'function_range';
+export type ConfigurationResponse = {
+  results: {
+    bindings: Array<
+      {
+        [key in ConfigurationKeys]: {
+          type: 'uri' | 'literal';
+          value: string;
+        };
+      }
+    >;
+  };
+};
+export type Configuration = {
+  colorSets: {
+    [key: string]: Function; // eslint-disable-line @typescript-eslint/ban-types
+  };
+  functions: {
+    [key: string]: Function; // eslint-disable-line @typescript-eslint/ban-types
+  };
+  variables: {
+    [key: string]: Function; // eslint-disable-line @typescript-eslint/ban-types
+  };
+  constants: {
+    [key: string]: unknown;
+  };
+};
+
+type TransitionVariables = 'transition' | 'condition_data' | 'variables';
 export type TransitionResponse = {
   head: {
     vars: TransitionVariables[];
@@ -32,7 +78,7 @@ export type TransitionResponse = {
   };
 };
 
-type VarValuesVariables = "place_i" | "token_i" | "values" | string;
+type VarValuesVariables = 'place_i' | 'token_i' | 'values' | string;
 export type VarValuesResponse = {
   head: {
     vars: VarValuesVariables[];

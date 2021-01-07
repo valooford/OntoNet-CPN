@@ -158,6 +158,9 @@
         <DataProperty IRI="has_declaration"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="has_declarationOrder"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="has_multiplicity"/>
     </Declaration>
     <Declaration>
@@ -384,7 +387,15 @@
         <NamedIndividual IRI="declarations"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="Built-in"/>
+        <NamedIndividual IRI="fn_alias"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="Constructor"/>
+        <NamedIndividual IRI="fn_alias"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Function"/>
         <NamedIndividual IRI="fn_alias"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -392,7 +403,19 @@
         <NamedIndividual IRI="fn_basisSet"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="Function"/>
+        <NamedIndividual IRI="fn_basisSet"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Built-in"/>
+        <NamedIndividual IRI="fn_list"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="Constructor"/>
+        <NamedIndividual IRI="fn_list"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Function"/>
         <NamedIndividual IRI="fn_list"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -400,15 +423,43 @@
         <NamedIndividual IRI="fn_multiset"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="Function"/>
+        <NamedIndividual IRI="fn_multiset"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Built-in"/>
+        <NamedIndividual IRI="fn_product"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="Constructor"/>
         <NamedIndividual IRI="fn_product"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Function"/>
+        <NamedIndividual IRI="fn_product"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Built-in"/>
+        <NamedIndividual IRI="fn_record"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="Constructor"/>
         <NamedIndividual IRI="fn_record"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="Function"/>
+        <NamedIndividual IRI="fn_record"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Built-in"/>
+        <NamedIndividual IRI="fn_union"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="Constructor"/>
+        <NamedIndividual IRI="fn_union"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="Function"/>
         <NamedIndividual IRI="fn_union"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
@@ -449,7 +500,17 @@
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="includes_statement"/>
         <NamedIndividual IRI="declarations"/>
+        <NamedIndividual IRI="fn_basisSet"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="includes_statement"/>
+        <NamedIndividual IRI="declarations"/>
         <NamedIndividual IRI="fn_list"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="includes_statement"/>
+        <NamedIndividual IRI="declarations"/>
+        <NamedIndividual IRI="fn_multiset"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="includes_statement"/>
@@ -467,9 +528,19 @@
         <NamedIndividual IRI="fn_union"/>
     </ObjectPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_boolean"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="cs_boolean"/>
         <Literal>Boolean</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_enumerated"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -477,9 +548,19 @@
         <Literal>Enumerated</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_indexed"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="cs_indexed"/>
         <Literal>Indexed</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_integer"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -487,9 +568,19 @@
         <Literal>Integer</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_string"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="cs_string"/>
         <Literal>String</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="cs_unit"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -497,9 +588,19 @@
         <Literal>Unit</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_alias"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="fn_alias"/>
         <Literal>Alias</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_basisSet"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -507,9 +608,19 @@
         <Literal>BasisSet</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_list"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="fn_list"/>
         <Literal>List</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_multiset"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -517,14 +628,29 @@
         <Literal>Multiset</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_product"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="fn_product"/>
         <Literal>Product</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_record"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
         <NamedIndividual IRI="fn_record"/>
         <Literal>Record</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="has_declarationOrder"/>
+        <NamedIndividual IRI="fn_union"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="has_name"/>
@@ -774,6 +900,9 @@
         <DataProperty IRI="has_declaration"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
+        <DataProperty IRI="has_declarationOrder"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
         <DataProperty IRI="has_multiplicity"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
@@ -801,6 +930,10 @@
     <DataPropertyDomain>
         <DataProperty IRI="has_declaration"/>
         <Class IRI="ColorSet"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="has_declarationOrder"/>
+        <Class IRI="Statement"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="has_multiplicity"/>
@@ -839,6 +972,10 @@
     <DataPropertyRange>
         <DataProperty IRI="has_declaration"/>
         <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="has_declarationOrder"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="has_multiplicity"/>

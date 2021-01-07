@@ -1,12 +1,14 @@
-import $ from "jquery";
+import $ from 'jquery';
 
 import {
+  ConfigurationResponse,
+  Configuration,
   StateVariables as _StateVariables,
   StateResponse as _StateResponse,
   TransitionResponse,
   VarValuesResponse,
   EnabledTransitionData as _EnabledTransitionData,
-} from "./types";
+} from './types';
 
 export type StateVariables = _StateVariables;
 export type StateResponse = _StateResponse;
@@ -29,9 +31,11 @@ export default class OntoNet {
 
   protected enabledTransitionsData: EnabledTransitionData[] = [];
 
+  private configuration: Configuration;
+
   constructor(params: Parameters = undefined) {
     this.dataset = params?.dataset;
-    this.hostname = params?.hostname ?? "localhost";
+    this.hostname = params?.hostname ?? 'localhost';
     this.port = params?.port ?? 3030;
   }
 
@@ -47,37 +51,186 @@ export default class OntoNet {
     this.dataset = dataset;
   }
 
+  private getUrl() {
+    return `http://${this.hostname}:${this.port}/${this.dataset}`;
+  }
+
+  private readonly graphName = 'net';
+
   uploadCpnOntology(file: File): Promise<void> {
     const formData: FormData = new FormData();
-    formData.append("graph", file);
+    formData.append('graph', file);
     return Promise.resolve(
       $.post({
-        url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
+        url: `${this.getUrl()}/update`,
         data: {
-          update: "DELETE {?s ?p ?o.} WHERE {?s ?p ?o.}",
+          update: `CLEAR GRAPH <${this.getUrl()}/data/${this.graphName}>`,
         },
       }).then(async () => {
-        await $.post({
-          url: `http://${this.hostname}:${this.port}/${this.dataset}/upload`,
+        const uploadPromise = await $.post({
+          url: `${this.getUrl()}/data?graph=${this.graphName}`,
           data: formData,
           processData: false,
           contentType: false,
           complete(res, status) {
-            if (status === "success") {
-              console.log("ontonet: CPN Ontology was uploaded");
+            if (status === 'success') {
+              console.log('ontonet: CPN Ontology was uploaded');
             } else {
-              console.log("ontonet: Error while uploading CPN Ontology");
+              console.log('ontonet: Error while uploading CPN Ontology');
             }
           },
         });
+        this.getConfiguration();
+        return uploadPromise;
       })
     );
+  }
+
+  async getConfiguration(): Promise<void> {
+    const response: ConfigurationResponse = await $.post({
+      url: `${this.getUrl()}/sparql`,
+      data: {
+        query: `
+          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          PREFIX core: <http://www.onto.net/core/>
+          PREFIX js: <http://www.onto.net/js/>
+          PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+          
+          SELECT ?type
+          ?function ?function_type ?function_name ?function_arguments ?function_action ?function_domain ?function_range
+          ?colorSet ?colorSet_name ?colorSet_declaration ?colorSet_constructor_name 
+          ?variable_name ?variable_colorSet_name 
+          ?constant ?constant_name ?constant_value ?constant_colorSet
+          FROM <urn:x-arq:DefaultGraph>
+          FROM <http://localhost:3030/ontonet/data/net>
+          WHERE {
+            ?declarations rdf:type core:Declarations;
+                          core:includes_statement ?statement.
+            OPTIONAL {
+              ?statement core:has_declarationOrder ?order.
+            }
+            {
+              bind("function" as ?type).
+              ?statement rdf:type core:Function.
+              bind(?statement as ?function).
+              ?function core:has_name ?function_name;
+                        core:has_arguments ?function_arguments;
+                        core:has_action ?function_action.
+              OPTIONAL {
+                ?function core:has_domain ?function_domain;
+                          core:has_range ?function_range.
+              }
+              OPTIONAL {
+                ?statement rdf:type core:Built-in.
+                bind(IF (EXISTS {?statement rdf:type core:Constructor.}, "constructor", "builtIn") as ?function_type).
+              }
+            }
+            UNION
+            {
+              bind("colorSet" as ?type).
+              ?statement rdf:type core:ColorSet.
+              bind(?statement as ?colorSet).
+              ?colorSet core:has_name ?colorSet_name;
+                        core:has_declaration ?colorSet_declaration.
+              OPTIONAL {
+                ?colorSet core:has_constructor ?colorSet_constructor.
+                ?colorSet_constructor core:has_name ?colorSet_constructor_name.
+              }
+            }
+            UNION
+            {
+              bind("variable" as ?type).
+              ?statement rdf:type core:Variable.
+              bind(?statement as ?variable).
+              ?variable core:has_name ?variable_name;
+                        core:has_colorSet ?variable_colorSet.
+              ?variable_colorSet core:has_name ?variable_colorSet_name.
+            }
+            UNION
+            {
+              bind("constant" as ?type).
+              ?statement rdf:type core:Constant.
+              bind(?statement as ?constant).
+              ?constant core:has_name ?constant_name;
+                        core:has_value ?constant_value.
+              OPTIONAL {
+                ?constant core:has_colorSet ?constant_colorSet.
+              }
+            }
+          }
+          ORDER BY ?order DESC(?function) ?function_type DESC(?colorSet) DESC(?variable) DESC(?constant)
+        `,
+      },
+    });
+    // console.log('response: ', response);
+    const records = response.results.bindings;
+    this.configuration = records.reduce(
+      (config: Configuration, record) => {
+        const cfg = config;
+        switch (record.type.value) {
+          case 'function': {
+            const argumentsList = record.function_arguments.value.split(', ');
+            const action = record.function_action.value;
+            cfg.functions[record.function_name.value] =
+              // eslint-disable-next-line no-new-func
+              new Function(...argumentsList, action);
+            break;
+          }
+          case 'colorSet': {
+            const name = record.colorSet_name.value;
+            const declaration = record.colorSet_declaration.value;
+            if (!record.colorSet_constructor_name) {
+              cfg.colorSets[name] =
+                // eslint-disable-next-line no-new-func
+                new Function(`return ${declaration}`)();
+            } else {
+              const constructor = record.colorSet_constructor_name.value;
+              cfg.colorSets[name] =
+                // eslint-disable-next-line no-new-func
+                new Function(
+                  'context',
+                  `with (context) {
+                      return ${constructor}(${declaration})
+                    }`
+                )({ ...cfg.functions, ...cfg.colorSets });
+            }
+            break;
+          }
+          case 'variable': {
+            cfg.variables[record.variable_name.value] =
+              cfg.colorSets[record.variable_colorSet_name.value];
+            break;
+          }
+          case 'constant': {
+            const { value } = record.constant_value;
+            cfg.constants[record.constant_name.value] =
+              // eslint-disable-next-line no-new-func
+              new Function(
+                'context',
+                `with (context) {
+                    return ${value}
+                  }`
+              )(cfg.functions);
+            break;
+          }
+          default:
+        }
+        return cfg;
+      },
+      {
+        colorSets: {},
+        variables: {},
+        constants: {},
+        functions: {},
+      }
+    );
+    console.log('configuration: ', this.configuration);
   }
 
   getCpnState(): Promise<StateResponse> {
     return Promise.resolve(
       $.post({
-        url: `http://${this.hostname}:${this.port}/${this.dataset}/sparql`,
+        url: `${this.getUrl()}/sparql`,
         data: {
           query: `
             PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -105,7 +258,7 @@ export default class OntoNet {
           `,
         },
         error() {
-          console.log("ontonet: Unable to get the CPN state");
+          console.log('ontonet: Unable to get the CPN state');
         },
       }).then(
         (res: StateResponse): StateResponse => {
@@ -117,14 +270,14 @@ export default class OntoNet {
 
   private static getIdFromURI(uri: string): string {
     if (/^urn:uuid:.*/.test(uri)) return `<${uri}>`;
-    const i = uri.indexOf("#");
+    const i = uri.indexOf('#');
     return `:${uri.slice(i + 1)}`;
   }
 
   getEnabledTransitionsData(): Promise<EnabledTransitionData[]> {
     return Promise.resolve(
       $.post({
-        url: `http://${this.hostname}:${this.port}/${this.dataset}/sparql`,
+        url: `${this.getUrl()}/sparql`,
         data: {
           query: `
             PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -160,10 +313,10 @@ export default class OntoNet {
         const enabledTransitionsData: EnabledTransitionData[] = await Promise.all(
           tr.results.bindings.map((b) => {
             const t = OntoNet.getIdFromURI(b.transition.value);
-            const variables = b.variables.value.split(",");
+            const variables = b.variables.value.split(',');
             const condition = b.condition_data.value;
             return $.post({
-              url: `http://${this.hostname}:${this.port}/${this.dataset}/sparql`,
+              url: `${this.getUrl()}/sparql`,
               data: {
                 query: `
                   PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -171,7 +324,7 @@ export default class OntoNet {
 
                   SELECT ?place_i ?token_i ?values ${variables
                     .map((v) => `?${v}`)
-                    .join(" ")}
+                    .join(' ')}
                   WHERE {
                     ### finding appropriate variable values combination to match the condition
                     ${variables.reduce(
@@ -195,7 +348,7 @@ export default class OntoNet {
                           }
                         }
                       `}`,
-                      ""
+                      ''
                     )}
                     
                     # binding a condition match
@@ -214,7 +367,7 @@ export default class OntoNet {
                       (COUNT(?attr_i) as ?attr_i_count) (COUNT(?var_i) as ?var_i_count) 
                       ${variables
                         .map((v) => `?${v} ?${v}_index`)
-                        .join(" ")}											# <-- ?x ?y
+                        .join(' ')}											# <-- ?x ?y
                       WHERE {
                         ?patt_i :has_variable ?var_i.
                         ?token_i :has_attribute ?attr_i.
@@ -229,7 +382,7 @@ export default class OntoNet {
                             }
                           }
                         `,
-                          ""
+                          ''
                         )}
                         FILTER(NOT EXISTS {
                           ?token_i :has_attribute ?attrx_i.
@@ -240,12 +393,12 @@ export default class OntoNet {
                               (v) =>
                                 `(?_var != ?${v} || ?_var_index != ?${v}_index)`
                             )
-                            .join(" && ")})	# <-- ?x ?y
+                            .join(' && ')})	# <-- ?x ?y
                         })
                       }
                       GROUP BY ?token_i ?patt_i ${variables
                         .map((v) => `?${v} ?${v}_index`)
-                        .join(" ")}						# <-- ?x ?y
+                        .join(' ')}						# <-- ?x ?y
 	                    HAVING (?attr_i_count = ?var_i_count)
                     }
                     
@@ -275,7 +428,7 @@ export default class OntoNet {
                         HAVING (?${v}2_count = 0)
                       })
                     `,
-                      ""
+                      ''
                     )}
                     
                     ### binding a variable values set
@@ -285,7 +438,7 @@ export default class OntoNet {
                   }
                   GROUP BY ?place_i ?token_i ?res ?values ${variables
                     .map((v) => `?${v}`)
-                    .join(" ")}
+                    .join(' ')}
                   HAVING (?res = true)
                   ORDER BY ?values
                 `,
@@ -327,7 +480,7 @@ export default class OntoNet {
   addTokenToPlace(place: string, data: string[]): Promise<void> {
     return Promise.resolve(
       $.post({
-        url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
+        url: `${this.getUrl()}/update`,
         data: {
           update: `
           PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -346,13 +499,13 @@ export default class OntoNet {
             ?token_new rdf:type :Token;
                       ${data
                         .map((d, i) => `:has_attribute ?var${i}`)
-                        .join(";\n")}.
+                        .join(';\n')}.
             ${data.reduce(
               (vars, d, i) => `${vars}
             ?var${i} rdf:type :Attribute;
                           :has_data "${d}";
                           :has_index ${i + 1}.`,
-              ""
+              ''
             )}
           }
           WHERE {
@@ -365,7 +518,7 @@ export default class OntoNet {
             } UNION {
               ${place} :has_marking ?marking.								# <-- :p1
               BIND(UUID() as ?token_new)
-              ${data.map((d, i) => `BIND(UUID() as ?var${i})`).join("\n")}
+              ${data.map((d, i) => `BIND(UUID() as ?var${i})`).join('\n')}
             }
           }
         `,
@@ -378,13 +531,13 @@ export default class OntoNet {
     // ! Array.prototype.find() requires polyfill
     const td = this.enabledTransitionsData.find((etd) => etd.id === t);
     const { variables } = td;
-    const varValues = values.split(", ");
+    const varValues = values.split(', ');
     const places = td.groups[values];
     const tokens = Object.values(places).map((tokens) => tokens[0]);
     console.log(tokens);
     return Promise.resolve(
       $.post({
-        url: `http://${this.hostname}:${this.port}/${this.dataset}/update`,
+        url: `${this.getUrl()}/update`,
         data: {
           update: `
           PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -403,7 +556,7 @@ export default class OntoNet {
             ?token_new rdf:type :Token;
                       ${variables
                         .map((v) => `:has_attribute ?${v}`)
-                        .join(";\n")}.
+                        .join(';\n')}.
             ${variables
               .map(
                 (v, i) => `
@@ -412,11 +565,11 @@ export default class OntoNet {
                   :has_index ?${v}_index.
             `
               )
-              .join("")}
+              .join('')}
           }
           WHERE {
             {
-              VALUES ?token_i { ${tokens.join(" ")} }				# <-- :token1-1 :token2-1
+              VALUES ?token_i { ${tokens.join(' ')} }				# <-- :token1-1 :token2-1
           
               ?arc_i :comes_to ${t};								# <-- :t1
                     :comes_from ?place_i;
@@ -449,7 +602,7 @@ export default class OntoNet {
                     }
                   }
                 `,
-                ""
+                ''
               )}
             }
           }

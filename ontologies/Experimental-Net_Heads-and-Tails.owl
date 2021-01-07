@@ -1,469 +1,602 @@
 <?xml version="1.0"?>
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+<rdf:RDF xmlns="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
      xml:base="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/"
-     versionIRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/1.0.0">
-    <Prefix name="" IRI="http://www.experimental.onto.net/js-core/net/heads-and-tails/"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Import>http://www.onto.net/js-core/1.0.0</Import>
-    <Declaration>
-        <NamedIndividual IRI="Net"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P1-T1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P1-T2"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P2"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P2-T1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P3"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="P3-T3"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T1-P2"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T1-P3"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T2"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T2-P3"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T3"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="T3-P1"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="const_dataStructure"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="cs_count"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="cs_data"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="cs_values"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="fn_validate"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="marking_0"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="var_c"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="var_d"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="var_l"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="var_res"/>
-    </Declaration>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/CPN"/>
-        <NamedIndividual IRI="Net"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <NamedIndividual IRI="P1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="P1-T1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="P1-T2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <NamedIndividual IRI="P2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="P2-T1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Place"/>
-        <NamedIndividual IRI="P3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="P3-T3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-        <NamedIndividual IRI="T1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="T1-P2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="T1-P3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-        <NamedIndividual IRI="T2"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="T2-P3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Transition"/>
-        <NamedIndividual IRI="T3"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Arc"/>
-        <NamedIndividual IRI="T3-P1"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Constant"/>
-        <NamedIndividual IRI="const_dataStructure"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="cs_count"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="cs_data"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/ColorSet"/>
-        <NamedIndividual IRI="cs_values"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Function"/>
-        <NamedIndividual IRI="fn_validate"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Marking"/>
-        <NamedIndividual IRI="marking_0"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-        <NamedIndividual IRI="var_c"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-        <NamedIndividual IRI="var_d"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-        <NamedIndividual IRI="var_l"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://www.onto.net/core/Variable"/>
-        <NamedIndividual IRI="var_res"/>
-    </ClassAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P1-T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P1-T2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P2-T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P3-T3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T1-P2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T1-P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T2-P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_arc"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T3-P1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_initialMarking"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="marking_0"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_marking"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="marking_0"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_node"/>
-        <NamedIndividual IRI="Net"/>
-        <NamedIndividual IRI="T3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="P1-T1"/>
-        <NamedIndividual IRI="P1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="P1-T1"/>
-        <NamedIndividual IRI="T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="P1-T2"/>
-        <NamedIndividual IRI="P1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="P1-T2"/>
-        <NamedIndividual IRI="T2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="P2-T1"/>
-        <NamedIndividual IRI="P2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="P2-T1"/>
-        <NamedIndividual IRI="T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="P3-T3"/>
-        <NamedIndividual IRI="P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="P3-T3"/>
-        <NamedIndividual IRI="T3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="T1-P2"/>
-        <NamedIndividual IRI="T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="T1-P2"/>
-        <NamedIndividual IRI="P2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="T1-P3"/>
-        <NamedIndividual IRI="T1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="T1-P3"/>
-        <NamedIndividual IRI="P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="T2-P3"/>
-        <NamedIndividual IRI="T2"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="T2-P3"/>
-        <NamedIndividual IRI="P3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_sourceNode"/>
-        <NamedIndividual IRI="T3-P1"/>
-        <NamedIndividual IRI="T3"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_targetNode"/>
-        <NamedIndividual IRI="T3-P1"/>
-        <NamedIndividual IRI="P1"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <NamedIndividual IRI="cs_count"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_alias"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <NamedIndividual IRI="cs_data"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_constructor"/>
-        <NamedIndividual IRI="cs_values"/>
-        <NamedIndividual IRI="http://www.onto.net/core/fn_list"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <NamedIndividual IRI="var_c"/>
-        <NamedIndividual IRI="cs_count"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <NamedIndividual IRI="var_d"/>
-        <NamedIndividual IRI="cs_data"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <NamedIndividual IRI="var_l"/>
-        <NamedIndividual IRI="cs_values"/>
-    </ObjectPropertyAssertion>
-    <ObjectPropertyAssertion>
-        <ObjectProperty IRI="http://www.onto.net/core/has_colorSet"/>
-        <NamedIndividual IRI="var_res"/>
-        <NamedIndividual IRI="http://www.onto.net/core/cs_string"/>
-    </ObjectPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="const_dataStructure"/>
-        <Literal>dataStructure</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_value"/>
-        <NamedIndividual IRI="const_dataStructure"/>
-        <Literal>new Multiset([new BasisSet(&quot;{res: res, values: l}&quot;, 1)])</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="cs_count"/>
-        <Literal>Integer</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="cs_count"/>
-        <Literal>Count</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="cs_data"/>
-        <Literal>{
+     xmlns:core="http://www.onto.net/core/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/">
+        <owl:versionIRI rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/1.0.0"/>
+        <owl:imports rdf:resource="http://www.onto.net/js-core/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/Net -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/Net">
+        <rdf:type rdf:resource="http://www.onto.net/core/CPN"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T1"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T2"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2-T1"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3-T3"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P2"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P3"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2-P3"/>
+        <core:has_arc rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3-P1"/>
+        <core:has_initialMarking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_0"/>
+        <core:has_marking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_0"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2"/>
+        <core:has_node rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data"/>
+        <core:has_initialMarking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P1"/>
+        <core:has_marking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P1"/>
+        <core:has_name>Place1</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T1"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1-T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T2"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/core/cs_string"/>
+        <core:has_initialMarking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P2"/>
+        <core:has_marking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P2"/>
+        <core:has_name>Place2</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P2-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P2-T1"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data"/>
+        <core:has_initialMarking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P3"/>
+        <core:has_marking rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P3"/>
+        <core:has_name>Place3</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/P3-T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3-T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P3-T3"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_guard rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T1"/>
+        <core:has_code>const {res} = inputPattern’; // used variables
+return {
+  res: res === &quot;Heads&quot; ? &quot;Tails&quot; : &quot;Heads&quot;
+}</core:has_code>
+        <core:has_name>Transition1</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P2"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P3"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T1"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_guard rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T2"/>
+        <core:has_name>Transition2</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T2-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T2-P3"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T2"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_name>Transition3</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/T3-P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3-P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T3-P1"/>
+        <core:has_sourceNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/T3"/>
+        <core:has_targetNode rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/P1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P1-T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P1-T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_dataStructure"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P2-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P2-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P2-T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P3-T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_P3-T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P3-T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T1-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T2-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T2-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T2-P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T3-P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/arcan_T3-P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/ArcAnnotation"/>
+        <core:has_multisetOfTerms rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T3-P1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P1_1">
+        <rdf:type rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <core:has_data rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P1_1"/>
+        <core:has_multiplicity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_multiplicity>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P2_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P2_1">
+        <rdf:type rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <core:has_data rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P2_1"/>
+        <core:has_multiplicity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_multiplicity>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P1-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P1-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_P1_T1</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;{count: c, res: res}&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P2-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P2-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_P2_T1</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;res&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P3-T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P3-T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_P3_T3</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;d&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_T1_P2</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;res&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_T1_P3</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;{count: 0, res: res, values: []}&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T2-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T2-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_T2_P3</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;{count: l.length + 1, res: res, list: [res, ...l]}&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T3-P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T3-P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>arcAnnotation_T3_P1</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;validate(d)&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/const_dataStructure -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_dataStructure">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>dataStructure</core:has_name>
+        <core:has_value>new Multiset([new BasisSet(&quot;{res: res, values: l}&quot;, 1)])</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_count -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_count">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_constructor rdf:resource="http://www.onto.net/core/fn_alias"/>
+        <core:has_declaration>Integer</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>Count</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_constructor rdf:resource="http://www.onto.net/core/fn_record"/>
+        <core:has_declaration>{
   count: Count, 
   res: String, 
   values: Values
-}</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="cs_data"/>
-        <Literal>Data</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_declaration"/>
-        <NamedIndividual IRI="cs_values"/>
-        <Literal>String</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="cs_values"/>
-        <Literal>Values</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_action"/>
-        <NamedIndividual IRI="fn_validate"/>
-        <Literal>return {...data, values: data.values.slice(0, 5)}; // last 5 results</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
-        <NamedIndividual IRI="fn_validate"/>
-        <Literal>data</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="fn_validate"/>
-        <Literal>validate</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="var_c"/>
-        <Literal>c</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="var_d"/>
-        <Literal>d</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="var_l"/>
-        <Literal>l</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="http://www.onto.net/core/has_name"/>
-        <NamedIndividual IRI="var_res"/>
-        <Literal>res</Literal>
-    </DataPropertyAssertion>
-</Ontology>
+}</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</core:has_declarationOrder>
+        <core:has_name>Data</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_values -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_values">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_constructor rdf:resource="http://www.onto.net/core/fn_list"/>
+        <core:has_declaration>String</core:has_declaration>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>Values</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/fn_validate -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/fn_validate">
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_action>return {...data, values: data.values.slice(0, 5)}; // last 5 results</core:has_action>
+        <core:has_arguments>data</core:has_arguments>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>validate</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>c &gt; 0</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/guard_T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_0">
+        <rdf:type rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <core:has_multisetOfTokens rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <core:has_multisetOfTokens rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/marking_P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Multiset"/>
+        <core:includes_basisSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P1_1"/>
+        <core:has_cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_cardinality>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/multiset_P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Multiset"/>
+        <core:includes_basisSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/basisSet_P2_1"/>
+        <core:has_cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_cardinality>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P1_1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Token"/>
+        <core:has_value>{
+  count: 1, 
+  res: &quot;Unknown&quot;, 
+  values: []
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P2_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P2_1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Token"/>
+        <core:has_value>&quot;Heads&quot;</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/var_c -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_c">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_count"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>c</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/var_d -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_d">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</core:has_declarationOrder>
+        <core:has_name>d</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/var_l -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_l">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_values"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
+        <core:has_name>l</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.experimental.onto.net/js-core/net/heads-and-tails/var_res -->
+
+    <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_res">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/core/cs_string"/>
+        <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>
+        <core:has_name>res</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/declarations -->
+
+    <rdf:Description rdf:about="http://www.onto.net/core/declarations">
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P1-T1"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P2-T1"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_P3-T3"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P2"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T1-P3"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T2-P3"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_arcan_T3-P1"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/const_dataStructure"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_count"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_data"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/cs_values"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/fn_validate"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_c"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_d"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_l"/>
+        <core:includes_statement rdf:resource="http://www.experimental.onto.net/js-core/net/heads-and-tails/var_res"/>
+    </rdf:Description>
+</rdf:RDF>
 
 
 

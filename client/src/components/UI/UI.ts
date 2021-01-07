@@ -1,18 +1,18 @@
-import JQuery from "jquery";
+import JQuery from 'jquery';
 import TextInput, {
   Callback as TextInputCallback,
-} from "@components/TextInput/TextInput";
+} from '@components/TextInput/TextInput';
 import FileButton, {
   Callback as FileButtonCallback,
-} from "@components/Button/FileButton/FileButton";
-import Table, { Data as TableData } from "@components/Table/Table";
+} from '@components/Button/FileButton/FileButton';
+import Table, { Data as TableData } from '@components/Table/Table';
 import ActionPanel, {
   Data as _ActionPanelData,
   Handler as _ActionPanelHandler,
-} from "@components/ActionPanel/ActionPanel";
-import Button from "@components/Button/Button";
+} from '@components/ActionPanel/ActionPanel';
+import Button from '@components/Button/Button';
 
-import styles from "./UI.css";
+import styles from './UI.css';
 
 export type ActionPanelData = _ActionPanelData;
 export type ActionPanelHandler = _ActionPanelHandler;
@@ -45,20 +45,20 @@ export default class UI {
 
   table: Table = new Table();
 
-  controls: ActionPanel = new ActionPanel("Actions: ");
+  controls: ActionPanel = new ActionPanel('Actions: ');
 
   constructor(
     $root: JQuery,
     configuration: Configuration,
     callbacks: Callbacks = {}
   ) {
-    this.hostnameInput = new TextInput("hostname", configuration.hostname, {
+    this.hostnameInput = new TextInput('hostname', configuration.hostname, {
       onChange: callbacks.onHostnameChange,
     });
-    this.portInput = new TextInput("port", configuration.port, {
+    this.portInput = new TextInput('port', configuration.port, {
       onChange: callbacks.onPortChange,
     });
-    this.datasetInput = new TextInput("dataset", configuration.dataset, {
+    this.datasetInput = new TextInput('dataset', configuration.dataset, {
       onChange: callbacks.onDatasetChange,
     });
     this.ontologyLoader = new FileButton({
@@ -66,29 +66,29 @@ export default class UI {
         callbacks.onCpnOntologyLoad(file);
       },
     });
-    this.reloadButton = new Button("Reload Ontology", {
+    this.reloadButton = new Button('Reload Ontology', {
       onClick: () => {
         callbacks.onCpnOntologyLoad(this.ontologyLoader.getFile());
       },
     });
-    const $header: JQuery = $("<header>")
+    const $header: JQuery = $('<header>')
       .addClass(styles.header)
       .append(
-        $("<span>").addClass(styles.logo).text("OntoNet"),
-        $("<div>")
+        $('<span>').addClass(styles.logo).text('OntoNet'),
+        $('<div>')
           .addClass(styles.configuration)
           .append(
             this.hostnameInput.$element,
-            " : ",
+            ' : ',
             this.portInput.$element,
-            " / ",
+            ' / ',
             this.datasetInput.$element,
             this.ontologyLoader.$element,
             this.reloadButton.$element
           )
       );
-    const $main: JQuery = $("<main>").append(
-      $("<div>")
+    const $main: JQuery = $('<main>').append(
+      $('<div>')
         .addClass(styles.container)
         .append(this.table.$element, this.controls.$element)
     );
@@ -96,7 +96,7 @@ export default class UI {
   }
 
   updateState(data: TableData): void {
-    console.log(data);
+    // console.log(data);
     this.table.setData(data);
   }
 

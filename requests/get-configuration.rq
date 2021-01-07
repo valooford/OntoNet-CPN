@@ -1,0 +1,68 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX core: <http://www.onto.net/core/>
+PREFIX js: <http://www.onto.net/js/>
+PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+
+SELECT ?type
+?function ?function_type ?function_name ?function_arguments ?function_action ?function_domain ?function_range
+?colorSet ?colorSet_name ?colorSet_declaration ?colorSet_constructor_name 
+?variable_name ?variable_colorSet_name 
+?constant ?constant_name ?constant_value ?constant_colorSet
+FROM <urn:x-arq:DefaultGraph>
+FROM <http://localhost:3030/ontonet/data/net>
+WHERE {
+  ?declarations rdf:type core:Declarations;
+                core:includes_statement ?statement.
+  OPTIONAL {
+    ?statement core:has_declarationOrder ?order.
+  }
+  {
+    bind("function" as ?type).
+    ?statement rdf:type core:Function.
+    bind(?statement as ?function).
+    ?function core:has_name ?function_name;
+              core:has_arguments ?function_arguments;
+              core:has_action ?function_action.
+    OPTIONAL {
+      ?function core:has_domain ?function_domain;
+                core:has_range ?function_range.
+    }
+    OPTIONAL {
+      ?statement rdf:type core:Built-in.
+      bind(IF (EXISTS {?statement rdf:type core:Constructor.}, "constructor", "builtIn") as ?function_type).
+    }
+  }
+  UNION
+  {
+    bind("colorSet" as ?type).
+    ?statement rdf:type core:ColorSet.
+    bind(?statement as ?colorSet).
+    ?colorSet core:has_name ?colorSet_name;
+              core:has_declaration ?colorSet_declaration.
+    OPTIONAL {
+      ?colorSet core:has_constructor ?colorSet_constructor.
+      ?colorSet_constructor core:has_name ?colorSet_constructor_name.
+    }
+  }
+  UNION
+  {
+    bind("variable" as ?type).
+    ?statement rdf:type core:Variable.
+    bind(?statement as ?variable).
+    ?variable core:has_name ?variable_name;
+              core:has_colorSet ?variable_colorSet.
+    ?variable_colorSet core:has_name ?variable_colorSet_name.
+  }
+  UNION
+  {
+    bind("constant" as ?type).
+    ?statement rdf:type core:Constant.
+    bind(?statement as ?constant).
+    ?constant core:has_name ?constant_name;
+              core:has_value ?constant_value.
+    OPTIONAL {
+      ?constant core:has_colorSet ?constant_colorSet.
+    }
+  }
+}
+ORDER BY ?order DESC(?function) ?function_type DESC(?colorSet) DESC(?variable) DESC(?constant)

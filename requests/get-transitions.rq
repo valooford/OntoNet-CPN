@@ -1,0 +1,11 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX core: <http://www.onto.net/core/>
+PREFIX js: <http://www.onto.net/js/>
+PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+
+SELECT ?transition
+FROM <http://localhost:3030/ontonet/data/net>
+WHERE {
+  ?transition rdf:type core:Transition.
+}
+ORDER BY ?transition

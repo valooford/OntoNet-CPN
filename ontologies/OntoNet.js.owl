@@ -130,7 +130,7 @@ this.basisSets = basisSets;</Literal>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
         <NamedIndividual IRI="http://www.onto.net/core/fn_record"/>
-        <Literal>return function(data: {[id: string]: any}) {
+        <Literal>return function(data) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
     return res;
@@ -145,7 +145,7 @@ this.basisSets = basisSets;</Literal>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
         <NamedIndividual IRI="http://www.onto.net/core/fn_union"/>
-        <Literal>return function(data: {[id: string]: any}) {
+        <Literal>return function(data) {
   return Object.keys(data).reduce((res, id) =&gt; {
     res[id] = new namedColorSets[id](data[id])
     return res;

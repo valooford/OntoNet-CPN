@@ -5,8 +5,8 @@
   "description": "Ontology-based system for colored Petri nets modelling",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config webpack.dev.js",
-    "prod": "webpack --config webpack.prod.js"
+    "prod": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
