@@ -1,10 +1,9 @@
 import $ from 'jquery';
 
-import UI, { ActionPanelData } from '@components/UI/UI';
+import UI from '@components/UI/UI';
 import OntoNet, {
   StateVariables,
   StateResponse,
-  EnabledTransitionData,
 } from '@components/OntoNet/OntoNet';
 
 export default class App {
@@ -54,7 +53,7 @@ export default class App {
 
   updateUI(): void {
     this.updateUIState();
-    this.updateUIActions();
+    // this.updateUIActions();
   }
 
   // + move some logic into OntoNet
@@ -62,19 +61,13 @@ export default class App {
     const statePromise: Promise<StateResponse> = this.ontonet.getCpnState();
     statePromise.then((state) => {
       this.ui.updateState({
-        columns: state.head.vars.filter((v) => v !== 'token'),
+        columns: state.head.vars,
         rows: state.results.bindings.map((b) => {
           return Object.keys(b).reduce(
             (row: { [key: string]: string }, colName: StateVariables) => {
-              if (colName === 'token') return row;
-              let { value } = b[colName];
               // + insert this functionality into OntoNet
-              if (b[colName].type === 'uri') {
-                const i = value.indexOf('#');
-                value = value.slice(i + 1);
-              }
               // eslint-disable-next-line no-param-reassign
-              row[colName] = value;
+              row[colName] = b[colName].value;
               return row;
             },
             {}
@@ -84,23 +77,23 @@ export default class App {
     });
   }
 
-  private updateUIActions(): void {
-    this.ontonet
-      .getEnabledTransitionsData()
-      .then((etsd: EnabledTransitionData[]) => {
-        const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
-          // eslint-disable-next-line no-param-reassign
-          data[etd.id] = Object.keys(etd.groups);
-          return data;
-        }, {});
-        this.ui.updateActions(
-          actionPanelData,
-          (t: string, values: string): void => {
-            this.ontonet.performTransition(t, values).then(() => {
-              this.updateUI();
-            });
-          }
-        );
-      });
-  }
+  // private updateUIActions(): void {
+  //   this.ontonet
+  //     .getEnabledTransitionsData()
+  //     .then((etsd: EnabledTransitionData[]) => {
+  //       const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
+  //         // eslint-disable-next-line no-param-reassign
+  //         data[etd.id] = Object.keys(etd.groups);
+  //         return data;
+  //       }, {});
+  //       this.ui.updateActions(
+  //         actionPanelData,
+  //         (t: string, values: string): void => {
+  //           this.ontonet.performTransition(t, values).then(() => {
+  //             this.updateUI();
+  //           });
+  //         }
+  //       );
+  //     });
+  // }
 }

@@ -102,7 +102,7 @@ export default class OntoNet {
           ?variable_name ?variable_colorSet_name 
           ?constant ?constant_name ?constant_value ?constant_colorSet
           FROM <urn:x-arq:DefaultGraph>
-          FROM <http://localhost:3030/ontonet/data/net>
+          FROM <${this.getUrl()}/data/net>
           WHERE {
             ?declarations rdf:type core:Declarations;
                           core:includes_statement ?statement.
@@ -227,45 +227,37 @@ export default class OntoNet {
     console.log('configuration: ', this.configuration);
   }
 
-  getCpnState(): Promise<StateResponse> {
-    return Promise.resolve(
-      $.post({
-        url: `${this.getUrl()}/sparql`,
-        data: {
-          query: `
-            PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
-            SELECT ?place ?token (GROUP_CONCAT(?data;SEPARATOR=",") AS ?token_data)
-            WHERE {
-              ?place rdf:type m:Place.
-              ?place m:has_marking ?marking.
-              ?marking m:has_token ?token.
-              OPTIONAL {
-              ?token m:has_attribute ?attr.
-                {
-                  SELECT ?attr ?data
-                  WHERE {
-                    ?attr m:has_data ?data.
-                    ?attr m:has_index ?index.
-                  }
-                  ORDER BY ?index
-                }
-              }
+  async getCpnState(): Promise<StateResponse> {
+    return $.post({
+      url: `${this.getUrl()}/sparql`,
+      data: {
+        query: `
+          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          PREFIX core: <http://www.onto.net/core/>
+          PREFIX js: <http://www.onto.net/js/>
+          PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+          
+          SELECT ?place_name ?token_value ?multiplicity
+          FROM <${this.getUrl()}/data/net>
+          WHERE {
+            ?place rdf:type core:Place;
+                  core:has_name ?place_name;
+                  core:has_marking ?place_marking.
+            OPTIONAL {
+              ?place_marking core:has_multisetOfTokens ?multisetOfTokens.
+              ?multisetOfTokens core:includes_basisSet ?basisSet.
+              ?basisSet core:has_data ?token;
+                        core:has_multiplicity ?multiplicity.
+              ?token core:has_value ?token_value.
             }
-            GROUP BY ?place ?token
-            ORDER BY ?place
-          `,
-        },
-        error() {
-          console.log('ontonet: Unable to get the CPN state');
-        },
-      }).then(
-        (res: StateResponse): StateResponse => {
-          return res;
-        }
-      )
-    );
+          }
+          ORDER BY ?place_name
+        `,
+      },
+      error() {
+        console.log('ontonet: Unable to get the CPN state');
+      },
+    });
   }
 
   private static getIdFromURI(uri: string): string {

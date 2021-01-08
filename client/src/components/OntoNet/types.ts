@@ -1,4 +1,4 @@
-export type StateVariables = 'place' | 'token' | 'token_data';
+export type StateVariables = 'place_name' | 'token_value' | 'multiplicity';
 export type StateResponse = {
   head: {
     vars: StateVariables[];
@@ -7,7 +7,7 @@ export type StateResponse = {
     bindings: Array<
       {
         [key in StateVariables]: {
-          type: string;
+          type: 'uri' | 'literal';
           value: string;
         };
       }
