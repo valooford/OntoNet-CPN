@@ -4,7 +4,7 @@ PREFIX js: <http://www.onto.net/js/>
 PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
 
 SELECT ?transition_name ?code ?guard_value
-?arc_i ?arcan_constant ?term_value ?a_multiplicity
+?arc_i ?arcan_constant_name ?term_value ?a_multiplicity
 ?place_i ?token_value ?p_multiplicity
 FROM <http://localhost:3030/ontonet/data/net>
 WHERE {
@@ -31,8 +31,8 @@ WHERE {
       ?arc_i core:has_annotation ?arc_i_annotation.
       ?arc_i_annotation core:has_multisetOfTerms ?arcan_multiset.
       OPTIONAL {
-        ?arcan_multiset rdf:type core:Constant.
-        BIND (?arcan_multiset as ?arcan_constant)
+        ?arcan_multiset rdf:type core:Constant;
+		                core:has_name ?arcan_constant_name.
       }
       OPTIONAL {
         ?arcan_multiset core:includes_basisSet ?a_basisSet.

@@ -14,7 +14,7 @@ type TransitionInputDataValues =
   | 'code'
   | 'guard_value'
   | 'arc_i'
-  | 'arcan_constant'
+  | 'arcan_constant_name'
   | 'term_value'
   | 'a_multiplicity'
   | 'place_i'

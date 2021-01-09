@@ -18,7 +18,41 @@ export default class Reasoner {
     await Promise.all(
       transitionsURIs.map(async (uri) => {
         const inputData = await this.getTransitionInputData(uri);
-        return inputData; // reasoning...
+        // reasoning...
+        const { places, arcs, transition } = inputData.results.bindings.reduce(
+          (
+            obj: {
+              places: Record<string, unknown>;
+              arcs: Record<string, unknown>;
+              transition: { code: string; guard: string };
+            },
+            data
+          ) => {
+            const result = { ...obj };
+            if (data.transition_name) {
+              result.transition = {
+                code: data.code.value,
+                guard: data.guard_value.value,
+              };
+            } else {
+              result.arcs[data.arc_i.value] = {
+                annotationType: data.arcan_constant_name
+                  ? 'constant'
+                  : 'multiset',
+                annotationConstant: data.arcan_constant_name?.value,
+                annotationTerm: data.term_value?.value,
+                annotationMultiplicity: data.a_multiplicity?.value,
+              };
+              result.places[data.place_i.value] = {
+                tokenValue: data.token_value.value,
+                tokenMultiplicity: data.p_multiplicity.value,
+              };
+            }
+            return result;
+          },
+          { places: {}, arcs: {}, transition: null }
+        );
+        return { places, arcs, transition };
       })
     );
   }
