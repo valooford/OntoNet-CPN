@@ -32,3 +32,19 @@ export type TransitionInputDataResponse = {
     >;
   };
 };
+
+export type ProcessedTransitionInputData = {
+  places: Record<string, unknown>;
+  arcs: Record<
+    string,
+    {
+      annotation: {
+        type: string;
+        constant?: string;
+        term?: string;
+        multiplicity?: string;
+      };
+    }
+  >;
+  transition: { code: string; guard: string };
+};

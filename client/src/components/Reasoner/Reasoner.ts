@@ -1,6 +1,10 @@
 import $ from 'jquery';
 
-import { TransitionsResponse, TransitionInputDataResponse } from './types';
+import {
+  TransitionsResponse,
+  TransitionInputDataResponse,
+  ProcessedTransitionInputData,
+} from './types';
 
 export default class Reasoner {
   private url: string;
@@ -20,14 +24,7 @@ export default class Reasoner {
         const inputData = await this.getTransitionInputData(uri);
         // reasoning...
         const { places, arcs, transition } = inputData.results.bindings.reduce(
-          (
-            obj: {
-              places: Record<string, unknown>;
-              arcs: Record<string, unknown>;
-              transition: { code: string; guard: string };
-            },
-            data
-          ) => {
+          (obj: ProcessedTransitionInputData, data) => {
             const result = { ...obj };
             if (data.transition_name) {
               result.transition = {
@@ -36,12 +33,12 @@ export default class Reasoner {
               };
             } else {
               result.arcs[data.arc_i.value] = {
-                annotationType: data.arcan_constant_name
-                  ? 'constant'
-                  : 'multiset',
-                annotationConstant: data.arcan_constant_name?.value,
-                annotationTerm: data.term_value?.value,
-                annotationMultiplicity: data.a_multiplicity?.value,
+                annotation: {
+                  type: data.arcan_constant_name ? 'constant' : 'multiset',
+                  constant: data.arcan_constant_name?.value,
+                  term: data.term_value?.value,
+                  multiplicity: data.a_multiplicity?.value,
+                },
               };
               result.places[data.place_i.value] = {
                 tokenValue: data.token_value.value,
@@ -50,9 +47,12 @@ export default class Reasoner {
             }
             return result;
           },
-          { places: {}, arcs: {}, transition: null }
+          { places: {}, arcs: {}, transition: { code: null, guard: null } }
         );
-        return { places, arcs, transition };
+        const processed = { places, arcs, transition };
+        console.log('processed: ', processed);
+        // forming transition modes
+        return processed;
       })
     );
   }
