@@ -1,16 +1,20 @@
+FROM <urn:x-arq:DefaultGraph>
+FROM <${this.endpointUrl}/data/net>
+:T1 -> ${uri}
+##########################################################################
+
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX core: <http://www.onto.net/core/>
 PREFIX js: <http://www.onto.net/js/>
 PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
 
-SELECT ?transition_name ?code ?guard_value
-?arc_i ?arcan_constant_name ?term_value ?a_multiplicity
-?place_i ?token_value ?p_multiplicity
+SELECT ?type
+?code ?guard_value #transition
+?arc_i ?arcan_constant_name ?term_value ?multiplicity ?place_i #arcs
 FROM <http://localhost:3030/ontonet/data/net>
 WHERE {
   {
-    #name
-    :T1 core:has_name ?transition_name.
+    bind("transition" as ?type)
     #code
     OPTIONAL {
       :T1 core:has_code ?code.
@@ -24,6 +28,7 @@ WHERE {
   }
   UNION
   {
+    bind("arcs" as ?type)
     #input arcs
     ?arc_i core:has_targetNode :T1;
            core:has_sourceNode ?place_i.
@@ -31,24 +36,17 @@ WHERE {
       ?arc_i core:has_annotation ?arc_i_annotation.
       ?arc_i_annotation core:has_multisetOfTerms ?arcan_multiset.
       OPTIONAL {
-        ?arcan_multiset rdf:type core:Constant;
-		                core:has_name ?arcan_constant_name.
+        ?arcan_multiset rdf:type core:Constant.
+        BIND (?arcan_multiset as ?arcan_constant)
+        ?arcan_constant core:has_name ?arcan_constant_name.
       }
       OPTIONAL {
-        ?arcan_multiset core:includes_basisSet ?a_basisSet.
-        ?a_basisSet core:has_data ?term;
-                    core:has_multiplicity ?a_multiplicity.
+        ?arcan_multiset core:includes_basisSet ?basisSet.
+        ?basisSet core:has_data ?term;
+                    core:has_multiplicity ?multiplicity.
         ?term core:has_value ?term_value.
       }
     }
-    ?place_i rdf:type core:Place;
-             core:has_marking ?place_i_marking.
-    OPTIONAL {
-      ?place_i_marking core:has_multisetOfTokens ?multisetOfTokens.
-      ?multisetOfTokens core:includes_basisSet ?p_basisSet.
-      ?p_basisSet core:has_data ?token;
-                  core:has_multiplicity ?p_multiplicity.
-      ?token core:has_value ?token_value.
-    }
   }
 }
+ORDER BY DESC(?type)

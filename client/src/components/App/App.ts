@@ -5,9 +5,12 @@ import OntoNet, {
   StateVariables,
   StateResponse,
 } from '@components/OntoNet/OntoNet';
+import Reasoner from '@components/Reasoner/Reasoner';
 
 export default class App {
   ontonet: OntoNet;
+
+  reasoner: Reasoner;
 
   ui: UI;
 
@@ -17,23 +20,26 @@ export default class App {
     dataset: 'ontonet',
   };
 
+  private endpoint = this.defaults;
+
   constructor() {
-    this.ontonet = new OntoNet(this.defaults);
+    this.ontonet = new OntoNet(this.getEndpointUrl());
+    this.reasoner = new Reasoner(this.getEndpointUrl());
     this.ui = new UI($('body'), this.defaults, {
       onHostnameChange: (hostname) => {
-        this.ontonet.setHostname(hostname);
+        this.setEndpointFields({ hostname });
         console.log('hostname changed');
       },
       onPortChange: (port: string) => {
         if (Number.isInteger(Number(port))) {
-          this.ontonet.setPort(Number(port));
+          this.setEndpointFields({ port: Number(port) });
           console.log('port changed');
         } else {
           console.log('port is not a number');
         }
       },
       onDatasetChange: (dataset) => {
-        this.ontonet.setDataset(dataset);
+        this.setEndpointFields({ dataset });
         console.log('datased changed');
       },
       onCpnOntologyLoad: (file: File) => {
@@ -47,13 +53,30 @@ export default class App {
         );
       },
     });
-
     this.updateUI();
+  }
+
+  private getEndpointUrl() {
+    return `http://${this.endpoint.hostname}:${this.endpoint.port}/${this.endpoint.dataset}`;
+  }
+
+  private onEndpointUpdate() {
+    this.ontonet.setEndpointUrl(this.getEndpointUrl());
+    this.reasoner.setEndpointUrl(this.getEndpointUrl());
+  }
+
+  private setEndpointFields(fields: {
+    hostname?: string;
+    port?: number;
+    dataset?: string;
+  }) {
+    this.endpoint = { ...this.endpoint, ...fields };
+    this.onEndpointUpdate();
   }
 
   updateUI(): void {
     this.updateUIState();
-    // this.updateUIActions();
+    this.updateUIActions();
   }
 
   // + move some logic into OntoNet
@@ -77,23 +100,24 @@ export default class App {
     });
   }
 
-  // private updateUIActions(): void {
-  //   this.ontonet
-  //     .getEnabledTransitionsData()
-  //     .then((etsd: EnabledTransitionData[]) => {
-  //       const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
-  //         // eslint-disable-next-line no-param-reassign
-  //         data[etd.id] = Object.keys(etd.groups);
-  //         return data;
-  //       }, {});
-  //       this.ui.updateActions(
-  //         actionPanelData,
-  //         (t: string, values: string): void => {
-  //           this.ontonet.performTransition(t, values).then(() => {
-  //             this.updateUI();
-  //           });
-  //         }
-  //       );
-  //     });
-  // }
+  private updateUIActions(): void {
+    this.reasoner.run();
+    // this.ontonet
+    //   .getEnabledTransitionsData()
+    //   .then((etsd: EnabledTransitionData[]) => {
+    //     const actionPanelData = etsd.reduce((data: ActionPanelData, etd) => {
+    //       // eslint-disable-next-line no-param-reassign
+    //       data[etd.id] = Object.keys(etd.groups);
+    //       return data;
+    //     }, {});
+    //     this.ui.updateActions(
+    //       actionPanelData,
+    //       (t: string, values: string): void => {
+    //         this.ontonet.performTransition(t, values).then(() => {
+    //           this.updateUI();
+    //         });
+    //       }
+    //     );
+    //   });
+  }
 }

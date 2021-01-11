@@ -1,0 +1,31 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX core: <http://www.onto.net/core/>
+PREFIX js: <http://www.onto.net/js/>
+PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+
+SELECT ?type ?place
+?place_colorSet_name 
+?token_value ?multiplicity
+FROM <urn:x-arq:DefaultGraph>
+FROM <http://localhost:3030/ontonet/data/net>
+WHERE {
+  ?place rdf:type core:Place.
+  {
+    bind("place" as ?type)
+    ?place core:has_colorSet ?place_colorSet.
+    ?place_colorSet core:has_name ?place_colorSet_name.
+  }
+  UNION
+  {
+    OPTIONAL {
+      bind("token" as ?type)
+      ?place core:has_marking ?place_marking.
+      ?place_marking core:has_multisetOfTokens ?multisetOfTokens.
+      ?multisetOfTokens core:includes_basisSet ?basisSet.
+      ?basisSet core:has_data ?token;
+                core:has_multiplicity ?multiplicity.
+      ?token core:has_value ?token_value.
+    }
+  }
+}
+ORDER BY ?place ?type

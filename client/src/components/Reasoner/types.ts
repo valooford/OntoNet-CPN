@@ -9,42 +9,62 @@ export type TransitionsResponse = {
   };
 };
 
-type TransitionInputDataValues =
-  | 'transition_name'
-  | 'code'
-  | 'guard_value'
-  | 'arc_i'
-  | 'arcan_constant_name'
-  | 'term_value'
-  | 'a_multiplicity'
-  | 'place_i'
+type PlacesMarkingsValues =
+  | 'type'
+  | 'place'
+  | 'place_colorSet_name'
   | 'token_value'
-  | 'p_multiplicity';
-export type TransitionInputDataResponse = {
+  | 'multiplicity';
+export type PlacesMarkingsResponce = {
   results: {
     bindings: Array<
       {
-        [key in TransitionInputDataValues]: {
-          type: string;
+        [key in PlacesMarkingsValues]: {
+          type: 'uri';
           value: string;
         };
       }
     >;
   };
 };
+export type PlacesMarkingsData = {
+  [placeId: string]: {
+    colorSet: string;
+    tokens: Array<{ value: string; multiplicity: number }>;
+  };
+};
 
-export type ProcessedTransitionInputData = {
-  places: Record<string, unknown>;
+type TransitionInputDataValues =
+  | 'type'
+  | 'code'
+  | 'guard_value'
+  | 'arc_i'
+  | 'arcan_constant_name'
+  | 'term_value'
+  | 'multiplicity'
+  | 'place_i';
+export type TransitionInputDataResponse = {
+  results: {
+    bindings: Array<
+      {
+        [key in TransitionInputDataValues]: {
+          type: 'uri' | 'literal';
+          value: string;
+        };
+      }
+    >;
+  };
+};
+export type TransitionInputData = {
+  code?: string;
+  guard?: string;
   arcs: Record<
     string,
     {
-      annotation: {
-        type: string;
-        constant?: string;
-        term?: string;
-        multiplicity?: string;
-      };
+      place: string;
+      constant?: string;
+      term?: string;
+      multiplicity?: string;
     }
   >;
-  transition: { code: string; guard: string };
 };

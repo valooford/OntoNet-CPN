@@ -3,63 +3,102 @@ import $ from 'jquery';
 import {
   TransitionsResponse,
   TransitionInputDataResponse,
-  ProcessedTransitionInputData,
+  PlacesMarkingsResponce,
+  PlacesMarkingsData,
+  TransitionInputData,
 } from './types';
 
 export default class Reasoner {
-  private url: string;
+  private endpointUrl: string;
 
-  constructor(url: string) {
-    this.url = url;
+  constructor(endpointUrl: string) {
+    this.setEndpointUrl(endpointUrl);
   }
 
   setEndpointUrl(url: string): void {
-    this.url = url;
+    this.endpointUrl = url;
   }
 
   async run(): Promise<void> {
-    const transitionsURIs = await this.getTransitionsURIs();
+    const [transitionsURIs, placesMarkings] = await Promise.all([
+      this.getTransitionsURIs(),
+      this.getPlacesMarkings(),
+    ]);
+    console.log('placesMarkings', placesMarkings);
     await Promise.all(
       transitionsURIs.map(async (uri) => {
         const inputData = await this.getTransitionInputData(uri);
+        console.log(`inputData for ${uri}`, inputData);
         // reasoning...
-        const { places, arcs, transition } = inputData.results.bindings.reduce(
-          (obj: ProcessedTransitionInputData, data) => {
-            const result = { ...obj };
-            if (data.transition_name) {
-              result.transition = {
-                code: data.code.value,
-                guard: data.guard_value.value,
-              };
-            } else {
-              result.arcs[data.arc_i.value] = {
-                annotation: {
-                  type: data.arcan_constant_name ? 'constant' : 'multiset',
-                  constant: data.arcan_constant_name?.value,
-                  term: data.term_value?.value,
-                  multiplicity: data.a_multiplicity?.value,
-                },
-              };
-              result.places[data.place_i.value] = {
-                tokenValue: data.token_value.value,
-                tokenMultiplicity: data.p_multiplicity.value,
-              };
-            }
-            return result;
-          },
-          { places: {}, arcs: {}, transition: { code: null, guard: null } }
-        );
-        const processed = { places, arcs, transition };
-        console.log('processed: ', processed);
         // forming transition modes
-        return processed;
       })
     );
   }
 
+  private async getPlacesMarkings(): Promise<PlacesMarkingsData> {
+    const response: PlacesMarkingsResponce = await $.post({
+      url: `${this.endpointUrl}/sparql`,
+      data: {
+        query: `
+          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+          PREFIX core: <http://www.onto.net/core/>
+          PREFIX js: <http://www.onto.net/js/>
+          PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
+          
+          SELECT ?type ?place
+          ?place_colorSet_name 
+          ?token_value ?multiplicity
+          FROM <urn:x-arq:DefaultGraph>
+          FROM <${this.endpointUrl}/data/net>
+          WHERE {
+            ?place rdf:type core:Place.
+            {
+              bind("place" as ?type)
+              ?place core:has_colorSet ?place_colorSet.
+              ?place_colorSet core:has_name ?place_colorSet_name.
+            }
+            UNION
+            {
+              OPTIONAL {
+                bind("token" as ?type)
+                ?place core:has_marking ?place_marking.
+                ?place_marking core:has_multisetOfTokens ?multisetOfTokens.
+                ?multisetOfTokens core:includes_basisSet ?basisSet.
+                ?basisSet core:has_data ?token;
+                          core:has_multiplicity ?multiplicity.
+                ?token core:has_value ?token_value.
+              }
+            }
+          }
+          ORDER BY ?place ?type
+        `,
+      },
+    });
+    const placesMarkings = response.results.bindings.reduce(
+      (markings: PlacesMarkingsData, row) => {
+        const placeId = row.place.value;
+        if (row.type.value === 'place') {
+          // eslint-disable-next-line no-param-reassign
+          markings[placeId] = {
+            colorSet: row.place_colorSet_name.value,
+            tokens: [],
+          };
+        } else if (row.type.value === 'token') {
+          markings[placeId].tokens.push({
+            value: row.token_value.value,
+            multiplicity: Number(row.multiplicity?.value) ?? 1,
+          });
+        }
+        return markings;
+      },
+      {}
+    );
+    return placesMarkings;
+  }
+
   private async getTransitionsURIs(): Promise<string[]> {
     const response: TransitionsResponse = await $.post({
-      url: `${this.url}/sparql`,
+      url: `${this.endpointUrl}/sparql`,
       data: {
         query: `
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -68,7 +107,7 @@ export default class Reasoner {
           PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
           
           SELECT ?transition
-          FROM <${this.url}/data/net>
+          FROM <${this.endpointUrl}/data/net>
           WHERE {
             ?transition rdf:type core:Transition.
           }
@@ -81,24 +120,24 @@ export default class Reasoner {
 
   private async getTransitionInputData(
     transitionUri: string
-  ): Promise<TransitionInputDataResponse> {
+  ): Promise<TransitionInputData> {
     const uri = `<${transitionUri}>`;
-    return $.post({
-      url: `${this.url}/sparql`,
+    const response: TransitionInputDataResponse = await $.post({
+      url: `${this.endpointUrl}/sparql`,
       data: {
         query: `
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           PREFIX core: <http://www.onto.net/core/>
           PREFIX js: <http://www.onto.net/js/>
+          PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
           
-          SELECT ?transition_name ?code ?guard_value
-          ?arc_i ?arcan_constant ?term_value ?a_multiplicity
-          ?place_i ?token_value ?p_multiplicity
-          FROM <${this.url}/data/net>
+          SELECT ?type
+          ?code ?guard_value #transition
+          ?arc_i ?arcan_constant_name ?term_value ?multiplicity ?place_i #arcs
+          FROM <${this.endpointUrl}/data/net>
           WHERE {
             {
-              #name
-              ${uri} core:has_name ?transition_name.
+              bind("transition" as ?type)
               #code
               OPTIONAL {
                 ${uri} core:has_code ?code.
@@ -112,6 +151,7 @@ export default class Reasoner {
             }
             UNION
             {
+              bind("arcs" as ?type)
               #input arcs
               ?arc_i core:has_targetNode ${uri};
                     core:has_sourceNode ?place_i.
@@ -121,27 +161,43 @@ export default class Reasoner {
                 OPTIONAL {
                   ?arcan_multiset rdf:type core:Constant.
                   BIND (?arcan_multiset as ?arcan_constant)
+                  ?arcan_constant core:has_name ?arcan_constant_name.
                 }
                 OPTIONAL {
-                  ?arcan_multiset core:includes_basisSet ?a_basisSet.
-                  ?a_basisSet core:has_data ?term;
-                              core:has_multiplicity ?a_multiplicity.
+                  ?arcan_multiset core:includes_basisSet ?basisSet.
+                  ?basisSet core:has_data ?term;
+                              core:has_multiplicity ?multiplicity.
                   ?term core:has_value ?term_value.
                 }
               }
-              ?place_i rdf:type core:Place;
-                      core:has_marking ?place_i_marking.
-              OPTIONAL {
-                ?place_i_marking core:has_multisetOfTokens ?multisetOfTokens.
-                ?multisetOfTokens core:includes_basisSet ?p_basisSet.
-                ?p_basisSet core:has_data ?token;
-                            core:has_multiplicity ?p_multiplicity.
-                ?token core:has_value ?token_value.
-              }
             }
           }
+          ORDER BY DESC(?type)
         `,
       },
     });
+    const transitionInputData = response.results.bindings.reduce(
+      (data: TransitionInputData, row) => {
+        switch (row.type.value) {
+          case 'transition':
+            data.code = row.code?.value; // eslint-disable-line no-param-reassign
+            data.guard = row.guard_value?.value ?? 'true'; // eslint-disable-line no-param-reassign
+            break;
+          case 'arcs':
+            // eslint-disable-next-line no-param-reassign
+            data.arcs[row.arc_i.value] = {
+              place: row.place_i.value,
+              constant: row.arcan_constant_name?.value,
+              term: row.term_value?.value,
+              multiplicity: row.multiplicity?.value ?? (row.term_value && '1'),
+            };
+            break;
+          default:
+        }
+        return data;
+      },
+      { arcs: {} }
+    );
+    return transitionInputData;
   }
 }

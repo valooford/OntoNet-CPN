@@ -14,45 +14,19 @@ export type StateVariables = _StateVariables;
 export type StateResponse = _StateResponse;
 export type EnabledTransitionData = _EnabledTransitionData;
 
-type Parameters =
-  | {
-      dataset: string;
-      hostname?: string;
-      port?: number;
-    }
-  | undefined;
-
 export default class OntoNet {
-  protected hostname: string;
-
-  protected port: number;
-
-  protected dataset: string;
+  protected endpointUrl: string;
 
   protected enabledTransitionsData: EnabledTransitionData[] = [];
 
   private configuration: Configuration;
 
-  constructor(params: Parameters = undefined) {
-    this.dataset = params?.dataset;
-    this.hostname = params?.hostname ?? 'localhost';
-    this.port = params?.port ?? 3030;
+  constructor(endpointUrl: string) {
+    this.setEndpointUrl(endpointUrl);
   }
 
-  setHostname(hostname: string): void {
-    this.hostname = hostname;
-  }
-
-  setPort(port: number): void {
-    this.port = port;
-  }
-
-  setDataset(dataset: string): void {
-    this.dataset = dataset;
-  }
-
-  private getUrl() {
-    return `http://${this.hostname}:${this.port}/${this.dataset}`;
+  setEndpointUrl(url: string): void {
+    this.endpointUrl = url;
   }
 
   private readonly graphName = 'net';
@@ -62,13 +36,13 @@ export default class OntoNet {
     formData.append('graph', file);
     return Promise.resolve(
       $.post({
-        url: `${this.getUrl()}/update`,
+        url: `${this.endpointUrl}/update`,
         data: {
-          update: `CLEAR GRAPH <${this.getUrl()}/data/${this.graphName}>`,
+          update: `CLEAR GRAPH <${this.endpointUrl}/data/${this.graphName}>`,
         },
       }).then(async () => {
         const uploadPromise = await $.post({
-          url: `${this.getUrl()}/data?graph=${this.graphName}`,
+          url: `${this.endpointUrl}/data?graph=${this.graphName}`,
           data: formData,
           processData: false,
           contentType: false,
@@ -88,7 +62,7 @@ export default class OntoNet {
 
   async getConfiguration(): Promise<void> {
     const response: ConfigurationResponse = await $.post({
-      url: `${this.getUrl()}/sparql`,
+      url: `${this.endpointUrl}/sparql`,
       data: {
         query: `
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -102,7 +76,7 @@ export default class OntoNet {
           ?variable_name ?variable_colorSet_name 
           ?constant ?constant_name ?constant_value ?constant_colorSet
           FROM <urn:x-arq:DefaultGraph>
-          FROM <${this.getUrl()}/data/net>
+          FROM <${this.endpointUrl}/data/net>
           WHERE {
             ?declarations rdf:type core:Declarations;
                           core:includes_statement ?statement.
@@ -229,7 +203,7 @@ export default class OntoNet {
 
   async getCpnState(): Promise<StateResponse> {
     return $.post({
-      url: `${this.getUrl()}/sparql`,
+      url: `${this.endpointUrl}/sparql`,
       data: {
         query: `
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -238,7 +212,7 @@ export default class OntoNet {
           PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
           
           SELECT ?place_name ?token_value ?multiplicity
-          FROM <${this.getUrl()}/data/net>
+          FROM <${this.endpointUrl}/data/net>
           WHERE {
             ?place rdf:type core:Place;
                   core:has_name ?place_name;
@@ -269,7 +243,7 @@ export default class OntoNet {
   getEnabledTransitionsData(): Promise<EnabledTransitionData[]> {
     return Promise.resolve(
       $.post({
-        url: `${this.getUrl()}/sparql`,
+        url: `${this.endpointUrl}/sparql`,
         data: {
           query: `
             PREFIX m: <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -308,7 +282,7 @@ export default class OntoNet {
             const variables = b.variables.value.split(',');
             const condition = b.condition_data.value;
             return $.post({
-              url: `${this.getUrl()}/sparql`,
+              url: `${this.endpointUrl}/sparql`,
               data: {
                 query: `
                   PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -472,7 +446,7 @@ export default class OntoNet {
   addTokenToPlace(place: string, data: string[]): Promise<void> {
     return Promise.resolve(
       $.post({
-        url: `${this.getUrl()}/update`,
+        url: `${this.endpointUrl}/update`,
         data: {
           update: `
           PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
@@ -529,7 +503,7 @@ export default class OntoNet {
     console.log(tokens);
     return Promise.resolve(
       $.post({
-        url: `${this.getUrl()}/update`,
+        url: `${this.endpointUrl}/update`,
         data: {
           update: `
           PREFIX : <http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy#>
