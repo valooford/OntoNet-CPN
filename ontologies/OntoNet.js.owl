@@ -84,8 +84,8 @@
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
         <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-        <Literal>this.multiplicity = multiplicity;
-this.data = data;</Literal>
+        <Literal>this.data = data;
+this.multiplicity = multiplicity;</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_arguments"/>
@@ -107,7 +107,7 @@ this.data = data;</Literal>
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
         <NamedIndividual IRI="http://www.onto.net/core/fn_multiset"/>
-        <Literal>this.cardinality = basisSets.length;
+        <Literal>this.cardinality = Object.keys(basisSets).length;
 this.basisSets = basisSets;</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>

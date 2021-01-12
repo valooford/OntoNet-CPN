@@ -1,8 +1,6 @@
 import $ from 'jquery';
 
 import {
-  ConfigurationResponse,
-  Configuration,
   StateVariables as _StateVariables,
   StateResponse as _StateResponse,
   TransitionResponse,
@@ -18,8 +16,6 @@ export default class OntoNet {
   protected endpointUrl: string;
 
   protected enabledTransitionsData: EnabledTransitionData[] = [];
-
-  private configuration: Configuration;
 
   constructor(endpointUrl: string) {
     this.setEndpointUrl(endpointUrl);
@@ -54,151 +50,9 @@ export default class OntoNet {
             }
           },
         });
-        this.getConfiguration();
         return uploadPromise;
       })
     );
-  }
-
-  async getConfiguration(): Promise<void> {
-    const response: ConfigurationResponse = await $.post({
-      url: `${this.endpointUrl}/sparql`,
-      data: {
-        query: `
-          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-          PREFIX core: <http://www.onto.net/core/>
-          PREFIX js: <http://www.onto.net/js/>
-          PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
-          
-          SELECT ?type
-          ?function ?function_type ?function_name ?function_arguments ?function_action ?function_domain ?function_range
-          ?colorSet ?colorSet_name ?colorSet_declaration ?colorSet_constructor_name 
-          ?variable_name ?variable_colorSet_name 
-          ?constant ?constant_name ?constant_value ?constant_colorSet
-          FROM <urn:x-arq:DefaultGraph>
-          FROM <${this.endpointUrl}/data/net>
-          WHERE {
-            ?declarations rdf:type core:Declarations;
-                          core:includes_statement ?statement.
-            OPTIONAL {
-              ?statement core:has_declarationOrder ?order.
-            }
-            {
-              bind("function" as ?type).
-              ?statement rdf:type core:Function.
-              bind(?statement as ?function).
-              ?function core:has_name ?function_name;
-                        core:has_arguments ?function_arguments;
-                        core:has_action ?function_action.
-              OPTIONAL {
-                ?function core:has_domain ?function_domain;
-                          core:has_range ?function_range.
-              }
-              OPTIONAL {
-                ?statement rdf:type core:Built-in.
-                bind(IF (EXISTS {?statement rdf:type core:Constructor.}, "constructor", "builtIn") as ?function_type).
-              }
-            }
-            UNION
-            {
-              bind("colorSet" as ?type).
-              ?statement rdf:type core:ColorSet.
-              bind(?statement as ?colorSet).
-              ?colorSet core:has_name ?colorSet_name;
-                        core:has_declaration ?colorSet_declaration.
-              OPTIONAL {
-                ?colorSet core:has_constructor ?colorSet_constructor.
-                ?colorSet_constructor core:has_name ?colorSet_constructor_name.
-              }
-            }
-            UNION
-            {
-              bind("variable" as ?type).
-              ?statement rdf:type core:Variable.
-              bind(?statement as ?variable).
-              ?variable core:has_name ?variable_name;
-                        core:has_colorSet ?variable_colorSet.
-              ?variable_colorSet core:has_name ?variable_colorSet_name.
-            }
-            UNION
-            {
-              bind("constant" as ?type).
-              ?statement rdf:type core:Constant.
-              bind(?statement as ?constant).
-              ?constant core:has_name ?constant_name;
-                        core:has_value ?constant_value.
-              OPTIONAL {
-                ?constant core:has_colorSet ?constant_colorSet.
-              }
-            }
-          }
-          ORDER BY ?order DESC(?function) ?function_type DESC(?colorSet) DESC(?variable) DESC(?constant)
-        `,
-      },
-    });
-    // console.log('response: ', response);
-    const records = response.results.bindings;
-    this.configuration = records.reduce(
-      (config: Configuration, record) => {
-        const cfg = config;
-        switch (record.type.value) {
-          case 'function': {
-            const argumentsList = record.function_arguments.value.split(', ');
-            const action = record.function_action.value;
-            cfg.functions[record.function_name.value] =
-              // eslint-disable-next-line no-new-func
-              new Function(...argumentsList, action);
-            break;
-          }
-          case 'colorSet': {
-            const name = record.colorSet_name.value;
-            const declaration = record.colorSet_declaration.value;
-            if (!record.colorSet_constructor_name) {
-              cfg.colorSets[name] =
-                // eslint-disable-next-line no-new-func
-                new Function(`return ${declaration}`)();
-            } else {
-              const constructor = record.colorSet_constructor_name.value;
-              cfg.colorSets[name] =
-                // eslint-disable-next-line no-new-func
-                new Function(
-                  'context',
-                  `with (context) {
-                      return ${constructor}(${declaration})
-                    }`
-                )({ ...cfg.functions, ...cfg.colorSets });
-            }
-            break;
-          }
-          case 'variable': {
-            cfg.variables[record.variable_name.value] =
-              cfg.colorSets[record.variable_colorSet_name.value];
-            break;
-          }
-          case 'constant': {
-            const { value } = record.constant_value;
-            cfg.constants[record.constant_name.value] =
-              // eslint-disable-next-line no-new-func
-              new Function(
-                'context',
-                `with (context) {
-                    return ${value}
-                  }`
-              )(cfg.functions);
-            break;
-          }
-          default:
-        }
-        return cfg;
-      },
-      {
-        colorSets: {},
-        variables: {},
-        constants: {},
-        functions: {},
-      }
-    );
-    console.log('configuration: ', this.configuration);
   }
 
   async getCpnState(): Promise<StateResponse> {

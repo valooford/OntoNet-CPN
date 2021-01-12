@@ -46,6 +46,7 @@ export default class App {
         this.ontonet.uploadCpnOntology(file).then(
           () => {
             this.updateUI();
+            this.reasoner.updateConfiguration();
           },
           () => {
             alert(`An error occurred while uploading ontology file.`);

@@ -5,7 +5,7 @@ PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
 
 SELECT ?type ?place
 ?place_colorSet_name 
-?token_value ?multiplicity
+?token ?token_value ?multiplicity
 FROM <urn:x-arq:DefaultGraph>
 FROM <http://localhost:3030/ontonet/data/net>
 WHERE {

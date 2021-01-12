@@ -794,7 +794,7 @@ this.data = data;</core:has_action>
     <owl:NamedIndividual rdf:about="http://www.onto.net/core/fn_multiset">
         <rdf:type rdf:resource="http://www.onto.net/core/Built-in"/>
         <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
-        <core:has_action>this.cardinality = basisSets.length;
+        <core:has_action>this.cardinality = Object.keys(basisSets).length;
 this.basisSets = basisSets;</core:has_action>
         <core:has_arguments>basisSets</core:has_arguments>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</core:has_declarationOrder>

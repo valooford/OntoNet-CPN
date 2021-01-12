@@ -9,12 +9,13 @@ PREFIX js: <http://www.onto.net/js/>
 PREFIX : <http://www.experimental.onto.net/js-core/net/heads-and-tails/>
 
 SELECT ?type
-?code ?guard_value #transition
-?arc_i ?arcan_constant_name ?term_value ?multiplicity ?place_i #arcs
+       ?code ?guard_value #transition
+       ?arc_i ?place_i #arcs
+       ?arcan_constant_name ?term_value ?multiplicity #arcs_data
 FROM <http://localhost:3030/ontonet/data/net>
 WHERE {
   {
-    bind("transition" as ?type)
+    BIND("transition" as ?type)
     #code
     OPTIONAL {
       :T1 core:has_code ?code.
@@ -24,29 +25,36 @@ WHERE {
       :T1 core:has_guard ?guard.
       ?guard core:has_value ?_guard_value.
     }
-    BIND (if(!bound(?_guard_value), "true", ?_guard_value) as ?guard_value)
+    BIND (if(!BOUND(?_guard_value), "true", ?_guard_value) as ?guard_value)
   }
   UNION
   {
-    bind("arcs" as ?type)
     #input arcs
-    ?arc_i core:has_targetNode :T1;
-           core:has_sourceNode ?place_i.
-    OPTIONAL {
-      ?arc_i core:has_annotation ?arc_i_annotation.
-      ?arc_i_annotation core:has_multisetOfTerms ?arcan_multiset.
+    ?arc_i core:has_targetNode :T1.
+    {
+      BIND("arcs" as ?type)
+      ?arc_i core:has_sourceNode ?place_i.
+    }
+    UNION
+    {
+      BIND("arcs_data" as ?type)
       OPTIONAL {
-        ?arcan_multiset rdf:type core:Constant.
-        BIND (?arcan_multiset as ?arcan_constant)
-        ?arcan_constant core:has_name ?arcan_constant_name.
-      }
-      OPTIONAL {
-        ?arcan_multiset core:includes_basisSet ?basisSet.
-        ?basisSet core:has_data ?term;
+        ?arc_i core:has_annotation ?arc_i_annotation.
+        ?arc_i_annotation core:has_multisetOfTerms ?arcan_multiset.
+        {
+          ?arcan_multiset rdf:type core:Constant.
+          BIND (?arcan_multiset as ?arcan_constant)
+          ?arcan_constant core:has_name ?arcan_constant_name.
+        }
+        UNION
+        {
+          ?arcan_multiset core:includes_basisSet ?basisSet.
+          ?basisSet core:has_data ?term;
                     core:has_multiplicity ?multiplicity.
-        ?term core:has_value ?term_value.
+          ?term core:has_value ?term_value.
+        }
       }
     }
   }
 }
-ORDER BY DESC(?type)
+ORDER BY ?arc_i
