@@ -35,10 +35,10 @@ export interface Func {
 }
 export type Configuration = {
   colorSets: {
-    [key: string]: Function; // eslint-disable-line @typescript-eslint/ban-types
+    [key: string]: Func;
   };
   functions: {
-    [key: string]: Func; // eslint-disable-line @typescript-eslint/ban-types
+    [key: string]: Func;
   };
   variables: {
     [key: string]: Function; // eslint-disable-line @typescript-eslint/ban-types

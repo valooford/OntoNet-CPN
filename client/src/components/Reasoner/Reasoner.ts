@@ -22,6 +22,7 @@ export default class Reasoner {
 
   constructor(endpointUrl: string) {
     this.setEndpointUrl(endpointUrl);
+    this.updateConfiguration();
   }
 
   setEndpointUrl(url: string): void {
@@ -181,7 +182,13 @@ export default class Reasoner {
         console.log(`inputData for ${uri}`, inputData);
         // reasoning...
         // forming transition modes
-        // Object.values(inputData.arcs)
+        // const transitionModes = Object.values(inputData.arcs).reduce(
+        //   (modes, arcData) => {
+        //     const markingsMultiset = placesMarkings[arcData.place].multiset;
+        //     return modes;
+        //   },
+        //   {}
+        // );
       })
     );
   }
@@ -256,9 +263,15 @@ export default class Reasoner {
             Object.keys(data.tokens).reduce(
               (basisSets: Record<string, BasisSet>, tokenId) => {
                 const tokenData = data.tokens[tokenId];
+                const Value = this.configuration.colorSets[data.colorSet];
+                console.log('Value:', Value);
+                console.log('value: ', tokenData.value);
                 // eslint-disable-next-line no-param-reassign
                 basisSets[tokenId] = <BasisSet>(
-                  new BasisSet(tokenData.value, tokenData.multiplicity)
+                  new BasisSet(
+                    new Value(JSON.parse(tokenData.value)),
+                    tokenData.multiplicity
+                  )
                 );
                 return basisSets;
               },
