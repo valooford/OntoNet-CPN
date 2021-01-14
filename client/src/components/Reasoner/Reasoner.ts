@@ -264,8 +264,6 @@ export default class Reasoner {
               (basisSets: Record<string, BasisSet>, tokenId) => {
                 const tokenData = data.tokens[tokenId];
                 const Value = this.configuration.colorSets[data.colorSet];
-                console.log('Value:', Value);
-                console.log('value: ', tokenData.value);
                 // eslint-disable-next-line no-param-reassign
                 basisSets[tokenId] = <BasisSet>(
                   new BasisSet(

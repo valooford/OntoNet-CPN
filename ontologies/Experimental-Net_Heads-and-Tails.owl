@@ -304,7 +304,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_P1_T1</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;{count: c, res: res}&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{&quot;count/var&quot;: &quot;c&quot;, &quot;res/var&quot;: &quot;res&quot;}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -315,7 +315,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_P2_T1</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;res&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{&quot;/var&quot;: &quot;res&quot;}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -326,7 +326,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_P3_T3</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;d&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{&quot;/var&quot;: &quot;d&quot;}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -337,7 +337,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T1_P2</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;res&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;res&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -348,7 +348,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T1_P3</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;{count: 0, res: res, values: []}&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{count: &quot;0&quot;, res: res, values: []}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -359,7 +359,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T2_P3</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;{count: l.length + 1, res: res, list: [res, ...l]}&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{count: l.length + 1, res: res, list: [res, ...l]}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -370,7 +370,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T3_P1</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;validate(d)&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;validate(d)&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -381,7 +381,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>dataStructure</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&quot;{res: res, values: l}&quot;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;{&quot;res/var&quot;: &quot;res&quot;, &quot;values/var&quot;: &quot;l&quot;}&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -515,9 +515,9 @@ return {
     <owl:NamedIndividual rdf:about="http://www.experimental.onto.net/js-core/net/heads-and-tails/token_P1_1">
         <rdf:type rdf:resource="http://www.onto.net/core/Token"/>
         <core:has_value>{
-  count: 1, 
-  res: &quot;Unknown&quot;, 
-  values: []
+  &quot;count&quot;: 1, 
+  &quot;res&quot;: &quot;Unknown&quot;, 
+  &quot;values&quot;: []
 }</core:has_value>
     </owl:NamedIndividual>
     
