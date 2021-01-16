@@ -429,7 +429,7 @@ export default class Reasoner {
                 (basisSets: Record<string, BasisSet>, term, i) => {
                   // eslint-disable-next-line no-param-reassign
                   basisSets[i] = <BasisSet>(
-                    new BasisSet(term.value, term.multiplicity)
+                    new BasisSet(JSON.parse(term.value), term.multiplicity)
                   );
                   return basisSets;
                 },

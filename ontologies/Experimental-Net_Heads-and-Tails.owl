@@ -337,7 +337,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T1_P2</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&apos;\&quot;res\&quot;&apos;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;&quot;res&quot;&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -348,7 +348,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T1_P3</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&apos;\&quot;{count: &quot;0&quot;, res: res, values: []}\&quot;&apos;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;&quot;{count: 0, res: res, values: []}&quot;&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -359,7 +359,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T2_P3</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&apos;\&quot;{count: l.length + 1, res: res, list: [res, ...l]}\&quot;&apos;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;&quot;{count: l.length + 1, res: res, list: [res, ...l]}&quot;&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -370,7 +370,7 @@ return {
         <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
         <core:has_declarationOrder rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</core:has_declarationOrder>
         <core:has_name>arcAnnotation_T3_P1</core:has_name>
-        <core:has_value>new Multiset([new BasisSet(&apos;\&quot;validate(d)\&quot;&apos;, 1)])</core:has_value>
+        <core:has_value>new Multiset([new BasisSet(&apos;&quot;validate(d)&quot;&apos;, 1)])</core:has_value>
     </owl:NamedIndividual>
     
 
