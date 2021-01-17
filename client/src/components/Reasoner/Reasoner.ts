@@ -182,15 +182,32 @@ export default class Reasoner {
         console.log(`inputData for ${uri}`, inputData);
         // reasoning...
         // forming transition modes
-        // const transitionModes = Object.values(inputData.arcs).reduce(
-        //   (modes, arcData) => {
-        //     const markingsMultiset = placesMarkings[arcData.place].multiset;
-        //     return modes;
-        //   },
-        //   {}
-        // );
+        const transitionModes = Object.keys(inputData.arcs).reduce(
+          (modes: Record<string, unknown>, arcId) => {
+            const arcData = inputData.arcs[arcId];
+            const markingsMultiset = placesMarkings[arcData.place].multiset;
+            const arcBindings = Reasoner.getBindings(
+              arcData.multiset,
+              markingsMultiset
+            );
+            // eslint-disable-next-line no-param-reassign
+            modes[arcId] = arcBindings;
+            return modes;
+          },
+          {}
+        );
+        console.log('transitionModes:', transitionModes);
       })
     );
+  }
+
+  private static getBindings(
+    template: Multiset,
+    markings: Multiset
+  ): Record<string, unknown> {
+    console.log(template);
+    console.log(markings);
+    return {};
   }
 
   private async getPlacesMarkings(): Promise<PlacesMarkings> {
