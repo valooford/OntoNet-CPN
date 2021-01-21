@@ -86,6 +86,9 @@
         <Class IRI="Transition"/>
     </Declaration>
     <Declaration>
+        <Class IRI="TransitionMode"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Variable"/>
     </Declaration>
     <Declaration>
@@ -132,6 +135,9 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="has_targetNode"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="has_transitionMode"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="includes_basisSet"/>
@@ -341,6 +347,10 @@
         <Class IRI="Node"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="TransitionMode"/>
+        <Class IRI="Multiset"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="Variable"/>
         <Class IRI="Statement"/>
     </SubClassOf>
@@ -353,6 +363,14 @@
     <DisjointClasses>
         <Class IRI="MultisetOfTerms"/>
         <Class IRI="MultisetOfTokens"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="MultisetOfTerms"/>
+        <Class IRI="TransitionMode"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="MultisetOfTokens"/>
+        <Class IRI="TransitionMode"/>
     </DisjointClasses>
     <DisjointClasses>
         <Class IRI="Term"/>
@@ -719,6 +737,9 @@
         <ObjectProperty IRI="has_node"/>
     </InverseFunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="has_transitionMode"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
         <ObjectProperty IRI="includes_basisSet"/>
     </InverseFunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
@@ -790,6 +811,10 @@
     <ObjectPropertyDomain>
         <ObjectProperty IRI="has_targetNode"/>
         <Class IRI="Arc"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="has_transitionMode"/>
+        <Class IRI="Transition"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="includes_basisSet"/>
@@ -871,6 +896,10 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="has_targetNode"/>
         <Class IRI="Node"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="has_transitionMode"/>
+        <Class IRI="TransitionMode"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="includes_basisSet"/>
