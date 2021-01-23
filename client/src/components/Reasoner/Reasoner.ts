@@ -284,7 +284,7 @@ export default class Reasoner {
                 // eslint-disable-next-line no-param-reassign
                 basisSets[tokenId] = <BasisSet>(
                   new BasisSet(
-                    new Value(JSON.parse(tokenData.value)),
+                    JSON.stringify(new Value(JSON.parse(tokenData.value))),
                     tokenData.multiplicity
                   )
                 );
@@ -446,7 +446,7 @@ export default class Reasoner {
                 (basisSets: Record<string, BasisSet>, term, i) => {
                   // eslint-disable-next-line no-param-reassign
                   basisSets[i] = <BasisSet>(
-                    new BasisSet(JSON.parse(term.value), term.multiplicity)
+                    new BasisSet(term.value, term.multiplicity)
                   );
                   return basisSets;
                 },

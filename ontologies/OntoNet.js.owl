@@ -84,7 +84,7 @@
     <DataPropertyAssertion>
         <DataProperty IRI="http://www.onto.net/core/has_action"/>
         <NamedIndividual IRI="http://www.onto.net/core/fn_basisSet"/>
-        <Literal>this.data = data;
+        <Literal>this.data = JSON.parse(data);
 this.multiplicity = multiplicity;</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
