@@ -182,21 +182,56 @@ export default class Reasoner {
         console.log(`inputData for ${uri}`, inputData);
         // reasoning...
         // forming transition modes
-        const transitionModes = Object.keys(inputData.arcs).reduce(
-          (modes: Record<string, unknown>, arcId) => {
-            const arcData = inputData.arcs[arcId];
-            const markingsMultiset = placesMarkings[arcData.place].multiset;
-            const arcBindings = Reasoner.getBindings(
-              arcData.multiset,
-              markingsMultiset
-            );
+        // const transitionModes = Object.keys(inputData.arcs).reduce(
+        //   (modes: Record<string, unknown>, arcId) => {
+        //     const arcData = inputData.arcs[arcId];
+        //     const markingsMultiset = placesMarkings[arcData.place].multiset;
+        //     const arcBindings = Reasoner.getBindings(
+        //       arcData.multiset,
+        //       markingsMultiset
+        //     );
+        //     // eslint-disable-next-line no-param-reassign
+        //     modes[arcId] = arcBindings;
+        //     return modes;
+        //   },
+        //   {}
+        // );
+        // console.log('transitionModes:', transitionModes);
+
+        const transitionMode = Object.keys(inputData.arcs).reduce(
+          (mode: Record<string, unknown>, arcId) => {
+            // traversal of arcs
+            const arc = inputData.arcs[arcId];
+            const tokensData = placesMarkings[arc.place].multiset.basisSets;
             // eslint-disable-next-line no-param-reassign
-            modes[arcId] = arcBindings;
-            return modes;
+            mode[arcId] = Object.keys(arc.multiset.basisSets).reduce(
+              (match: Record<string, unknown>, basisSetId) => {
+                // traversal of annotation basisSets
+                // const basisSet = arc.multiset.basisSets[basisSetId]
+                // eslint-disable-next-line no-param-reassign
+                match[basisSetId] = Object.keys(tokensData).reduce(
+                  (bindings: Record<string, unknown>, tokenId) => {
+                    // traversal of input position tokens
+                    const token = tokensData[tokenId];
+                    if (token) {
+                      // eslint-disable-next-line no-param-reassign
+                      bindings[tokenId] = {
+                        /* variables bindings */
+                      };
+                    }
+                    return bindings;
+                  },
+                  {}
+                );
+                return match;
+              },
+              {}
+            );
+            return mode;
           },
           {}
         );
-        console.log('transitionModes:', transitionModes);
+        console.log('transitionMode: ', transitionMode);
       })
     );
   }
