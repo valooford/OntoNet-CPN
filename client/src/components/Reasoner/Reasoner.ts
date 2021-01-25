@@ -207,17 +207,19 @@ export default class Reasoner {
             mode[arcId] = Object.keys(arc.multiset.basisSets).reduce(
               (match: Record<string, unknown>, basisSetId) => {
                 // traversal of annotation basisSets
-                // const basisSet = arc.multiset.basisSets[basisSetId]
+                const basisSet = arc.multiset.basisSets[basisSetId];
                 // eslint-disable-next-line no-param-reassign
                 match[basisSetId] = Object.keys(tokensData).reduce(
                   (bindings: Record<string, unknown>, tokenId) => {
                     // traversal of input position tokens
                     const token = tokensData[tokenId];
-                    if (token) {
+                    if (token.multiplicity >= basisSet.multiplicity) {
+                      // const [isApplicable, variables] = someFunc(basisSet.data, token.data);
+                      // if (isApplicable) {
                       // eslint-disable-next-line no-param-reassign
-                      bindings[tokenId] = {
-                        /* variables bindings */
-                      };
+                      bindings[tokenId] = {};
+                      // bindings[tokenId] = variables;
+                      // }
                     }
                     return bindings;
                   },
@@ -231,7 +233,7 @@ export default class Reasoner {
           },
           {}
         );
-        console.log('transitionMode: ', transitionMode);
+        console.log('transitionMode for', uri, ':', transitionMode);
       })
     );
   }
