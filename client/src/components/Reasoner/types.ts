@@ -78,7 +78,10 @@ export type PlacesMarkingsResponce = {
     >;
   };
 };
-export type BasisSet = { data: unknown; multiplicity: number };
+export type BasisSet = {
+  data: string | Record<string, unknown>;
+  multiplicity: number;
+};
 export type Multiset = {
   cardinality: number;
   basisSets: Record<string, BasisSet>;

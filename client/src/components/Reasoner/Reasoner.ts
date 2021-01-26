@@ -214,12 +214,14 @@ export default class Reasoner {
                     // traversal of input position tokens
                     const token = tokensData[tokenId];
                     if (token.multiplicity >= basisSet.multiplicity) {
-                      // const [isApplicable, variables] = someFunc(basisSet.data, token.data);
-                      // if (isApplicable) {
-                      // eslint-disable-next-line no-param-reassign
-                      bindings[tokenId] = {};
-                      // bindings[tokenId] = variables;
-                      // }
+                      const [isApplicable, variables] = Reasoner.getBindings(
+                        basisSet.data,
+                        token.data
+                      );
+                      if (isApplicable) {
+                        // eslint-disable-next-line no-param-reassign
+                        bindings[tokenId] = variables;
+                      }
                     }
                     return bindings;
                   },
@@ -239,12 +241,27 @@ export default class Reasoner {
   }
 
   private static getBindings(
-    template: Multiset,
-    markings: Multiset
-  ): Record<string, unknown> {
-    console.log(template);
-    console.log(markings);
-    return {};
+    template: string | Record<string, unknown>,
+    token: unknown
+  ): [boolean, Record<string, unknown>] {
+    if (typeof template === 'object') {
+      Object.keys(template).reduce(
+        (bindings: Record<string, unknown>, templateKey) => {
+          const [, tokenKey] = /(.*)\/var/.exec(templateKey);
+          if (tokenKey) {
+            const variableName = <string>template[templateKey];
+            const value = (<Record<string, unknown>>token)[tokenKey];
+            // eslint-disable-next-line no-param-reassign
+            bindings[variableName] = value;
+            return bindings;
+          }
+
+          return bindings;
+        },
+        {}
+      );
+    }
+    return [true, {}];
   }
 
   private async getPlacesMarkings(): Promise<PlacesMarkings> {
