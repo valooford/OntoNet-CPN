@@ -179,24 +179,6 @@ export default class Reasoner {
     await Promise.all(
       transitionsURIs.map(async (uri) => {
         const inputData = await this.getTransitionInputData(uri);
-        console.log(`inputData for ${uri}`, inputData);
-        // reasoning...
-        // forming transition modes
-        // const transitionModes = Object.keys(inputData.arcs).reduce(
-        //   (modes: Record<string, unknown>, arcId) => {
-        //     const arcData = inputData.arcs[arcId];
-        //     const markingsMultiset = placesMarkings[arcData.place].multiset;
-        //     const arcBindings = Reasoner.getBindings(
-        //       arcData.multiset,
-        //       markingsMultiset
-        //     );
-        //     // eslint-disable-next-line no-param-reassign
-        //     modes[arcId] = arcBindings;
-        //     return modes;
-        //   },
-        //   {}
-        // );
-        // console.log('transitionModes:', transitionModes);
 
         const transitionMode = Object.keys(inputData.arcs).reduce(
           (mode: Record<string, unknown>, arcId) => {
@@ -214,10 +196,13 @@ export default class Reasoner {
                     // traversal of input position tokens
                     const token = tokensData[tokenId];
                     if (token.multiplicity >= basisSet.multiplicity) {
-                      const [isApplicable, variables] = Reasoner.getBindings(
-                        basisSet.data,
+                      const [isApplicable, variables] = this.getBindings(
+                        <Record<string, unknown>>basisSet.data,
                         token.data
                       );
+                      console.log(`arc: `, arcId);
+                      console.log('isApplicable: ', isApplicable);
+                      console.log('variables: ', variables);
                       if (isApplicable) {
                         // eslint-disable-next-line no-param-reassign
                         bindings[tokenId] = variables;
@@ -235,33 +220,75 @@ export default class Reasoner {
           },
           {}
         );
-        console.log('transitionMode for', uri, ':', transitionMode);
+        // console.log('transitionMode for', uri, ':', transitionMode);
       })
     );
   }
 
-  private static getBindings(
-    template: string | Record<string, unknown>,
+  private getBindings(
+    template: Record<string, unknown>,
     token: unknown
   ): [boolean, Record<string, unknown>] {
-    if (typeof template === 'object') {
-      Object.keys(template).reduce(
-        (bindings: Record<string, unknown>, templateKey) => {
-          const [, tokenKey] = /(.*)\/var/.exec(templateKey);
-          if (tokenKey) {
+    return Object.keys(template).reduce(
+      (
+        [isSuitable, bindings]: [boolean, Record<string, unknown>],
+        templateKey
+      ) => {
+        const [, tokenKey, annex] = /([^/]*)(\/\w*)?$/.exec(templateKey) ?? [];
+        switch (annex) {
+          case '/var': {
             const variableName = <string>template[templateKey];
-            const value = (<Record<string, unknown>>token)[tokenKey];
+            let value;
+            if (tokenKey) {
+              // only a part of the token data goes as a variable value
+              value = (<Record<string, unknown>>token)[tokenKey];
+              // console.log(`value by token key equals: `, value);
+            } else {
+              // all token data goes as a variable value
+              value = token;
+            }
             // eslint-disable-next-line no-param-reassign
             bindings[variableName] = value;
-            return bindings;
+            return [isSuitable, bindings];
           }
-
-          return bindings;
-        },
-        {}
-      );
-    }
-    return [true, {}];
+          case '/rest': {
+            const variableName = <string>template[templateKey];
+            const value = (<Array<unknown>>token).slice(Number(tokenKey));
+            // eslint-disable-next-line no-param-reassign
+            bindings[variableName] = value;
+            return [isSuitable, bindings];
+          }
+          case '/const': {
+            const constantName = <string>template[templateKey];
+            const [result, subBindings] = this.getBindings(
+              <Record<string, unknown>>(
+                this.configuration.constants[constantName]
+              ),
+              tokenKey ? (<Record<string, unknown>>token)[tokenKey] : token
+            );
+            return [isSuitable && result, { ...bindings, ...subBindings }];
+          }
+          case '/value': {
+            return [isSuitable && template[templateKey] === token, bindings];
+          }
+          default:
+            if (typeof template[templateKey] === 'object') {
+              const [result, subBindings] = this.getBindings(
+                <Record<string, unknown>>template[templateKey],
+                (<Record<string, unknown>>token)[tokenKey]
+              );
+              return [isSuitable && result, { ...bindings, ...subBindings }];
+            }
+            return [
+              isSuitable &&
+                template[templateKey] ===
+                  (<Record<string, unknown>>token)[tokenKey],
+              bindings,
+            ];
+        }
+      },
+      [true, {}]
+    );
   }
 
   private async getPlacesMarkings(): Promise<PlacesMarkings> {
@@ -342,6 +369,12 @@ export default class Reasoner {
                     tokenData.multiplicity
                   )
                 );
+                // console.log(
+                //   'basisSet is created with',
+                //   Value,
+                //   'to',
+                //   basisSets[tokenId].data
+                // );
                 return basisSets;
               },
               {}
@@ -352,6 +385,7 @@ export default class Reasoner {
       },
       {}
     );
+    console.log('placesMarkings: ', placesMarkings);
     return placesMarkings;
   }
 

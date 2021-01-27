@@ -79,7 +79,7 @@ export type PlacesMarkingsResponce = {
   };
 };
 export type BasisSet = {
-  data: string | Record<string, unknown>;
+  data: unknown;
   multiplicity: number;
 };
 export type Multiset = {
