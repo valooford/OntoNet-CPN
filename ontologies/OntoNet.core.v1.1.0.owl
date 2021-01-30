@@ -9,6 +9,99 @@
     <owl:Ontology rdf:about="http://www.onto.net/core/">
         <owl:versionIRI rdf:resource="http://www.onto.net/core/1.1.0"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/Arc -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Arc"/>
+    
+
+
+    <!-- http://www.onto.net/core/CPN -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/CPN"/>
+    
+
+
+    <!-- http://www.onto.net/core/ColorSet -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/ColorSet"/>
+    
+
+
+    <!-- http://www.onto.net/core/Firing -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Firing"/>
+    
+
+
+    <!-- http://www.onto.net/core/Function -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Function"/>
+    
+
+
+    <!-- http://www.onto.net/core/Marking -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Marking"/>
+    
+
+
+    <!-- http://www.onto.net/core/MarkingOfPlace -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+    
+
+
+    <!-- http://www.onto.net/core/Node -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Node"/>
+    
+
+
+    <!-- http://www.onto.net/core/Place -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Place">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Term -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Term"/>
+    
+
+
+    <!-- http://www.onto.net/core/Transition -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Transition">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/TransitionMode -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/TransitionMode"/>
+    
+
+
+    <!-- http://www.onto.net/core/Variable -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Variable"/>
 </rdf:RDF>
 
 
