@@ -29,6 +29,12 @@
     
 
 
+    <!-- http://www.onto.net/core/Binding -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Binding"/>
+    
+
+
     <!-- http://www.onto.net/core/CPN -->
 
     <owl:Class rdf:about="http://www.onto.net/core/CPN"/>
@@ -38,6 +44,18 @@
     <!-- http://www.onto.net/core/ColorSet -->
 
     <owl:Class rdf:about="http://www.onto.net/core/ColorSet"/>
+    
+
+
+    <!-- http://www.onto.net/core/Data -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Data"/>
+    
+
+
+    <!-- http://www.onto.net/core/Evaluation -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Evaluation"/>
     
 
 
@@ -101,7 +119,9 @@
 
     <!-- http://www.onto.net/core/Variable -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Variable"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Variable">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Term"/>
+    </owl:Class>
 </rdf:RDF>
 
 
