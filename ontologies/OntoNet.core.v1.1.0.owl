@@ -15,6 +15,149 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/has_annotation -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_annotation"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_arc -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_arc"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_binding -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_binding"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_colorSet -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_colorSet"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_firing -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_firing"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_function -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_function"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_guard -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_guard"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_initialMarking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialMarking"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_marking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_marking"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_node -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_node"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_place -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_place"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_sourceMarking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceMarking"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_sourceNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceNode"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_targetMarking -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetMarking"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_targetNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetNode"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_term -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_term"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_token -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_token"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_transition -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transition"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_transitionMode -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transitionMode"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_value -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_value"/>
+    
+
+
+    <!-- http://www.onto.net/core/has_variable -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_variable"/>
+    
+
+
+    <!-- http://www.onto.net/core/includes_markingOfPlace -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_markingOfPlace"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
