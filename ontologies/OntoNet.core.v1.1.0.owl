@@ -25,133 +25,202 @@
 
     <!-- http://www.onto.net/core/has_annotation -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_annotation"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_annotation">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_arc -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_arc"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_arc">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Arc"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_binding -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_binding"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_binding">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/TransitionMode"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Binding"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_colorSet -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_colorSet"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_colorSet">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Data"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Place"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_firing -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_firing"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_firing">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Firing"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_function -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_function"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_function">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Function"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_guard -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_guard"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_guard">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Transition"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_initialMarking -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialMarking"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialMarking">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_marking -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_marking"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_marking">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_node -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_node"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_node">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_place -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_place"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_place">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Place"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_sourceMarking -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceMarking"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceMarking">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_sourceNode -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceNode"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceNode">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_targetMarking -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetMarking"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetMarking">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_targetNode -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetNode"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetNode">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_term -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_term"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_term">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Evaluation"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_token -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_token"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_token">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_transition -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transition"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transition">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/TransitionMode"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Transition"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_transitionMode -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transitionMode"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transitionMode">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/TransitionMode"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_value -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_value"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_value">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Evaluation"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/has_variable -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_variable"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_variable">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Binding"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Variable"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://www.onto.net/core/includes_markingOfPlace -->
 
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_markingOfPlace"/>
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_markingOfPlace">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Marking"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+    </owl:ObjectProperty>
     
 
 
