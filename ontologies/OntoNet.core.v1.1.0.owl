@@ -44,6 +44,16 @@
     
 
 
+    <!-- http://www.onto.net/core/has_basisSet -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_basisSet">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Multiset"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/BasisSet"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.onto.net/core/has_binding -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_binding">
@@ -75,6 +85,16 @@
         <rdfs:domain rdf:resource="http://www.onto.net/core/Place"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_data -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_data">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
     </owl:ObjectProperty>
     
 
@@ -150,12 +170,31 @@
     
 
 
+    <!-- http://www.onto.net/core/has_multisetOfTerms -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTerms">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.onto.net/core/has_multisetOfTokens -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTokens">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
-        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_multisetOfTransitionModes -->
+
+    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTransitionModes">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
+        <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
     </owl:ObjectProperty>
     
 
@@ -252,21 +291,12 @@
     
 
 
-    <!-- http://www.onto.net/core/has_transitionMode -->
-
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transitionMode">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
-        <rdfs:range rdf:resource="http://www.onto.net/core/TransitionMode"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.onto.net/core/has_value -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_value">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Data"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Evaluation"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
@@ -277,6 +307,7 @@
     <!-- http://www.onto.net/core/has_variable -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_variable">
+        <rdfs:subPropertyOf rdf:resource="http://www.onto.net/core/has_term"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Binding"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Variable"/>
     </owl:ObjectProperty>
@@ -317,6 +348,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_name">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/ColorSet"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Node"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -349,6 +381,12 @@
     <!-- http://www.onto.net/core/Arc -->
 
     <owl:Class rdf:about="http://www.onto.net/core/Arc"/>
+    
+
+
+    <!-- http://www.onto.net/core/BasisSet -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/BasisSet"/>
     
 
 
@@ -416,6 +454,12 @@
     
 
 
+    <!-- http://www.onto.net/core/Multiset -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Multiset"/>
+    
+
+
     <!-- http://www.onto.net/core/Node -->
 
     <owl:Class rdf:about="http://www.onto.net/core/Node"/>
@@ -446,7 +490,9 @@
 
     <!-- http://www.onto.net/core/TransitionMode -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/TransitionMode"/>
+    <owl:Class rdf:about="http://www.onto.net/core/TransitionMode">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Data"/>
+    </owl:Class>
     
 
 
