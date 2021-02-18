@@ -213,6 +213,7 @@
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_place">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Place"/>
     </owl:ObjectProperty>
     
@@ -333,6 +334,16 @@
     
 
 
+    <!-- http://www.onto.net/core/has_endpoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_endpoint">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.onto.net/core/has_name -->
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_name">
@@ -341,6 +352,16 @@
         <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Node"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_type">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     </owl:DatatypeProperty>
     
 
@@ -458,6 +479,12 @@
     <owl:Class rdf:about="http://www.onto.net/core/Place">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Port -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Port"/>
     
 
 
