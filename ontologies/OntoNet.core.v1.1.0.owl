@@ -334,9 +334,9 @@
     
 
 
-    <!-- http://www.onto.net/core/has_endpoint -->
+    <!-- http://www.onto.net/core/connected_to -->
 
-    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_endpoint">
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/connected_to">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -361,7 +361,7 @@
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_type">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
@@ -370,6 +370,15 @@
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_value">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/reserved_with -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/reserved_with">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -421,6 +430,15 @@
     <!-- http://www.onto.net/core/Constant -->
 
     <owl:Class rdf:about="http://www.onto.net/core/Constant">
+        <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Function"/>
+        <owl:disjointWith rdf:resource="http://www.onto.net/core/Constructor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.onto.net/core/Constructor -->
+
+    <owl:Class rdf:about="http://www.onto.net/core/Constructor">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Function"/>
     </owl:Class>
     
@@ -515,6 +533,265 @@
     <owl:Class rdf:about="http://www.onto.net/core/Variable">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Term"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/Alias -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Alias">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Alias</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/AliasConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/AliasConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Alias"/>
+        <has_name>Alias</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Boolean -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Boolean">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Boolean</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/BooleanConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BooleanConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Boolean"/>
+        <has_name>Boolean</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/CPN -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/CPN">
+        <rdf:type rdf:resource="http://www.onto.net/core/CPN"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Alias"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Boolean"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Enumerated"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Indexed"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Integer"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/List"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Product"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Record"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/String"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Subset"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Union"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/Unit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Enumerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Enumerated">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Enumerated</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/EnumeratedConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/EnumeratedConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Enumerated"/>
+        <has_name>Enumerated</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Indexed -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Indexed">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Indexed</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/IndexedConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/IndexedConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Indexed"/>
+        <has_name>Indexed</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Integer -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Integer">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Integer</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/IntegerConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/IntegerConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Integer"/>
+        <has_name>Integer</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/List -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/List">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>List</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/ListConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/ListConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/List"/>
+        <has_name>List</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Product -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Product">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Product</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/ProductConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/ProductConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Product"/>
+        <has_name>Product</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Record -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Record">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Record</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/RecordConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/RecordConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Record"/>
+        <has_name>Record</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/String -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/String">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>String</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/StringConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/StringConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/String"/>
+        <has_name>String</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Subset -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Subset">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Subset</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/SubsetConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/SubsetConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Subset"/>
+        <has_name>Subset</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Union -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Union">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Union</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/UnionConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/UnionConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Union"/>
+        <has_name>Union</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Unit -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Unit">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Unit</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/UnitConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/UnitConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Unit"/>
+        <has_name>Unit</has_name>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
