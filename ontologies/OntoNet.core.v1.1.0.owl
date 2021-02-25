@@ -566,6 +566,25 @@
     
 
 
+    <!-- http://www.onto.net/core/BasisSet -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BasisSet">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>BasisSet</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/BasisSetConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BasisSetConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <has_name>BasisSet</has_name>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.onto.net/core/Boolean -->
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/core/Boolean">
@@ -601,6 +620,20 @@
         <has_colorSet rdf:resource="http://www.onto.net/core/Subset"/>
         <has_colorSet rdf:resource="http://www.onto.net/core/Union"/>
         <has_colorSet rdf:resource="http://www.onto.net/core/Unit"/>
+        <has_function rdf:resource="http://www.onto.net/core/AliasConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/BasisSetConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/BooleanConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/EnumeratedConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/IndexedConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/IntegerConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/ListConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/MultisetConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/ProductConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/RecordConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/StringConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/SubsetConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/UnionConstructor"/>
+        <has_function rdf:resource="http://www.onto.net/core/UnitConstructor"/>
     </owl:NamedIndividual>
     
 
@@ -677,6 +710,25 @@
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
         <has_range rdf:resource="http://www.onto.net/core/List"/>
         <has_name>List</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/Multiset -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Multiset">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Multiset</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/MultisetConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/MultisetConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/Multiset"/>
+        <has_name>Multiset</has_name>
     </owl:NamedIndividual>
     
 

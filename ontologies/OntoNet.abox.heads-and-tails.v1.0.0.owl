@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.onto.net/abox/heads-and-tails/"
+     xml:base="http://www.onto.net/abox/heads-and-tails/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:core="http://www.onto.net/core/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.onto.net/abox/heads-and-tails/">
+        <owl:versionIRI rdf:resource="http://www.onto.net/abox/heads-and-tails/1.0.0"/>
+        <owl:imports rdf:resource="http://www.onto.net/core/1.1.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/Count -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/Count">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_name>Count</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/CountConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/CountConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <core:has_range rdf:resource="http://www.onto.net/abox/heads-and-tails/Count"/>
+        <core:has_name>Count</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/Data -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/Data">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_name>Data</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/DataConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/DataConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <core:has_range rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_name>Data</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_initialTokens rdf:resource="http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term"/>
+        <core:has_name>P1</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>new Multiset(new BasisSet(new Data(1, &quot;Unknown&quot;, [])))</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/core/String"/>
+        <core:has_initialTokens rdf:resource="http://www.onto.net/abox/heads-and-tails/P2_initial-tokens-term"/>
+        <core:has_name>P2</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P2_initial-tokens-term -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P2_initial-tokens-term">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>new Multiset(new BasisSet(new String(&quot;Heads&quot;)))</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Place"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_initialTokens rdf:resource="http://www.onto.net/abox/heads-and-tails/P3_initial-tokens-term"/>
+        <core:has_name>P3</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P3_initial-tokens-term -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P3_initial-tokens-term">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>new Multiset()</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/Values -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/Values">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <core:has_name>Values</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/ValuesConstructor -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/ValuesConstructor">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <core:has_range rdf:resource="http://www.onto.net/abox/heads-and-tails/Values"/>
+        <core:has_name>Values</core:has_name>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
