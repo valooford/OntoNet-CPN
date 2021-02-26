@@ -17,6 +17,26 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.onto.net/core/has_value -->
+
+    <rdf:Description rdf:about="http://www.onto.net/core/has_value">
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Data"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +94,51 @@
     
 
 
+    <!-- http://www.onto.net/abox/heads-and-tails/P1-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/P1-T1_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P1"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P1-T1_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1-T1_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;count/var&quot;: &quot;c&quot;,
+  &quot;res/var&quot;: &quot;res&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P1-T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1-T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/P1-T2_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P1"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P1-T2_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1-T2_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;/expr&quot;: &quot;data_structure&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term -->
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term">
@@ -90,6 +155,28 @@
         <core:has_colorSet rdf:resource="http://www.onto.net/core/String"/>
         <core:has_initialTokens rdf:resource="http://www.onto.net/abox/heads-and-tails/P2_initial-tokens-term"/>
         <core:has_name>P2</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P2-T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P2-T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/P2-T1_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P2"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P2-T1_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P2-T1_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;/var&quot;: &quot;res&quot;
+}</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -114,11 +201,192 @@
     
 
 
+    <!-- http://www.onto.net/abox/heads-and-tails/P3-T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P3-T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/P3-T3_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P3"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/P3-T3_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P3-T3_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;/var&quot;: &quot;d&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.onto.net/abox/heads-and-tails/P3_initial-tokens-term -->
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P3_initial-tokens-term">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
         <core:has_value>new Multiset()</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_code rdf:resource="http://www.onto.net/abox/heads-and-tails/T1_code"/>
+        <core:has_guard rdf:resource="http://www.onto.net/abox/heads-and-tails/T1_guard"/>
+        <core:has_name>T1</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1-P2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1-P2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/T1-P2_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T1"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1-P2_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1-P2_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;/var&quot;: &quot;res&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/T1-P3_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T1"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1-P3_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1-P3_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;count&quot;: 0,
+  &quot;res/var&quot;: &quot;res&quot;,
+  &quot;values&quot;: []
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1_code -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1_code">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>res = res === &quot;Heads&quot; ? &quot;Tails&quot; : &quot;Heads&quot;;</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T1_guard -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T1_guard">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>c &gt; 0</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_guard rdf:resource="http://www.onto.net/abox/heads-and-tails/T2_guard"/>
+        <core:has_name>T2</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T2-P3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T2-P3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/T2-P3_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T2"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T2-P3_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T2-P3_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;count/expr&quot;: &quot;l.length + 1&quot;,
+  &quot;res/var&quot;: &quot;res&quot;,
+  &quot;list/expr&quot;: &quot;[res, ...l]&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T2_guard -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T2_guard">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T3">
+        <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_guard rdf:resource="http://www.onto.net/abox/heads-and-tails/T3_guard"/>
+        <core:has_name>T3</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T3-P1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T3-P1">
+        <rdf:type rdf:resource="http://www.onto.net/core/Arc"/>
+        <core:has_annotation rdf:resource="http://www.onto.net/abox/heads-and-tails/T3-P1_annotation"/>
+        <core:has_sourceNode rdf:resource="http://www.onto.net/abox/heads-and-tails/T3"/>
+        <core:has_targetNode rdf:resource="http://www.onto.net/abox/heads-and-tails/P1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T3-P1_annotation -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T3-P1_annotation">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>{
+  &quot;/expr&quot;: &quot;validate(d)&quot;
+}</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/T3_guard -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/T3_guard">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value rdf:datatype="http://www.w3.org/2001/XMLSchema#string">true</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -139,6 +407,96 @@
         <core:has_range rdf:resource="http://www.onto.net/abox/heads-and-tails/Values"/>
         <core:has_name>Values</core:has_name>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/const_data-structure -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/const_data-structure">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constant"/>
+        <core:has_range rdf:resource="http://www.onto.net/core/Multiset"/>
+        <core:has_name>data_structure</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/func_validate -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/func_validate">
+        <rdf:type rdf:resource="http://www.onto.net/core/Function"/>
+        <core:has_domain rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_range rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_name>validate</core:has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/var_c -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/var_c">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Count"/>
+        <core:has_value>c</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/var_d -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/var_d">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_value>d</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/var_l -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/var_l">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Values"/>
+        <core:has_value>l</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/var_res -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/var_res">
+        <rdf:type rdf:resource="http://www.onto.net/core/Variable"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/core/String"/>
+        <core:has_value>res</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/CPN -->
+
+    <rdf:Description rdf:about="http://www.onto.net/core/CPN">
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/P1-T1"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/P1-T2"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/P2-T1"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/P3-T3"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/T1-P2"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/T1-P3"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/T2-P3"/>
+        <core:has_arc rdf:resource="http://www.onto.net/abox/heads-and-tails/T3-P1"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Count"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Data"/>
+        <core:has_colorSet rdf:resource="http://www.onto.net/abox/heads-and-tails/Values"/>
+        <core:has_function rdf:resource="http://www.onto.net/abox/heads-and-tails/CountConstructor"/>
+        <core:has_function rdf:resource="http://www.onto.net/abox/heads-and-tails/DataConstructor"/>
+        <core:has_function rdf:resource="http://www.onto.net/abox/heads-and-tails/ValuesConstructor"/>
+        <core:has_function rdf:resource="http://www.onto.net/abox/heads-and-tails/const_data-structure"/>
+        <core:has_function rdf:resource="http://www.onto.net/abox/heads-and-tails/func_validate"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/P1"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/P2"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/P3"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/T1"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/T2"/>
+        <core:has_node rdf:resource="http://www.onto.net/abox/heads-and-tails/T3"/>
+    </rdf:Description>
 </rdf:RDF>
 
 
