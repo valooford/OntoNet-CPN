@@ -27,6 +27,9 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_annotation">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
     </owl:ObjectProperty>
@@ -37,6 +40,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_arc">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Arc"/>
     </owl:ObjectProperty>
@@ -47,6 +52,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_basisSet">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Multiset"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/BasisSet"/>
     </owl:ObjectProperty>
@@ -56,8 +63,9 @@
     <!-- http://www.onto.net/core/has_binding -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_binding">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/TransitionMode"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Binding"/>
     </owl:ObjectProperty>
@@ -67,7 +75,10 @@
     <!-- http://www.onto.net/core/has_code -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_code">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Transition"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
     </owl:ObjectProperty>
@@ -77,10 +88,18 @@
     <!-- http://www.onto.net/core/has_colorSet -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_colorSet">
-        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Data"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Place"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Variable"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/CPN"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Data"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Place"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Variable"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
     </owl:ObjectProperty>
     
@@ -90,7 +109,17 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_data">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/BasisSet"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Evaluation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
     </owl:ObjectProperty>
     
@@ -99,6 +128,8 @@
     <!-- http://www.onto.net/core/has_domain -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_domain">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
     </owl:ObjectProperty>
@@ -109,6 +140,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_firing">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Firing"/>
     </owl:ObjectProperty>
@@ -118,8 +151,17 @@
     <!-- http://www.onto.net/core/has_function -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_function">
-        <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/CPN"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Term"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.onto.net/core/Function"/>
     </owl:ObjectProperty>
     
@@ -129,6 +171,9 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_guard">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Transition"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
     </owl:ObjectProperty>
@@ -140,6 +185,8 @@
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialMarking">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
     </owl:ObjectProperty>
@@ -150,6 +197,9 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_initialTokens">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Place"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
     </owl:ObjectProperty>
@@ -160,6 +210,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_marking">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
     </owl:ObjectProperty>
@@ -169,6 +221,10 @@
     <!-- http://www.onto.net/core/has_multisetOfTerms -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTerms">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
     </owl:ObjectProperty>
@@ -178,7 +234,10 @@
     <!-- http://www.onto.net/core/has_multisetOfTokens -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTokens">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
     </owl:ObjectProperty>
@@ -188,7 +247,10 @@
     <!-- http://www.onto.net/core/has_multisetOfTransitionModes -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_multisetOfTransitionModes">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Multiset"/>
     </owl:ObjectProperty>
@@ -199,6 +261,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_node">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/CPN"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
     </owl:ObjectProperty>
@@ -209,8 +273,16 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_place">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Port"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.onto.net/core/Place"/>
     </owl:ObjectProperty>
     
@@ -220,6 +292,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_range">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/ColorSet"/>
     </owl:ObjectProperty>
@@ -231,6 +305,8 @@
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceMarking">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
     </owl:ObjectProperty>
@@ -241,6 +317,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_sourceNode">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
     </owl:ObjectProperty>
@@ -252,6 +330,8 @@
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetMarking">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Firing"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Marking"/>
     </owl:ObjectProperty>
@@ -262,6 +342,8 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_targetNode">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Arc"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Node"/>
     </owl:ObjectProperty>
@@ -272,6 +354,9 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_term">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Evaluation"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Term"/>
     </owl:ObjectProperty>
@@ -282,21 +367,10 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_transition">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/TransitionMode"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Transition"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.onto.net/core/has_value -->
-
-    <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_value">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Data"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Evaluation"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Term"/>
-        <rdfs:range rdf:resource="http://www.onto.net/core/Data"/>
     </owl:ObjectProperty>
     
 
@@ -305,6 +379,9 @@
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/has_variable">
         <rdfs:subPropertyOf rdf:resource="http://www.onto.net/core/has_term"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Binding"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/Variable"/>
     </owl:ObjectProperty>
@@ -314,6 +391,8 @@
     <!-- http://www.onto.net/core/includes_markingOfPlace -->
 
     <owl:ObjectProperty rdf:about="http://www.onto.net/core/includes_markingOfPlace">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Marking"/>
         <rdfs:range rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
     </owl:ObjectProperty>
@@ -334,9 +413,18 @@
     <!-- http://www.onto.net/core/connected_to -->
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/connected_to">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.onto.net/core/has_multiplicity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_multiplicity">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.onto.net/core/BasisSet"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     </owl:DatatypeProperty>
     
 
@@ -345,9 +433,15 @@
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_name">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/ColorSet"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Function"/>
-        <rdfs:domain rdf:resource="http://www.onto.net/core/Node"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/ColorSet"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Function"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Node"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -367,6 +461,14 @@
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/has_value">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.onto.net/core/Data"/>
+                    <rdf:Description rdf:about="http://www.onto.net/core/Term"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -375,6 +477,7 @@
     <!-- http://www.onto.net/core/reserved_with -->
 
     <owl:DatatypeProperty rdf:about="http://www.onto.net/core/reserved_with">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.onto.net/core/Port"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -394,13 +497,105 @@
 
     <!-- http://www.onto.net/core/Arc -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Arc"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Arc">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_annotation"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_annotation"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTerms"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTerms"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Node"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceNode"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Node"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetNode"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Node"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetNode"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Node"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/BasisSet -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/BasisSet"/>
+    <owl:Class rdf:about="http://www.onto.net/core/BasisSet">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Data"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Data"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multiplicity"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multiplicity"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -408,19 +603,102 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/Binding">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Evaluation"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_variable"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Variable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_variable"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Variable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/CPN -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/CPN"/>
+    <owl:Class rdf:about="http://www.onto.net/core/CPN">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_initialMarking"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_initialMarking"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_arc"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Arc"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_firing"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Firing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_function"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Function"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_marking"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Marking"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_node"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Node"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/ColorSet -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/ColorSet"/>
+    <owl:Class rdf:about="http://www.onto.net/core/ColorSet">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -428,6 +706,13 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/Constant">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Function"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_domain"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.onto.net/core/ColorSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.onto.net/core/Constructor"/>
     </owl:Class>
     
@@ -443,49 +728,255 @@
 
     <!-- http://www.onto.net/core/Data -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Data"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Data">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_value"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_value"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Evaluation -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Evaluation"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Evaluation">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Data"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_data"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Data"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_term"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_term"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Firing -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Firing"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Firing">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTransitionModes"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTransitionModes"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceMarking"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_sourceMarking"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetMarking"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_targetMarking"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Marking"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Function -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Function"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Function">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_range"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_range"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_domain"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Marking -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Marking"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Marking">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/includes_markingOfPlace"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/MarkingOfPlace"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/MarkingOfPlace -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+    <owl:Class rdf:about="http://www.onto.net/core/MarkingOfPlace">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTokens"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_multisetOfTokens"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Multiset"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_place"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_place"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Multiset -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Multiset"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Multiset">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_basisSet"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/BasisSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Node -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Node"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Node">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_name"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -493,19 +984,139 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/Place">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_initialTokens"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_initialTokens"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Port -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Port"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Port">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_place"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_place"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Place"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_type"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:oneOf>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>I/O</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>In</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>Out</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </owl:oneOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_type"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/reserved_with"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/reserved_with"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/connected_to"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://www.onto.net/core/Term -->
 
-    <owl:Class rdf:about="http://www.onto.net/core/Term"/>
+    <owl:Class rdf:about="http://www.onto.net/core/Term">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_value"/>
+                        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_value"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -513,6 +1124,36 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/Transition">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Node"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_code"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_code"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_guard"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_guard"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Term"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -521,6 +1162,27 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/TransitionMode">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Data"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_transition"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Transition"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_transition"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/Transition"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.onto.net/core/has_binding"/>
+                <owl:allValuesFrom rdf:resource="http://www.onto.net/core/Binding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -529,6 +1191,21 @@
 
     <owl:Class rdf:about="http://www.onto.net/core/Variable">
         <rdfs:subClassOf rdf:resource="http://www.onto.net/core/Term"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:allValuesFrom rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.onto.net/core/has_colorSet"/>
+                        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onClass rdf:resource="http://www.onto.net/core/ColorSet"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -544,303 +1221,333 @@
     
 
 
-    <!-- http://www.onto.net/core/Alias -->
+    <!-- http://www.onto.net/core/cpn_CPN -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Alias">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
-        <has_name>Alias</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/AliasConstructor -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/AliasConstructor">
-        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Alias"/>
-        <has_name>Alias</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/BasisSet -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BasisSet">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
-        <has_name>BasisSet</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/BasisSetConstructor -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BasisSetConstructor">
-        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/BasisSet"/>
-        <has_name>BasisSet</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Boolean -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Boolean">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
-        <has_name>Boolean</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/BooleanConstructor -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/BooleanConstructor">
-        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Boolean"/>
-        <has_name>Boolean</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/CPN -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/CPN">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cpn_CPN">
         <rdf:type rdf:resource="http://www.onto.net/core/CPN"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Alias"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Boolean"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Enumerated"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Indexed"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Integer"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/List"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Product"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Record"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/String"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Subset"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Union"/>
-        <has_colorSet rdf:resource="http://www.onto.net/core/Unit"/>
-        <has_function rdf:resource="http://www.onto.net/core/AliasConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/BasisSetConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/BooleanConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/EnumeratedConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/IndexedConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/IntegerConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/ListConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/MultisetConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/ProductConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/RecordConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/StringConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/SubsetConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/UnionConstructor"/>
-        <has_function rdf:resource="http://www.onto.net/core/UnitConstructor"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Alias"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Boolean"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Enumerated"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Indexed"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Integer"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_List"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Product"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Record"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_String"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Subset"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Union"/>
+        <has_colorSet rdf:resource="http://www.onto.net/core/cs_Unit"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Alias"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_BasisSet"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Boolean"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Enumerated"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Indexed"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Integer"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_List"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Multiset"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Product"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Record"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_String"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Subset"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Union"/>
+        <has_function rdf:resource="http://www.onto.net/core/fnc_Unit"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/Enumerated -->
+    <!-- http://www.onto.net/core/cs_Alias -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Enumerated">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Alias">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Alias</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_BasisSet -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_BasisSet">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>BasisSet</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Boolean -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Boolean">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Boolean</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Enumerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Enumerated">
         <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
         <has_name>Enumerated</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/EnumeratedConstructor -->
+    <!-- http://www.onto.net/core/cs_Indexed -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/EnumeratedConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Indexed">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Indexed</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Integer -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Integer">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Integer</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_List -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_List">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>List</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Multiset -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Multiset">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Multiset</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Product -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Product">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Product</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Record -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Record">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Record</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_String -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_String">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>String</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Subset -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Subset">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Subset</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Union -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Union">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Union</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/cs_Unit -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/cs_Unit">
+        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_name>Unit</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fnc_Alias -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Alias">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Enumerated"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Alias"/>
+        <has_name>Alias</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fnc_BasisSet -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_BasisSet">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_BasisSet"/>
+        <has_name>BasisSet</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fnc_Boolean -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Boolean">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Boolean"/>
+        <has_name>Boolean</has_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/core/fnc_Enumerated -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Enumerated">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Enumerated"/>
         <has_name>Enumerated</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/Indexed -->
+    <!-- http://www.onto.net/core/fnc_Indexed -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Indexed">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Indexed">
+        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Indexed"/>
         <has_name>Indexed</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/IndexedConstructor -->
+    <!-- http://www.onto.net/core/fnc_Integer -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/IndexedConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Integer">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Indexed"/>
-        <has_name>Indexed</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Integer -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Integer">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Integer"/>
         <has_name>Integer</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/IntegerConstructor -->
+    <!-- http://www.onto.net/core/fnc_List -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/IntegerConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_List">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Integer"/>
-        <has_name>Integer</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/List -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/List">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_List"/>
         <has_name>List</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/ListConstructor -->
+    <!-- http://www.onto.net/core/fnc_Multiset -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/ListConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Multiset">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/List"/>
-        <has_name>List</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Multiset -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Multiset">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Multiset"/>
         <has_name>Multiset</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/MultisetConstructor -->
+    <!-- http://www.onto.net/core/fnc_Product -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/MultisetConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Product">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Multiset"/>
-        <has_name>Multiset</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Product -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Product">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Product"/>
         <has_name>Product</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/ProductConstructor -->
+    <!-- http://www.onto.net/core/fnc_Record -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/ProductConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Record">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Product"/>
-        <has_name>Product</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Record -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Record">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Record"/>
         <has_name>Record</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/RecordConstructor -->
+    <!-- http://www.onto.net/core/fnc_String -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/RecordConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_String">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Record"/>
-        <has_name>Record</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/String -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/String">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_String"/>
         <has_name>String</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/StringConstructor -->
+    <!-- http://www.onto.net/core/fnc_Subset -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/StringConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Subset">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/String"/>
-        <has_name>String</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Subset -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Subset">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Subset"/>
         <has_name>Subset</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/SubsetConstructor -->
+    <!-- http://www.onto.net/core/fnc_Union -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/SubsetConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Union">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Subset"/>
-        <has_name>Subset</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Union -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Union">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Union"/>
         <has_name>Union</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/UnionConstructor -->
+    <!-- http://www.onto.net/core/fnc_Unit -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/UnionConstructor">
+    <owl:NamedIndividual rdf:about="http://www.onto.net/core/fnc_Unit">
         <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Union"/>
-        <has_name>Union</has_name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.onto.net/core/Unit -->
-
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/Unit">
-        <rdf:type rdf:resource="http://www.onto.net/core/ColorSet"/>
+        <has_range rdf:resource="http://www.onto.net/core/cs_Unit"/>
         <has_name>Unit</has_name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.onto.net/core/UnitConstructor -->
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    <owl:NamedIndividual rdf:about="http://www.onto.net/core/UnitConstructor">
-        <rdf:type rdf:resource="http://www.onto.net/core/Constructor"/>
-        <has_range rdf:resource="http://www.onto.net/core/Unit"/>
-        <has_name>Unit</has_name>
-    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.onto.net/core/Arc"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/BasisSet"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/CPN"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/ColorSet"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Data"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Evaluation"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Firing"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Function"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Marking"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/MarkingOfPlace"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Multiset"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Node"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Port"/>
+            <rdf:Description rdf:about="http://www.onto.net/core/Term"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
