@@ -2,14 +2,14 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="http://www.onto.net/core/1.1.0" uri="OntoNet.core.v1.1.0.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="http://www.experimental.onto.net/js-core/net/heads-and-tails/" uri="deprecated2/Experimental-Net_Heads-and-Tails.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="http://www.onto.net/abox/heads-and-tails/" uri="OntoNet.abox.heads-and-tails.v1.0.0.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="http://www.onto.net/core/" uri="OntoNet.core.v1.1.0.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="http://www.onto.net/js-core/" uri="deprecated2/OntoNet.js-core.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="http://www.onto.net/js/" uri="deprecated2/OntoNet.js.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology%20-%20temperature%20controller.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology%20-%20test%20model.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1614428663495" name="shadowed:http://www.onto.net/core/" uri="deprecated2/OntoNet.core.v1.0.0.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="http://www.experimental.onto.net/js-core/net/heads-and-tails/" uri="deprecated2/Experimental-Net_Heads-and-Tails.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="http://www.onto.net/abox/heads-and-tails/" uri="OntoNet.abox.heads-and-tails.v1.0.0.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="http://www.onto.net/core/" uri="OntoNet.core.v1.1.0.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="http://www.onto.net/js-core/" uri="deprecated2/OntoNet.js-core.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="http://www.onto.net/js/" uri="deprecated2/OntoNet.js.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology%20-%20temperature%20controller.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology%20-%20test%20model.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="duplicate:http://www.semanticweb.org/baker/ontologies/2020/9/OntoNet-CPN-onlotogy" uri="deprecated/OntoNet-CPN-ontology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1614431083864" name="shadowed:http://www.onto.net/core/" uri="deprecated2/OntoNet.core.v1.0.0.owl"/>
     </group>
 </catalog>

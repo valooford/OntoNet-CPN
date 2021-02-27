@@ -1014,6 +1014,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.onto.net/core/Transition"/>
     </owl:Class>
     
 

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist", // output directory
+    "module": "CommonJS", // module code generation
+    "target": "ES6", // target ecmascript version
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node", // module resolution strategy
+  },
+  // "lib": ["es2015"]
+}
