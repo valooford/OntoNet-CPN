@@ -1,7 +1,11 @@
+import { EventEmitter } from 'events';
+import p from 'path';
+import { access } from 'fs/promises';
+import { constants, ReadStream, createReadStream } from 'fs';
+
 import clui from 'clui';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { EventEmitter } from 'events';
 
 import types from './types';
 
@@ -13,7 +17,7 @@ const {
   ENDPOINT_VALIDATED,
   UPLOAD_ONTOLOGY,
   CONFIGURE_WITH_DESCRIPTOR,
-  VIEW_LOGS,
+  // VIEW_LOGS,
 } = types;
 
 class CLI {
@@ -32,7 +36,7 @@ class CLI {
           name: 'Configure the system using a descriptor file',
           value: CONFIGURE_WITH_DESCRIPTOR,
         },
-        { name: 'View the server logs', value: VIEW_LOGS },
+        // { name: 'View the server logs', value: VIEW_LOGS },
       ],
       prefix: '',
     },
@@ -67,6 +71,43 @@ class CLI {
         return result;
       },
       when: ({ type }) => type === ENDPOINT_SPECIFIED,
+      prefix: '',
+    },
+    {
+      type: 'input',
+      name: 'fileRS', // RS - read stream
+      message: ({ type }) => {
+        const contents = {
+          [UPLOAD_ONTOLOGY]: 'ontology',
+          [CONFIGURE_WITH_DESCRIPTOR]: 'descriptor',
+        };
+        return `Type path to the ${contents[type]} file: `;
+      },
+      default: ({ type }) => {
+        const defaults = {
+          [UPLOAD_ONTOLOGY]:
+            '../../../../ontologies/OntoNet.abox.heads-and-tails.v1.0.0.owl',
+          [CONFIGURE_WITH_DESCRIPTOR]: 
+          '../../../../descriptors/formulas.js',
+        };
+        return defaults[type];
+      },
+      validate: async (fileRS: ReadStream | string) => {
+        return typeof fileRS === 'string'
+          ? 'Error! Unable to read the file.'
+          : true;
+      },
+      filter: async (path: string) => {
+        const absPath = p.isAbsolute(path) ? path : p.resolve(__dirname, path);
+        try {
+          await access(absPath, constants.F_OK);
+          return createReadStream(absPath);
+        } catch {
+          return absPath;
+        }
+      },
+      when: ({ type }) =>
+        type === UPLOAD_ONTOLOGY || type === CONFIGURE_WITH_DESCRIPTOR,
       prefix: '',
     },
   ];
