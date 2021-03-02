@@ -1,4 +1,9 @@
 // Built-in ColorSet Factories
+function Alias(colorSet) {
+  return function (...params) {
+    return new colorSet(...params);
+  };
+}
 function Product(...colorSets) {
   return function (...data) {
     return data.map((value, i) => new colorSets[i](value));
@@ -12,32 +17,37 @@ function Record(...namedColorSets) {
     }, {});
   };
 }
-const Union = Record;
+const Union = Alias(Record); // ?
 function List(colorSet) {
   return function (...data) {
     return data.map((value) => new colorSet(value));
   };
 }
-function Alias(colorSet) {
-  return function (...params) {
-    return colorSet(...params);
-  };
-}
 
 // Built-in ColorSets
 const Unit = Alias(Object);
-const Boolean = Alias(Boolean);
+const Boolean = global.Boolean;
 const Integer = Alias(Number);
-const String = Alias(String);
-function Enumerated(...indices) {
-  return { ...indices };
+const String = global.String;
+function Enumerated(...identifiers) {
+  // it's possible to use Object.assign here
+  return { ...identifiers };
 }
 function Indexed(name, from, to) {
   return new Array(from + to).fill(name, from);
 }
 
+function Multiset(basisSets) {
+  this.cardinality = Object.keys(basisSets).length;
+  this.basisSets = basisSets;
+}
+function BasisSet(data, multiplicity) {
+  this.data = JSON.parse(data);
+  this.multiplicity = multiplicity;
+}
+
 // ColorSets
-const Count = Integer;
+const Count = Alias(Integer);
 const Values = List(String);
 const Data = Record({ count: Count, res: String, values: Values });
 
@@ -50,10 +60,27 @@ function validate(data) {
 const dataStructure = new Multiset(['{res: res, values: l}']);
 
 module.exports = {
+  Alias,
+  Product,
+  Record,
+  Union,
+  List,
+
   Unit,
   Boolean,
   Integer,
   String,
   Enumerated,
   Indexed,
+
+  Multiset,
+  BasisSet,
+
+  Count,
+  Values,
+  Data,
+
+  validate,
+
+  dataStructure,
 };
