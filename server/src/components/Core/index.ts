@@ -2,9 +2,9 @@ import { EventEmitter } from 'events';
 import { ReadStream } from 'fs';
 import p from 'path';
 
-import CLI, {types as cliTypes} from '../CLI';
+import CLI, { types as cliTypes } from '../CLI';
 import WebServer from '../WebServer';
-import Engine from '../Engine';
+import Engine, { types as engineTypes } from '../Engine';
 
 class Core {
   private readonly cliEmitter = new EventEmitter();
@@ -12,7 +12,8 @@ class Core {
 
   private readonly webServer = new WebServer();
 
-  private readonly engine = new Engine();
+  private readonly engineEmitter = new EventEmitter();
+  private readonly engine = new Engine(this.engineEmitter);
 
   constructor() {
     this.addCliEventListeners();
@@ -22,12 +23,25 @@ class Core {
   }
 
   private addCliEventListeners(): void {
-    this.cliEmitter.on(cliTypes.VALIDATE_ENDPOINT, (/* { endpoint } */) => {
-      this.cliEmitter.emit(cliTypes.ENDPOINT_VALIDATED);
+    // validation request
+    this.cliEmitter.on(cliTypes.VALIDATE_ENDPOINT, ({ endpoint }) => {
+      const echoEventHandler = () => {
+        this.cliEmitter.emit(cliTypes.ENDPOINT_VALIDATED);
+      };
+      this.engineEmitter.once(engineTypes.ENDPOINT_ECHO, echoEventHandler);
+      setTimeout(() => {
+        this.engineEmitter.removeListener(
+          engineTypes.ENDPOINT_ECHO,
+          echoEventHandler
+        );
+      }, 10000);
+      this.engineEmitter.emit(engineTypes.VALIDATE_ENDPOINT, { endpoint });
     });
+    // endpoint was specified
     this.cliEmitter.on(cliTypes.ENDPOINT_SPECIFIED, ({ endpoint }) => {
-      console.log(`Core: endpoint '${endpoint} have been specified'`);
+      this.engineEmitter.emit(engineTypes.SPECIFY_ENDPOINT, { endpoint });
     });
+    // ontology file have been uploaded
     this.cliEmitter.on(
       cliTypes.UPLOAD_ONTOLOGY,
       ({ fileRS }: { [fileRS: string]: ReadStream }) => {
@@ -37,17 +51,24 @@ class Core {
         });
       }
     );
+    // descriptor file have been uploaded
     this.cliEmitter.on(
       cliTypes.CONFIGURE_WITH_DESCRIPTOR,
       ({ fileRS }: { [fileRS: string]: ReadStream }) => {
         const path = <string>fileRS.path;
         if (p.extname(path) === '.js') {
           import(path).then((formulas) => {
-            console.log(formulas);
+            this.engineEmitter.emit(engineTypes.CONFIGURE_ENVIRONMENT, {
+              formulas,
+            });
           });
         }
       }
     );
+  }
+
+  private addEngineEventListeners(): void {
+    // ...
   }
 }
 
