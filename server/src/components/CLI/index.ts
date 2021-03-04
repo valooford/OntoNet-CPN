@@ -15,7 +15,7 @@ const {
   ENDPOINT_SPECIFIED,
   VALIDATE_ENDPOINT,
   ENDPOINT_VALIDATED,
-  UPLOAD_ONTOLOGY,
+  ONTOLOGY_UPLOADED,
   CONFIGURE_WITH_DESCRIPTOR,
   // VIEW_LOGS,
 } = types;
@@ -31,7 +31,10 @@ class CLI {
       message: 'Menu',
       choices: [
         { name: 'Specify a SPARQL endpoint URL', value: ENDPOINT_SPECIFIED },
-        { name: 'Upload an ontology of the CPN model', value: UPLOAD_ONTOLOGY },
+        {
+          name: 'Upload an ontology of the CPN model',
+          value: ONTOLOGY_UPLOADED,
+        },
         {
           name: 'Configure the system using a descriptor file',
           value: CONFIGURE_WITH_DESCRIPTOR,
@@ -44,7 +47,13 @@ class CLI {
       type: 'input',
       name: 'endpoint',
       message: 'Type endpoint URL: ',
-      default: 'localhost:3030',
+      default: 'http://localhost:3030/ontonet',
+      filter: (endpoint: string) => {
+        if (!/^https?:\/\/.+/.test(endpoint)) {
+          return `http://${endpoint}`;
+        }
+        return endpoint;
+      },
       validate: async (endpoint: string) => {
         if (!!this.emitter.listeners(ENDPOINT_VALIDATED).length) {
           return 'Error! Only one endpoint can be verified at a time.';
@@ -78,17 +87,16 @@ class CLI {
       name: 'fileRS', // RS - read stream
       message: ({ type }) => {
         const contents = {
-          [UPLOAD_ONTOLOGY]: 'ontology',
+          [ONTOLOGY_UPLOADED]: 'ontology',
           [CONFIGURE_WITH_DESCRIPTOR]: 'descriptor',
         };
         return `Type path to the ${contents[type]} file: `;
       },
       default: ({ type }) => {
         const defaults = {
-          [UPLOAD_ONTOLOGY]:
+          [ONTOLOGY_UPLOADED]:
             '../../../../ontologies/OntoNet.abox.heads-and-tails.v1.0.0.owl',
-          [CONFIGURE_WITH_DESCRIPTOR]: 
-          '../../../../descriptors/formulas.js',
+          [CONFIGURE_WITH_DESCRIPTOR]: '../../../../descriptors/formulas.js',
         };
         return defaults[type];
       },
@@ -107,7 +115,7 @@ class CLI {
         }
       },
       when: ({ type }) =>
-        type === UPLOAD_ONTOLOGY || type === CONFIGURE_WITH_DESCRIPTOR,
+        type === ONTOLOGY_UPLOADED || type === CONFIGURE_WITH_DESCRIPTOR,
       prefix: '',
     },
   ];
@@ -126,6 +134,7 @@ class CLI {
     const { type, ...payload } = await inquirer.prompt(this.questions);
     // const action = { type, payload };
     this.emitter.emit(type, payload);
+    this.handleInput();
   }
 }
 

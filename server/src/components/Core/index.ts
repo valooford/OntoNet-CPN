@@ -25,16 +25,21 @@ class Core {
   private addCliEventListeners(): void {
     // validation request
     this.cliEmitter.on(cliTypes.VALIDATE_ENDPOINT, ({ endpoint }) => {
-      const echoEventHandler = () => {
-        this.cliEmitter.emit(cliTypes.ENDPOINT_VALIDATED);
-      };
-      this.engineEmitter.once(engineTypes.ENDPOINT_ECHO, echoEventHandler);
-      setTimeout(() => {
+      const handlers = { echoEventHandler: null };
+      const timeout = setTimeout(() => {
         this.engineEmitter.removeListener(
           engineTypes.ENDPOINT_ECHO,
-          echoEventHandler
+          handlers.echoEventHandler
         );
       }, 10000);
+      handlers.echoEventHandler = () => {
+        clearTimeout(timeout);
+        this.cliEmitter.emit(cliTypes.ENDPOINT_VALIDATED);
+      };
+      this.engineEmitter.once(
+        engineTypes.ENDPOINT_ECHO,
+        handlers.echoEventHandler
+      );
       this.engineEmitter.emit(engineTypes.VALIDATE_ENDPOINT, { endpoint });
     });
     // endpoint was specified
@@ -43,12 +48,13 @@ class Core {
     });
     // ontology file have been uploaded
     this.cliEmitter.on(
-      cliTypes.UPLOAD_ONTOLOGY,
-      ({ fileRS }: { [fileRS: string]: ReadStream }) => {
-        console.log(`Ontology file path: ${fileRS.path}`);
-        fileRS.once('readable', () => {
-          console.log(`Ontology file contents: ${fileRS.read(10)}...`);
-        });
+      cliTypes.ONTOLOGY_UPLOADED,
+      ({ fileRS: ontologyRS }: { [fileRS: string]: ReadStream }) => {
+        // console.log(`Ontology file path: ${fileRS.path}`);
+        // fileRS.once('readable', () => {
+        //   console.log(`Ontology file contents: ${fileRS.read(10)}...`);
+        // });
+        this.engineEmitter.emit(engineTypes.UPLOAD_ONTOLOGY, { ontologyRS });
       }
     );
     // descriptor file have been uploaded
