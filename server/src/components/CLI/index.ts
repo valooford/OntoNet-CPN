@@ -15,7 +15,8 @@ const {
   ENDPOINT_SPECIFIED,
   VALIDATE_ENDPOINT,
   ENDPOINT_VALIDATED,
-  ONTOLOGY_UPLOADED,
+  ONTOLOGY_TBOX_UPLOADED,
+  ONTOLOGY_ABOX_UPLOADED,
   CONFIGURE_WITH_DESCRIPTOR,
   // VIEW_LOGS,
 } = types;
@@ -32,8 +33,12 @@ class CLI {
       choices: [
         { name: 'Specify a SPARQL endpoint URL', value: ENDPOINT_SPECIFIED },
         {
-          name: 'Upload an ontology of the CPN model',
-          value: ONTOLOGY_UPLOADED,
+          name: 'Upload a Tbox ontology of the CPN model',
+          value: ONTOLOGY_TBOX_UPLOADED,
+        },
+        {
+          name: 'Upload an Abox ontology of the CPN model',
+          value: ONTOLOGY_ABOX_UPLOADED,
         },
         {
           name: 'Configure the system using a descriptor file',
@@ -87,14 +92,17 @@ class CLI {
       name: 'fileRS', // RS - read stream
       message: ({ type }) => {
         const contents = {
-          [ONTOLOGY_UPLOADED]: 'ontology',
+          [ONTOLOGY_TBOX_UPLOADED]: 'ontology',
+          [ONTOLOGY_ABOX_UPLOADED]: 'ontology',
           [CONFIGURE_WITH_DESCRIPTOR]: 'descriptor',
         };
         return `Type path to the ${contents[type]} file: `;
       },
       default: ({ type }) => {
         const defaults = {
-          [ONTOLOGY_UPLOADED]:
+          [ONTOLOGY_TBOX_UPLOADED]:
+            '../../../../ontologies/OntoNet.core.v1.1.0.owl',
+          [ONTOLOGY_ABOX_UPLOADED]:
             '../../../../ontologies/OntoNet.abox.heads-and-tails.v1.0.0.owl',
           [CONFIGURE_WITH_DESCRIPTOR]: '../../../../descriptors/formulas.js',
         };
@@ -115,7 +123,9 @@ class CLI {
         }
       },
       when: ({ type }) =>
-        type === ONTOLOGY_UPLOADED || type === CONFIGURE_WITH_DESCRIPTOR,
+        type === ONTOLOGY_TBOX_UPLOADED ||
+        type === ONTOLOGY_ABOX_UPLOADED ||
+        type === CONFIGURE_WITH_DESCRIPTOR,
       prefix: '',
     },
   ];

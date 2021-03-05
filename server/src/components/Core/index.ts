@@ -22,6 +22,21 @@ class Core {
     }, 200);
   }
 
+  private readonly ontologyGraphNames = {
+    [cliTypes.ONTOLOGY_TBOX_UPLOADED]: 'tbox',
+    [cliTypes.ONTOLOGY_ABOX_UPLOADED]: 'abox',
+  };
+
+  private cliOntologyChunkHandlerFactory(type: string) {
+    const graphName = this.ontologyGraphNames[type];
+    return ({ fileRS: ontologyRS }: { [fileRS: string]: ReadStream }) => {
+      this.engineEmitter.emit(engineTypes.UPLOAD_ONTOLOGY, {
+        ontologyRS,
+        graphName,
+      });
+    };
+  }
+
   private addCliEventListeners(): void {
     // validation request
     this.cliEmitter.on(cliTypes.VALIDATE_ENDPOINT, ({ endpoint }) => {
@@ -48,14 +63,12 @@ class Core {
     });
     // ontology file have been uploaded
     this.cliEmitter.on(
-      cliTypes.ONTOLOGY_UPLOADED,
-      ({ fileRS: ontologyRS }: { [fileRS: string]: ReadStream }) => {
-        // console.log(`Ontology file path: ${fileRS.path}`);
-        // fileRS.once('readable', () => {
-        //   console.log(`Ontology file contents: ${fileRS.read(10)}...`);
-        // });
-        this.engineEmitter.emit(engineTypes.UPLOAD_ONTOLOGY, { ontologyRS });
-      }
+      cliTypes.ONTOLOGY_TBOX_UPLOADED,
+      this.cliOntologyChunkHandlerFactory(cliTypes.ONTOLOGY_TBOX_UPLOADED)
+    );
+    this.cliEmitter.on(
+      cliTypes.ONTOLOGY_ABOX_UPLOADED,
+      this.cliOntologyChunkHandlerFactory(cliTypes.ONTOLOGY_ABOX_UPLOADED)
     );
     // descriptor file have been uploaded
     this.cliEmitter.on(

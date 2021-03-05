@@ -42,21 +42,27 @@ class Engine {
     // ontology upload request
     this.emitter.on(
       UPLOAD_ONTOLOGY,
-      async ({ ontologyRS }: { ['ontologyRS']: ReadStream }) => {
+      async ({
+        ontologyRS,
+        graphName,
+      }: {
+        ontologyRS: ReadStream;
+        graphName?: string;
+      }) => {
+        const graphURI = graphName
+          ? `${this.endpoint}/data/${graphName}`
+          : 'urn:x-arq:DefaultGraph';
         // clearing the default graph
-        // const queryFD = new FormData();
-        // queryFD.append('update', `CLEAR GRAPH <${this.endpoint}/data/default>`);
-        // await axios.post(`${this.endpoint}/update`, queryFD, {
-        //   headers: {
-        //     ...queryFD.getHeaders(),
-        //     // 'content-type': 'application/sparql-update',
-        //     'content-type': 'application/x-www-form-urlencoded',
-        //   },
-        // });
+        const querySP = new URLSearchParams();
+        querySP.append('update', `CLEAR GRAPH <${graphURI}>`);
+        await axios.post(`${this.endpoint}/update`, querySP);
         // uploading the new ontology file
+        const graphEndpoint = `${this.endpoint}/data${
+          graphName ? `?graph=${graphName}` : ''
+        }`;
         const ontologyFD = new FormData();
         ontologyFD.append('graph', ontologyRS);
-        axios.post(`${this.endpoint}/data`, ontologyFD, {
+        axios.post(`${graphEndpoint}/data`, ontologyFD, {
           headers: ontologyFD.getHeaders(),
         });
       }
