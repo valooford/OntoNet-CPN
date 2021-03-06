@@ -12,6 +12,7 @@ const {
   ENDPOINT_ECHO,
   SPECIFY_ENDPOINT,
   UPLOAD_ONTOLOGY,
+  FORWARD_SPARQL_REQUEST,
 } = types;
 
 class Engine {
@@ -62,9 +63,26 @@ class Engine {
         }`;
         const ontologyFD = new FormData();
         ontologyFD.append('graph', ontologyRS);
-        axios.post(`${graphEndpoint}/data`, ontologyFD, {
+        axios.post(`${graphEndpoint}`, ontologyFD, {
           headers: ontologyFD.getHeaders(),
         });
+      }
+    );
+    // sparql request forwarding
+    this.emitter.on(
+      FORWARD_SPARQL_REQUEST,
+      async ({
+        body,
+        callback,
+      }: {
+        body: string;
+        callback(res: string): void;
+      }) => {
+        const reqSP = new URLSearchParams();
+        reqSP.append('query', body);
+        const response = await axios.post(`${this.endpoint}/sparql`, reqSP);
+        // console.log(response.data);
+        callback(response.data);
       }
     );
   }

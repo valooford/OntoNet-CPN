@@ -16,8 +16,8 @@ export default class App {
 
   private readonly defaults = {
     hostname: 'localhost',
-    port: 3030,
-    dataset: 'ontonet',
+    port: 3000,
+    dataset: '',
   };
 
   private endpoint = this.defaults;
@@ -58,7 +58,7 @@ export default class App {
   }
 
   private getEndpointUrl() {
-    return `http://${this.endpoint.hostname}:${this.endpoint.port}/${this.endpoint.dataset}`;
+    return `http://${this.endpoint.hostname}:${this.endpoint.port}${this.endpoint.dataset ? `/${this.endpoint.dataset}}` : ''}`;
   }
 
   private onEndpointUpdate() {

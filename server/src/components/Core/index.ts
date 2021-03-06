@@ -3,21 +3,24 @@ import { ReadStream } from 'fs';
 import p from 'path';
 
 import CLI, { types as cliTypes } from '../CLI';
-import WebServer from '../WebServer';
+import WebServer, { types as webServerTypes } from '../WebServer';
 import Engine, { types as engineTypes } from '../Engine';
 
 class Core {
   private readonly cliEmitter = new EventEmitter();
   private readonly cli = new CLI(this.cliEmitter);
 
-  private readonly webServer = new WebServer();
+  private readonly webServerEmitter = new EventEmitter();
+  private readonly webServer = new WebServer(this.webServerEmitter);
 
   private readonly engineEmitter = new EventEmitter();
   private readonly engine = new Engine(this.engineEmitter);
 
   constructor() {
     this.addCliEventListeners();
+    this.addWebServerEventListeners();
     setTimeout(() => {
+      this.webServer.run();
       this.cli.run();
     }, 200);
   }
@@ -82,6 +85,18 @@ class Core {
             });
           });
         }
+      }
+    );
+  }
+
+  private addWebServerEventListeners(): void {
+    this.webServerEmitter.on(
+      webServerTypes.SPARQL_REQUEST,
+      ({ request, sendResponse }) => {
+        this.engineEmitter.emit(engineTypes.FORWARD_SPARQL_REQUEST, {
+          body: request,
+          callback: sendResponse,
+        });
       }
     );
   }

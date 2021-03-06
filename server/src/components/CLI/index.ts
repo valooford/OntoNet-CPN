@@ -141,6 +141,7 @@ class CLI {
   }
 
   private async handleInput(): Promise<void> {
+    console.log('\n');
     const { type, ...payload } = await inquirer.prompt(this.questions);
     // const action = { type, payload };
     this.emitter.emit(type, payload);
