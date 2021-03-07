@@ -1,11 +1,13 @@
 import { EventEmitter } from 'events';
 import { ReadStream } from 'fs';
 
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import FormData from 'form-data';
 
 import Reasoner, { types as reasonerTypes } from '../Reasoner';
 import types from './types';
+import queries from './queries';
+import * as interfaces from './interfaces';
 
 const {
   VALIDATE_ENDPOINT,
@@ -16,13 +18,33 @@ const {
 } = types;
 
 class Engine {
-  private readonly reasoner;
+  private readonly reasoner: Reasoner;
 
   private endpoint: string;
 
-  constructor(readonly emitter: EventEmitter) {
+  private readonly netStructure: interfaces.NetStructure = {
+    transitions: {},
+    arcs: {},
+    places: {},
+  };
+
+  constructor(private readonly emitter: EventEmitter) {
     this.reasoner = new Reasoner(this.emitter);
     this.addEventListeners();
+  }
+
+  private async sendSelectRequest(
+    query: string
+  ): Promise<AxiosResponse<interfaces.initialStateResponse>> {
+    const querySP = new URLSearchParams();
+    querySP.append('query', query);
+    return axios.post(`${this.endpoint}/sparql`, querySP);
+  }
+
+  private async sendUpdateRequest(query: string): Promise<AxiosResponse> {
+    const querySP = new URLSearchParams();
+    querySP.append('update', query);
+    return axios.post(`${this.endpoint}/update`, querySP);
   }
 
   private addEventListeners(): void {
@@ -38,7 +60,8 @@ class Engine {
     // endpoint specification request
     this.emitter.on(SPECIFY_ENDPOINT, ({ endpoint }) => {
       this.endpoint = endpoint;
-      console.log(`Engine: endpoint '${this.endpoint} have been specified'`);
+      // console.log(`Engine: endpoint '${this.endpoint} have been specified'`);
+      this.startInitialReasoning();
     });
     // ontology upload request
     this.emitter.on(
@@ -50,22 +73,21 @@ class Engine {
         ontologyRS: ReadStream;
         graphName?: string;
       }) => {
+        // clearing the default graph
         const graphURI = graphName
           ? `${this.endpoint}/data/${graphName}`
           : 'urn:x-arq:DefaultGraph';
-        // clearing the default graph
-        const querySP = new URLSearchParams();
-        querySP.append('update', `CLEAR GRAPH <${graphURI}>`);
-        await axios.post(`${this.endpoint}/update`, querySP);
+        await this.sendUpdateRequest(`CLEAR GRAPH <${graphURI}>`);
         // uploading the new ontology file
         const graphEndpoint = `${this.endpoint}/data${
           graphName ? `?graph=${graphName}` : ''
         }`;
         const ontologyFD = new FormData();
         ontologyFD.append('graph', ontologyRS);
-        axios.post(`${graphEndpoint}`, ontologyFD, {
+        await axios.post(`${graphEndpoint}`, ontologyFD, {
           headers: ontologyFD.getHeaders(),
         });
+        this.startInitialReasoning();
       }
     );
     // sparql request forwarding
@@ -76,15 +98,41 @@ class Engine {
         callback,
       }: {
         body: string;
-        callback(res: string): void;
+        callback(res: interfaces.selectionResponse): void;
       }) => {
-        const reqSP = new URLSearchParams();
-        reqSP.append('query', body);
-        const response = await axios.post(`${this.endpoint}/sparql`, reqSP);
+        const response = await this.sendSelectRequest(body);
         // console.log(response.data);
         callback(response.data);
+        // this.startReasoning();
       }
     );
+  }
+
+  private async startInitialReasoning(): Promise<void> {
+    // ... steps of reasoning with Reasoner's methods calls
+    const initialState = await this.sendSelectRequest(
+      queries['reasoning-select']()
+    );
+    Object.values(initialState.data.results.bindings).forEach(
+      ({ type, id, ...payload }) => {
+        this.netStructure[type.value][id.value] = Object.keys(payload).reduce(
+          (pl, key) => {
+            pl[key] = payload[key].value;
+            return pl;
+          },
+          {}
+        );
+      }
+    );
+    // console.log(this.netStructure);
+    const placeTerms = Object.values(this.netStructure.places).reduce(
+      (terms, { init_tokens_term, init_tokens }) => {
+        terms[init_tokens_term] = init_tokens;
+        return terms;
+      },
+      {}
+    );
+    const processedTerms = this.reasoner.processTerms(placeTerms);
   }
 }
 
