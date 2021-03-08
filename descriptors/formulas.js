@@ -37,12 +37,14 @@ function Indexed(name, from, to) {
   return new Array(from + to).fill(name, from);
 }
 
-function Multiset(basisSets) {
-  this.cardinality = Object.keys(basisSets).length;
+function Multiset(...basisSets) {
+  // this.cardinality = Object.keys(basisSets).length;
+  this.cardinality = basisSets.length;
   this.basisSets = basisSets;
 }
-function BasisSet(data, multiplicity) {
-  this.data = JSON.parse(data);
+function BasisSet(data, multiplicity = 1) {
+  // this.data = JSON.parse(data);
+  this.data = data;
   this.multiplicity = multiplicity;
 }
 

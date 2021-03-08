@@ -1,5 +1,4 @@
 type NetElement = {
-  id: string;
   [key: string]: string;
 };
 export type NetStructure = {

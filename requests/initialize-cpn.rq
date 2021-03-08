@@ -1,0 +1,90 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+WITH <http://localhost:3030/ontonet/data/abox>
+INSERT {
+  ?cpn t:has_marking ?initial_marking;
+       t:has_initialMarking ?initial_marking.
+  ?initial_marking rdf:type t:Marking;
+                   t:includes_markingOfPlace ?marking_of_place.
+    ?marking_of_place rdf:type t:MarkingOfPlace;
+                      t:has_place ?place;
+                      t:has_multisetOfTokens ?multiset.
+    ?multiset rdf:type t:Multiset;
+                        t:has_basisSet ?basis_set.
+    ?basis_set rdf:type t:BasisSet;
+                    t:has_multiplicity ?multiplicity;
+                    t:has_data ?bs_data.
+    ?bs_data rdf:type t:Data;
+                  t:has_value ?bs_data_value.
+    ?eval rdf:type t:Evaluation;
+              t:has_term ?initial_tokens_term;
+              t:has_data ?eval_data.
+    ?eval_data rdf:type t:Data;
+                  t:has_value ?eval_data_value.
+}
+WHERE {
+  GRAPH <http://localhost:3030/ontonet/data/tbox> {
+    ?cpn rdf:type t:CPN.
+  }
+  BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?initial_marking)
+  {
+    #place
+    BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?marking_of_place)
+    BIND(a:pl_P1 as ?place)
+    BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset)
+    {
+      #basisSet
+      BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?basis_set)
+      BIND(1 as ?multiplicity)
+      BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+      BIND("\"Heads\"" as ?bs_data_value)
+    }
+    UNION
+    {}
+    BIND(IRI(CONCAT(STR(a:), "eval_", STRUUID())) as ?eval)
+    BIND(a:P1_initial-tokens-term as ?initial_tokens_term)
+    BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?eval_data)
+    BIND("{\"prop\": \"JSON-string\"}" as ?eval_data_value)
+  }
+  UNION
+  {}
+};
+WITH <http://localhost:3030/ontonet/data/abox>
+INSERT {
+    ?arc t:has_multisetOfTerms ?multiset.
+    ?multiset rdf:type t:Multiset;
+                       t:has_basisSet ?basis_set.
+    ?basis_set rdf:type t:BasisSet;
+                    t:has_multiplicity ?multiplicity;
+                    t:has_data ?bs_data.
+    ?bs_data rdf:type t:Data;
+                  t:has_value ?bs_data_value.
+    ?eval rdf:type t:Evaluation;
+             t:has_term ?annotation_term;
+             t:has_data ?eval_data.
+    ?eval_data rdf:type t:Data;
+                  t:has_value ?eval_data_value.
+}
+WHERE {
+  {
+    BIND(a:arc_P1-T1 as ?arc)
+    BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset)
+    {
+      #basisSet
+      BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?basis_set)
+      BIND(1 as ?multiplicity)
+      BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+      BIND("\"JSON-string\"" as ?bs_data_value)
+    }
+    UNION
+    {}
+    BIND(IRI(CONCAT(STR(a:), "eval_", STRUUID())) as ?eval)
+    BIND(a:P1_initial-tokens-term as ?annotation_term)
+    BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?eval_data)
+    BIND("{\"prop\": \"JSON-string\"}" as ?eval_data_value)
+  }
+  UNION
+  {}
+}

@@ -144,10 +144,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_P1-T1">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;count/var&quot;: &quot;c&quot;,
   &quot;res/var&quot;: &quot;res&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -156,9 +156,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_P1-T2">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;/expr&quot;: &quot;data_structure&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -167,9 +167,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_P2-T1">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;/var&quot;: &quot;res&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -178,9 +178,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_P3-T3">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;/var&quot;: &quot;d&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -189,9 +189,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_T1-P2">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;/var&quot;: &quot;res&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -200,11 +200,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_T1-P3">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;count&quot;: 0,
   &quot;res/var&quot;: &quot;res&quot;,
   &quot;values&quot;: []
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -213,11 +213,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_T2-P3">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;count/expr&quot;: &quot;l.length + 1&quot;,
   &quot;res/var&quot;: &quot;res&quot;,
   &quot;list/expr&quot;: &quot;[res, ...l]&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 
@@ -226,9 +226,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/arcan_T3-P1">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>{
+        <core:has_value>new Multiset(new BasisSet({
   &quot;/expr&quot;: &quot;validate(d)&quot;
-}</core:has_value>
+}))</core:has_value>
     </owl:NamedIndividual>
     
 

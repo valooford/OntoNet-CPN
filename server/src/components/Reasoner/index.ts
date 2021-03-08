@@ -20,8 +20,22 @@ class Reasoner {
     });
   }
 
+  private processTermInEnvironment(term: string): unknown {
+    return new Function(
+      'env',
+      `
+        with(env) {
+          return ${term};
+        }
+      `
+    )(this.formulas);
+  }
+
   processTerms(terms: interfaces.Terms): interfaces.ProcessedTerms {
-    return terms;
+    return Object.keys(terms).reduce((processedTerms, id) => {
+      processedTerms[id] = this.processTermInEnvironment(terms[id]);
+      return processedTerms;
+    }, {});
   }
 }
 

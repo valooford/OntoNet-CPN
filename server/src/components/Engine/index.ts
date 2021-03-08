@@ -125,14 +125,55 @@ class Engine {
       }
     );
     // console.log(this.netStructure);
-    const placeTerms = Object.values(this.netStructure.places).reduce(
-      (terms, { init_tokens_term, init_tokens }) => {
-        terms[init_tokens_term] = init_tokens;
+    const placesTerms = Object.values(this.netStructure.places).reduce(
+      (terms, { term, term_value }) => {
+        terms[term] = term_value;
         return terms;
       },
       {}
     );
-    const processedTerms = this.reasoner.processTerms(placeTerms);
+    // console.log('>>>> placesTerms: ', placesTerms);
+    const placesTermsValues = this.reasoner.processTerms(placesTerms);
+    // console.log('>>>> placesTermsValues: ', placesTermsValues);
+
+    // Object.keys(this.netStructure.arcs).forEach((id) => {
+    //   this.netStructure.arcs[id].annotation_term = JSON.parse(
+    //     this.netStructure.arcs[id].annotation_term
+    //   );
+    // });
+    const arcsTerms = Object.values(this.netStructure.arcs).reduce(
+      (terms, { term, term_value }) => {
+        terms[term] = term_value;
+        return terms;
+      },
+      {}
+    );
+    // console.log('>>>> arcsTerms: ', arcsTerms);
+    const arcsTermsValues = this.reasoner.processTerms(arcsTerms);
+    // console.log('>>>> arcsTermsValues: ', arcsTermsValues);
+    // console.log(
+    this.sendUpdateRequest(
+      queries['initialize-cpn']({
+        aboxEndpointURL: `${this.endpoint}/abox`,
+        tboxEndpointURL: `${this.endpoint}/tbox`,
+        places: Object.keys(this.netStructure.places).reduce((places, id) => {
+          const { term } = this.netStructure.places[id];
+          places[id] = {
+            term,
+            multiset: placesTermsValues[term],
+          };
+          return places;
+        }, {}),
+        arcs: Object.keys(this.netStructure.arcs).reduce((arcs, id) => {
+          const { term } = this.netStructure.arcs[id];
+          arcs[id] = {
+            term,
+            multiset: arcsTermsValues[term],
+          };
+          return arcs;
+        }, {}),
+      })
+    );
   }
 }
 

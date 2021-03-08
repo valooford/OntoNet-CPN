@@ -31,6 +31,10 @@ class CLI {
       name: 'type',
       message: 'Menu',
       choices: [
+        {
+          name: 'Configure the system using a descriptor file',
+          value: CONFIGURE_WITH_DESCRIPTOR,
+        },
         { name: 'Specify a SPARQL endpoint URL', value: ENDPOINT_SPECIFIED },
         {
           name: 'Upload a Tbox ontology of the CPN model',
@@ -39,10 +43,6 @@ class CLI {
         {
           name: 'Upload an Abox ontology of the CPN model',
           value: ONTOLOGY_ABOX_UPLOADED,
-        },
-        {
-          name: 'Configure the system using a descriptor file',
-          value: CONFIGURE_WITH_DESCRIPTOR,
         },
         // { name: 'View the server logs', value: VIEW_LOGS },
       ],

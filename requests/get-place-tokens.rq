@@ -1,0 +1,21 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT ?place ?name ?value ?multiplicity
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  ?marking rdf:type t:Marking;
+           t:includes_markingOfPlace ?marking_of_place.
+  NOT EXISTS {
+    ?firing rdf:type t:Firing;
+            t:has_sourceMarking ?marking.
+  }
+  ?marking_of_place t:has_place ?place;
+                    t:has_multisetOfTokens ?multiset.
+  ?place t:has_name ?name.
+  ?multiset t:has_basisSet ?basis_set.
+  ?basis_set t:has_data ?data;
+             t:has_multiplicity ?multiplicity.
+  ?data t:has_value ?value.
+}
