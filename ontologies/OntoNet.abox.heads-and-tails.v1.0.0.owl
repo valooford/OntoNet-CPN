@@ -29,7 +29,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>new Multiset(new BasisSet(new Data(1, &quot;Unknown&quot;, [])))</core:has_value>
+        <core:has_value>new Multiset(new BasisSet(new Data({
+  count: 1,
+  res: &quot;Unknown&quot;,
+  values: []
+})))</core:has_value>
     </owl:NamedIndividual>
     
 

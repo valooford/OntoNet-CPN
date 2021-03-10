@@ -154,8 +154,8 @@ class Engine {
     // console.log(
     this.sendUpdateRequest(
       queries['initialize-cpn']({
-        aboxEndpointURL: `${this.endpoint}/abox`,
-        tboxEndpointURL: `${this.endpoint}/tbox`,
+        aboxEndpointURL: `${this.endpoint}/data/abox`,
+        tboxEndpointURL: `${this.endpoint}/data/tbox`,
         places: Object.keys(this.netStructure.places).reduce((places, id) => {
           const { term } = this.netStructure.places[id];
           places[id] = {

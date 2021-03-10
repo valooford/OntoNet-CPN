@@ -9,7 +9,7 @@ function Product(...colorSets) {
     return data.map((value, i) => new colorSets[i](value));
   };
 }
-function Record(...namedColorSets) {
+function Record(namedColorSets) {
   return function (data) {
     return Object.keys(data).reduce((res, id) => {
       res[id] = new namedColorSets[id](data[id]);
@@ -19,7 +19,7 @@ function Record(...namedColorSets) {
 }
 const Union = Alias(Record); // ?
 function List(colorSet) {
-  return function (...data) {
+  return function (data) {
     return data.map((value) => new colorSet(value));
   };
 }
