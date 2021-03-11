@@ -86,6 +86,9 @@ export default {
       GRAPH <${tboxEndpointURL}> {
         ?cpn rdf:type t:CPN.
       }
+      NOT EXISTS {
+        ?cpn t:has_initialMarking ?_im.
+      }
       BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?initial_marking)
       ${Object.keys(places)
         .map((id) => {
@@ -142,6 +145,9 @@ export default {
           const { multiset, term } = arcs[id];
           return `{
           BIND(<${id}> as ?arc)
+          NOT EXISTS {
+            ?arc t:has_multisetOfTerms ?_m.
+          }
           BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset)
           ${multiset.basisSets
             .map(
