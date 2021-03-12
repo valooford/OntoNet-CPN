@@ -59,6 +59,7 @@ class Engine {
     });
     // endpoint specification request
     this.emitter.on(SPECIFY_ENDPOINT, ({ endpoint }) => {
+      if (endpoint === this.endpoint) return;
       this.endpoint = endpoint;
       // console.log(`Engine: endpoint '${this.endpoint} have been specified'`);
       this.startInitialReasoning();
@@ -124,54 +125,25 @@ class Engine {
         );
       }
     );
-    // console.log(this.netStructure);
-    const placesTerms = Object.values(this.netStructure.places).reduce(
-      (terms, { term, term_value }) => {
+    const getTerms = (entity) =>
+      Object.values(entity).reduce((terms, { term, term_value }) => {
         terms[term] = term_value;
         return terms;
-      },
-      {}
+      }, {});
+    const placesTerms = getTerms(this.netStructure.places);
+    const placesTermsValues = this.reasoner.processTerms(
+      <Record<string, string>>placesTerms
     );
-    // console.log('>>>> placesTerms: ', placesTerms);
-    const placesTermsValues = this.reasoner.processTerms(placesTerms);
-    // console.log('>>>> placesTermsValues: ', placesTermsValues);
-
-    // Object.keys(this.netStructure.arcs).forEach((id) => {
-    //   this.netStructure.arcs[id].annotation_term = JSON.parse(
-    //     this.netStructure.arcs[id].annotation_term
-    //   );
-    // });
-    const arcsTerms = Object.values(this.netStructure.arcs).reduce(
-      (terms, { term, term_value }) => {
-        terms[term] = term_value;
-        return terms;
-      },
-      {}
+    const arcsTerms = getTerms(this.netStructure.arcs);
+    const arcsTermsValues = this.reasoner.processTerms(
+      <Record<string, string>>arcsTerms
     );
-    // console.log('>>>> arcsTerms: ', arcsTerms);
-    const arcsTermsValues = this.reasoner.processTerms(arcsTerms);
-    // console.log('>>>> arcsTermsValues: ', arcsTermsValues);
     // console.log(
     this.sendUpdateRequest(
-      queries['initialize-cpn']({
+      queries['insert-calculated-multiset-terms']({
         aboxEndpointURL: `${this.endpoint}/data/abox`,
         tboxEndpointURL: `${this.endpoint}/data/tbox`,
-        places: Object.keys(this.netStructure.places).reduce((places, id) => {
-          const { term } = this.netStructure.places[id];
-          places[id] = {
-            term,
-            multiset: placesTermsValues[term],
-          };
-          return places;
-        }, {}),
-        arcs: Object.keys(this.netStructure.arcs).reduce((arcs, id) => {
-          const { term } = this.netStructure.arcs[id];
-          arcs[id] = {
-            term,
-            multiset: arcsTermsValues[term],
-          };
-          return arcs;
-        }, {}),
+        calculatedTerms: { ...placesTermsValues, ...arcsTermsValues },
       })
     );
   }

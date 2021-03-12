@@ -7,10 +7,10 @@ FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
   ?marking rdf:type t:Marking;
            t:includes_markingOfPlace ?marking_of_place.
-  NOT EXISTS {
+  FILTER(NOT EXISTS {
     ?firing rdf:type t:Firing;
             t:has_sourceMarking ?marking.
-  }
+  })
   ?marking_of_place t:has_place ?place;
                     t:has_multisetOfTokens ?multiset.
   ?place t:has_name ?name.
