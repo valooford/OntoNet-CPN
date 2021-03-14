@@ -5,50 +5,73 @@ export default {
     PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
     
     SELECT ?type ?id
-    #store ()
-    ?guard_term ?guard ?code_term ?code
+    #store
+    ?guard ?code ?arc ?arc_type ?place
     #calc (places & arcs)
     ?term ?term_value
-    ?source ?target ?arc_type
+    ?value
     #FROM <urn:x-arq:DefaultGraph>
     FROM <http://localhost:3030/ontonet/data/tbox>
     FROM <http://localhost:3030/ontonet/data/abox>
     WHERE {
-      BIND (t:cpn_CPN as ?cpn)
+      ?cpn rdf:type t:CPN.
       {
         ?cpn t:has_node ?transition.
-        ?transition rdf:type t:Transition;
-                    t:has_guard ?guard_term.
-        ?guard_term t:has_value ?guard.
-        OPTIONAL {
-          ?transition t:has_code ?code_term.
-          ?code_term t:has_value ?code.
-        }
+        ?transition rdf:type t:Transition.
         BIND (?transition as ?id)
         BIND ("transitions" as ?type)
+        {
+          ?transition t:has_guard ?guard_term.
+          ?guard_term t:has_value ?guard.
+          OPTIONAL {
+            ?transition t:has_code ?code_term.
+            ?code_term t:has_value ?code.
+          }
+        }
+        UNION
+        {
+          ?arc rdf:type t:Arc.
+          {
+            ?arc t:has_sourceNode ?place;
+                 t:has_targetNode ?transition.
+            BIND("input" as ?arc_type)
+          }
+          UNION
+          {
+            ?arc t:has_sourceNode ?transition;
+                 t:has_targetNode ?place.
+            BIND("output" as ?arc_type)
+          }
+        }
       }
       UNION
       {
-        ?cpn t:has_arc ?arc.
-        ?arc rdf:type t:Arc;
-             t:has_annotation ?term;
-             t:has_sourceNode ?source;
-             t:has_targetNode ?target.
-        ?term t:has_value ?term_value.
-        BIND (IF (EXISTS {?source rdf:type t:Place.}, "input", "output") as ?arc_type)
-        BIND (?arc as ?id)
-        BIND ("arcs" as ?type)
+        {
+          ?arc_or_place rdf:type t:Arc;
+                        t:has_annotation ?_term.
+          BIND ("arcs" as ?type)
+        }
+        UNION
+        {
+          ?arc_or_place rdf:type t:Place;
+                        t:has_initialTokens ?_term.
+          BIND ("places" as ?type)
+        }
+        BIND (?arc_or_place as ?id)
+        OPTIONAL {
+          ?eval rdf:type t:Evaluation;
+                t:has_term ?_term;
+                t:has_data ?data.
+          ?data t:has_value ?value.
+        }
+        OPTIONAL {
+          FILTER(!BOUND(?value))
+          BIND(?_term as ?term)
+          ?_term t:has_value ?term_value.
+        }
       }
-      UNION
-      {
-        ?cpn t:has_node ?place.
-        ?place rdf:type t:Place;
-               t:has_initialTokens ?term.
-        ?term t:has_value ?term_value.
-        BIND (?place as ?id)
-        BIND ("places" as ?type)
-      }
-    }`;
+    }
+    ORDER BY ?type ?arc`;
   },
   'insert-calculated-multiset-terms': ({
     calculatedTerms,

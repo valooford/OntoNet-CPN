@@ -1,8 +1,16 @@
 type NetElement = {
-  [key: string]: string;
+  [key: string]: string | Array<Record<string, string>>;
 };
 export type NetStructure = {
-  transitions: Record<string, NetElement>;
+  transitions: Record<
+    string,
+    {
+      guard: string;
+      code?: string;
+      inputs: Array<{ arc: string; place: string }>;
+      outputs: Array<{ arc: string; place: string }>;
+    }
+  >;
   arcs: Record<string, NetElement>;
   places: Record<string, NetElement>;
 };

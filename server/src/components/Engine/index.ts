@@ -115,19 +115,68 @@ class Engine {
       queries['reasoning-select']()
     );
     Object.values(initialState.data.results.bindings).forEach(
-      ({ type, id, ...payload }) => {
-        this.netStructure[type.value][id.value] = Object.keys(payload).reduce(
+      ({ type, id, ...payloadRaw }) => {
+        const payload: Record<string, string> = Object.keys(payloadRaw).reduce(
           (pl, key) => {
-            pl[key] = payload[key].value;
+            pl[key] = payloadRaw[key].value;
             return pl;
           },
           {}
         );
+        switch (type.value) {
+          case 'transitions':
+            {
+              const { transitions } = this.netStructure;
+
+              if (payloadRaw['arc']) {
+                // transition input&output arcs and places
+                const { arc, arc_type, place } = payload;
+                const dst =
+                  arc_type === 'input'
+                    ? transitions[id.value].inputs
+                    : transitions[id.value].outputs;
+                dst.push({ arc, place });
+              } else {
+                // transition guard, [code]
+                transitions[id.value] = {
+                  inputs: transitions[id.value]?.inputs || [],
+                  outputs: transitions[id.value]?.outputs || [],
+                  ...(<{ guard: string; code?: string }>payload),
+                };
+              }
+            }
+            break;
+          case 'places':
+            {
+              const { places } = this.netStructure;
+              if (payloadRaw['value']) {
+                places[id.value] = { value: JSON.parse(payload.value) };
+              } else {
+                places[id.value] = { ...payload };
+              }
+            }
+            break;
+          case 'arcs':
+            {
+              const { arcs } = this.netStructure;
+              if (payloadRaw['value']) {
+                arcs[id.value] = { value: JSON.parse(payload.value) };
+              } else {
+                arcs[id.value] = { ...payload };
+              }
+            }
+            break;
+        }
       }
     );
-    const getTerms = (entity) =>
-      Object.values(entity).reduce((terms, { term, term_value }) => {
-        terms[term] = term_value;
+    const getTerms = (
+      entity: Record<string, { term?: string; term_value?: string }>
+    ) =>
+      Object.values(entity).reduce((terms, el) => {
+        const { term, term_value } = el;
+        if (term) {
+          terms[term] = term_value;
+        }
         return terms;
       }, {});
     const placesTerms = getTerms(this.netStructure.places);
@@ -138,6 +187,19 @@ class Engine {
     const arcsTermsValues = this.reasoner.processTerms(
       <Record<string, string>>arcsTerms
     );
+    const saveTermValues = (
+      dst: Record<string, { term?: string; value?: unknown }>,
+      values: Record<string, unknown>
+    ) => {
+      Object.values(dst).forEach((el) => {
+        const { term } = el;
+        if (term) {
+          el.value = values[term];
+        }
+      });
+    };
+    saveTermValues(this.netStructure.places, placesTermsValues);
+    saveTermValues(this.netStructure.arcs, arcsTermsValues);
     // console.log(
     this.sendUpdateRequest(
       queries['insert-calculated-multiset-terms']({
@@ -146,6 +208,39 @@ class Engine {
         calculatedTerms: { ...placesTermsValues, ...arcsTermsValues },
       })
     );
+
+    // const transitionModes = this.formTransitionModes();
+    // console.log(transitionModes);
+  }
+
+  private formTransitionModes(): unknown {
+    const { transitions, arcs, places } = this.netStructure;
+    return Object.keys(transitions).reduce((tm, id) => {
+      // object of transitions bindings {}
+      const { inputs, guard } = transitions[id];
+      tm[id] = inputs.reduce((trTm, { arc, place }) => {
+        // array of bindings []
+        const pattern = arcs[arc].value;
+        const tokens = places[place].value;
+        const bindings = this.getBindings(pattern, tokens);
+        if (bindings) {
+          trTm.push(...bindings);
+        }
+        return trTm;
+      }, []);
+      return tm;
+    }, {});
+  }
+
+  private getBindings(pattern, tokens): Array<Record<string, unknown>> {
+    const detachedBindings = pattern.basisSets.reduce(
+      (db, { data, multiplicity }) => {
+        // detachedBindings {}
+        Object.keys(data);
+        return db;
+      }
+    );
+    return null;
   }
 }
 
