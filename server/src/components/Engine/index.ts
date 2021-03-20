@@ -215,6 +215,11 @@ class Engine {
 
   private formTransitionModes(): unknown {
     const { transitions, arcs, places } = this.netStructure;
+    // or
+    // getting basisSets for places and arcs directly from ontology
+    // const basisSets = this.sendSelectRequest(queries['basis-sets-select']());
+    // console.log(basisSets);
+
     return Object.keys(transitions).reduce((tm, id) => {
       // object of transitions bindings {}
       const { inputs, guard } = transitions[id];
