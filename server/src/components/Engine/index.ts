@@ -109,20 +109,21 @@ class Engine {
     );
   }
 
+  private static getPayloadFromRaw(payloadRaw): Record<string, string> {
+    return Object.keys(payloadRaw).reduce((pl, key) => {
+      pl[key] = payloadRaw[key].value;
+      return pl;
+    }, {});
+  }
+
   private async startInitialReasoning(): Promise<void> {
-    // ... steps of reasoning with Reasoner's methods calls
+    // Receiving the initial state
     const initialState = await this.sendSelectRequest(
       queries['reasoning-select']()
     );
     Object.values(initialState.data.results.bindings).forEach(
       ({ type, id, ...payloadRaw }) => {
-        const payload: Record<string, string> = Object.keys(payloadRaw).reduce(
-          (pl, key) => {
-            pl[key] = payloadRaw[key].value;
-            return pl;
-          },
-          {}
-        );
+        const payload = Engine.getPayloadFromRaw(payloadRaw);
         switch (type.value) {
           case 'transitions':
             {
@@ -169,6 +170,8 @@ class Engine {
         }
       }
     );
+
+    // Calculating terms
     const getTerms = (
       entity: Record<string, { term?: string; term_value?: string }>
     ) =>
@@ -209,44 +212,109 @@ class Engine {
       })
     );
 
-    // const transitionModes = this.formTransitionModes();
-    // console.log(transitionModes);
-  }
-
-  private formTransitionModes(): unknown {
-    const { transitions, arcs, places } = this.netStructure;
-    // or
-    // getting basisSets for places and arcs directly from ontology
-    // const basisSets = this.sendSelectRequest(queries['basis-sets-select']());
-    // console.log(basisSets);
-
-    return Object.keys(transitions).reduce((tm, id) => {
-      // object of transitions bindings {}
-      const { inputs, guard } = transitions[id];
-      tm[id] = inputs.reduce((trTm, { arc, place }) => {
-        // array of bindings []
-        const pattern = arcs[arc].value;
-        const tokens = places[place].value;
-        const bindings = this.getBindings(pattern, tokens);
-        if (bindings) {
-          trTm.push(...bindings);
-        }
-        return trTm;
-      }, []);
-      return tm;
-    }, {});
-  }
-
-  private getBindings(pattern, tokens): Array<Record<string, unknown>> {
-    const detachedBindings = pattern.basisSets.reduce(
-      (db, { data, multiplicity }) => {
-        // detachedBindings {}
-        Object.keys(data);
-        return db;
+    // Getting annotation basisSets of every arc
+    const arcsAnnotationsResponse = await this.sendSelectRequest(
+      queries['get-arcs-annotations']()
+    );
+    Object.values(this.netStructure.arcs).forEach((arc) => {
+      arc.basisSets = {};
+    });
+    Object.values(arcsAnnotationsResponse.data.results.bindings).forEach(
+      (payloadRaw) => {
+        const { id, basis_set, value, multiplicity } = Engine.getPayloadFromRaw(
+          payloadRaw
+        );
+        this.netStructure.arcs[id].basisSets[basis_set] = {
+          value: JSON.parse(value),
+          multiplicity,
+        };
       }
     );
-    return null;
+
+    // Finding enabled transitions
+    this.formTransitionModes();
+    // ...
   }
+
+  private async formTransitionModes(): Promise<unknown> {
+    const marking = await this.getCurrentMarking();
+    console.log('MARKING');
+    Object.keys(marking).forEach((id) => {
+      console.log(`${id} multisets: `, marking[id]);
+    });
+
+    const annotations = Object.keys(this.netStructure.arcs).reduce(
+      (anno, id) => {
+        anno[id] = this.netStructure.arcs[id].basisSets;
+        return anno;
+      },
+      {}
+    );
+    console.log('ANNOTATIONS');
+    Object.keys(annotations).forEach((id) => {
+      console.log(`${id} annotation: `, annotations[id]);
+    });
+
+    // const { transitions, arcs, places } = this.netStructure;
+    // or
+    // getting basisSets for places and arcs directly from ontology
+    // const basisSets = await this.sendSelectRequest(queries['basis-sets-select']());
+    // console.log(basisSets);
+
+    // return Object.keys(transitions).reduce((tm, id) => {
+    //   // object of transitions bindings {}
+    //   const { inputs, guard } = transitions[id];
+    //   tm[id] = inputs.reduce((trTm, { arc, place }) => {
+    //     // array of bindings []
+    //     const pattern = arcs[arc].value;
+    //     const tokens = places[place].value;
+    //     const bindings = this.getBindings(pattern, tokens);
+    //     if (bindings) {
+    //       trTm.push(...bindings);
+    //     }
+    //     return trTm;
+    //   }, []);
+    //   return tm;
+    // }, {});
+    return;
+  }
+
+  private async getCurrentMarking() {
+    const markingResponse = await this.sendSelectRequest(
+      queries['get-marking']()
+    );
+    const placeMarkings = Object.keys(this.netStructure.places).reduce(
+      (pm, id) => {
+        pm[id] = {};
+        return pm;
+      },
+      {}
+    );
+    return Object.values(markingResponse.data.results.bindings).reduce(
+      (pm, payloadRaw) => {
+        const { id, basis_set, value, multiplicity } = Engine.getPayloadFromRaw(
+          payloadRaw
+        );
+        pm[id][basis_set] = {
+          value: JSON.parse(value),
+          multiplicity,
+        };
+        return pm;
+      },
+      placeMarkings
+    );
+  }
+
+  // private getBindings(pattern, tokens): Array<Record<string, unknown>> {
+  //   const detachedBindings = pattern.basisSets.reduce(
+  //     (db, { data, multiplicity }) => {
+  //       // detachedBindings {}
+  //       Object.keys(data);
+  //       return db;
+  //     }
+  //   );
+  //   return null;
+  // }
 }
 
 export default Engine;

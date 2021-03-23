@@ -1,0 +1,28 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT DISTINCT ?id ?basis_set ?value ?multiplicity
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  ?cpn rdf:type t:CPN;
+       t:has_marking ?marking.
+  
+  #last marking
+  FILTER NOT EXISTS {
+    ?firing rdf:type t:Firing;
+            t:has_sourceMarking ?marking.
+  }
+  ?marking t:includes_markingOfPlace ?mop.
+  ?mop t:has_place ?place;
+       t:has_multisetOfTokens ?multiset.
+  OPTIONAL {
+    ?multiset t:has_basisSet ?basis_set.
+    ?basis_set t:has_data ?data;
+                 t:has_multiplicity ?multiplicity.
+    ?data t:has_value ?value.
+  }
+  FILTER (BOUND(?basis_set))
+  BIND(?place as ?id)
+}

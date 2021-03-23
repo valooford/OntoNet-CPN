@@ -73,27 +73,40 @@ export default {
     }
     ORDER BY ?type ?arc`;
   },
-  'basis-sets-select': (): string => {
-    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  'get-arcs-annotations': (): string => {
+    return `
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX t: <http://www.onto.net/core/>
     PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
-    
-    SELECT ?transition ?basis_set_a ?value_a ?multiplicity_a ?basis_set_p ?value_p ?multiplicity_p
+
+    SELECT ?id ?basis_set ?value ?multiplicity
     FROM <http://localhost:3030/ontonet/data/tbox>
     FROM <http://localhost:3030/ontonet/data/abox>
     WHERE {
       ?cpn rdf:type t:CPN;
-           t:has_node ?transition;
-           t:has_marking ?marking.
-      ?transition rdf:type t:Transition.
+          t:has_arc ?arc.
       ?arc rdf:type t:Arc;
-           t:has_targetNode ?transition;
-           t:has_sourceNode ?place;
-           t:has_multisetOfTerms ?multiset_a.
-      ?multiset_a t:has_basisSet ?basis_set_a.
-      ?basis_set_a t:has_data ?data_a;
-                   t:has_multiplicity ?multiplicity_a.
-      ?data_a t:has_value ?value_a.
+          t:has_multisetOfTerms ?multiset.
+      ?multiset t:has_basisSet ?basis_set.
+      ?basis_set t:has_data ?data;
+                  t:has_multiplicity ?multiplicity.
+      ?data t:has_value ?value.
+      BIND(?arc as ?id)
+    }
+    `;
+  },
+  'get-marking': (): string => {
+    return `
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+    SELECT DISTINCT ?id ?basis_set ?value ?multiplicity
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?cpn rdf:type t:CPN;
+          t:has_marking ?marking.
       
       #last marking
       FILTER NOT EXISTS {
@@ -102,14 +115,17 @@ export default {
       }
       ?marking t:includes_markingOfPlace ?mop.
       ?mop t:has_place ?place;
-           t:has_multisetOfTokens ?multiset_p.
+          t:has_multisetOfTokens ?multiset.
       OPTIONAL {
-        ?multiset_p t:has_basisSet ?basis_set_p.
-        ?basis_set_p t:has_data ?data_p;
-                     t:has_multiplicity ?multiplicity_p.
-        ?data_p t:has_value ?value_p.
+        ?multiset t:has_basisSet ?basis_set.
+        ?basis_set t:has_data ?data;
+                    t:has_multiplicity ?multiplicity.
+        ?data t:has_value ?value.
       }
-    }`
+      FILTER (BOUND(?basis_set))
+      BIND(?place as ?id)
+    }
+    `;
   },
   'insert-calculated-multiset-terms': ({
     calculatedTerms,

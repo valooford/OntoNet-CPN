@@ -1,0 +1,18 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT ?id ?basis_set ?value ?multiplicity
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  ?cpn rdf:type t:CPN;
+       t:has_arc ?arc.
+  ?arc rdf:type t:Arc;
+       t:has_multisetOfTerms ?multiset.
+  ?multiset t:has_basisSet ?basis_set.
+  ?basis_set t:has_data ?data;
+               t:has_multiplicity ?multiplicity.
+  ?data t:has_value ?value.
+  BIND(?arc as ?id)
+}
