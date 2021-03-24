@@ -204,7 +204,7 @@ class Engine {
     saveTermValues(this.netStructure.places, placesTermsValues);
     saveTermValues(this.netStructure.arcs, arcsTermsValues);
     // console.log(
-    this.sendUpdateRequest(
+    await this.sendUpdateRequest(
       queries['insert-calculated-multiset-terms']({
         aboxEndpointURL: `${this.endpoint}/data/abox`,
         tboxEndpointURL: `${this.endpoint}/data/tbox`,
@@ -238,10 +238,10 @@ class Engine {
 
   private async formTransitionModes(): Promise<unknown> {
     const marking = await this.getCurrentMarking();
-    console.log('MARKING');
-    Object.keys(marking).forEach((id) => {
-      console.log(`${id} multisets: `, marking[id]);
-    });
+    // console.log('MARKING');
+    // Object.keys(marking).forEach((id) => {
+    //   console.log(`${id} multisets: `, marking[id]);
+    // });
 
     const annotations = Object.keys(this.netStructure.arcs).reduce(
       (anno, id) => {
@@ -250,10 +250,31 @@ class Engine {
       },
       {}
     );
-    console.log('ANNOTATIONS');
-    Object.keys(annotations).forEach((id) => {
-      console.log(`${id} annotation: `, annotations[id]);
-    });
+    // console.log('ANNOTATIONS');
+    // Object.keys(annotations).forEach((id) => {
+    //   console.log(`${id} annotation: `, annotations[id]);
+    // });
+
+    const inputs = Object.keys(this.netStructure.transitions).reduce(
+      (inp, id) => {
+        inp[id] = this.netStructure.transitions[id].inputs.reduce(
+          (trInp, { arc, place }) => {
+            trInp[arc] = place;
+            return trInp;
+          },
+          {}
+        );
+        return inp;
+      },
+      {}
+    );
+
+    const isolatedBindings = Engine.getIsolatedBindings(
+      inputs,
+      annotations,
+      marking
+    );
+    console.log(isolatedBindings);
 
     // const { transitions, arcs, places } = this.netStructure;
     // or
@@ -303,6 +324,39 @@ class Engine {
       },
       placeMarkings
     );
+  }
+
+  private static getIsolatedBindings(inputs, annotations, marking) {
+    return Object.keys(inputs).reduce((ib, id) => {
+      ib[id] = Object.keys(inputs).reduce((arcIb, arcId) => {
+        const placeId = inputs[arcId];
+        const arcAnnotations = annotations[arcId];
+        const placeMarking = marking[placeId];
+        arcIb[arcId] = Object.keys(arcAnnotations).reduce(
+          (arcBindings, annotationBS) => {
+            const bindings = Engine.findBindings(
+              annotations[annotationBS],
+              placeMarking
+            );
+            if (bindings.length) {
+              arcBindings[annotationBS] = bindings;
+            }
+            return arcBindings;
+          },
+          {}
+        );
+        return arcIb;
+      }, {});
+      return ib;
+    }, {});
+    return;
+  }
+
+  private static findBindings(
+    annotation,
+    placeMarking
+  ): Array<Record<string, unknown>> {
+    return null;
   }
 
   // private getBindings(pattern, tokens): Array<Record<string, unknown>> {
