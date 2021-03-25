@@ -328,19 +328,37 @@ class Engine {
 
   private static getIsolatedBindings(inputs, annotations, marking) {
     return Object.keys(inputs).reduce((ib, id) => {
-      ib[id] = Object.keys(inputs).reduce((arcIb, arcId) => {
-        const placeId = inputs[arcId];
-        const arcAnnotations = annotations[arcId];
+      ib[id] = Object.keys(inputs[id]).reduce((arcIb, arcId) => {
+        const placeId = inputs[id][arcId];
+        const arcAnnotations = annotations[arcId]; //! undefined
         const placeMarking = marking[placeId];
         arcIb[arcId] = Object.keys(arcAnnotations).reduce(
-          (arcBindings, annotationBS) => {
-            const bindings = Engine.findBindings(
-              annotations[annotationBS],
-              placeMarking
+          (arcBindings, annotationBs) => {
+            // const bindings = Engine.findBindings(
+            //   annotations[annotationBs],
+            //   placeMarking
+            // );
+            // if (bindings.length) {
+            //   arcBindings[annotationBs] = bindings;
+            // }
+
+            // or
+
+            const bindings = Object.keys(placeMarking).reduce(
+              (arcBsBindings, markingBs) => {
+                const tokenBindings = Engine.findBindings(
+                  arcAnnotations[annotationBs],
+                  placeMarking[markingBs]
+                );
+                if (tokenBindings.length) {
+                  arcBsBindings[markingBs] = tokenBindings;
+                }
+                return arcBsBindings;
+              },
+              {}
             );
-            if (bindings.length) {
-              arcBindings[annotationBS] = bindings;
-            }
+            arcBindings[annotationBs] = bindings;
+
             return arcBindings;
           },
           {}
@@ -349,14 +367,15 @@ class Engine {
       }, {});
       return ib;
     }, {});
-    return;
   }
 
   private static findBindings(
-    annotation,
-    placeMarking
+    annotationBs,
+    tokenBs
   ): Array<Record<string, unknown>> {
-    return null;
+    console.log('pair:', annotationBs, tokenBs);
+    // ...
+    return [];
   }
 
   // private getBindings(pattern, tokens): Array<Record<string, unknown>> {
