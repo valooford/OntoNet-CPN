@@ -374,8 +374,58 @@ class Engine {
     tokenBs
   ): Array<Record<string, unknown>> {
     console.log('pair:', annotationBs, tokenBs);
-    // ...
-    return [];
+    return Object.keys(annotationBs).reduce((bindings, roleKey) => {
+      let key;
+      let testResult;
+
+      testResult = /^(.*)\/var$/.exec(roleKey);
+      if (testResult) {
+        [, key] = testResult;
+        const varName = annotationBs[roleKey];
+        if (key) {
+          console.log(`partial mapping of ${key} to the ${varName} variable`);
+        } else {
+          console.log(`complete mapping to the ${varName} variable`);
+        }
+        return bindings;
+      }
+
+      testResult = /^(.*)\/rest$/.exec(roleKey);
+      if (testResult) {
+        [, key] = testResult;
+        const varName = annotationBs[roleKey];
+        console.log(`partial mapping from ${key} to the ${varName} variable`);
+        return bindings;
+      }
+
+      testResult = /^(.*)\/expr$/.exec(roleKey);
+      if (testResult) {
+        [, key] = testResult;
+        const expression = annotationBs[roleKey];
+        // calculating expression value
+        if (key) {
+          console.log(
+            `partial mapping of ${key} using '${expression}' expression`
+          );
+        } else {
+          console.log(`complete mapping using '${expression}' expression`);
+        }
+        return bindings;
+      }
+
+      testResult = /^\/const$/.exec(roleKey);
+      if (testResult) {
+        const constantValue = annotationBs[roleKey];
+        console.log(`comparation with '${constantValue}'`);
+        return bindings;
+      }
+
+      key = roleKey;
+      const subAnnotation = annotationBs[roleKey];
+      console.log(`comparation using '${subAnnotation}' annotation`);
+
+      return bindings;
+    }, []);
   }
 
   // private getBindings(pattern, tokens): Array<Record<string, unknown>> {
