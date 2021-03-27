@@ -20,7 +20,7 @@ class Reasoner {
     });
   }
 
-  private processTermInEnvironment(term: string): unknown {
+  public processTermInEnvironment(term: string): unknown {
     return new Function(
       'env',
       `

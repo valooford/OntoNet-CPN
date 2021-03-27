@@ -3,6 +3,7 @@ import { ReadStream } from 'fs';
 
 import axios, { AxiosResponse } from 'axios';
 import FormData from 'form-data';
+import isEqual from 'lodash/isEqual';
 
 import Reasoner, { types as reasonerTypes } from '../Reasoner';
 import types from './types';
@@ -269,7 +270,7 @@ class Engine {
       {}
     );
 
-    const isolatedBindings = Engine.getIsolatedBindings(
+    const isolatedBindings = this.getIsolatedBindings(
       inputs,
       annotations,
       marking
@@ -326,38 +327,39 @@ class Engine {
     );
   }
 
-  private static getIsolatedBindings(inputs, annotations, marking) {
+  private getIsolatedBindings(inputs, annotations, marking) {
     return Object.keys(inputs).reduce((ib, id) => {
       ib[id] = Object.keys(inputs[id]).reduce((arcIb, arcId) => {
         const placeId = inputs[id][arcId];
-        const arcAnnotations = annotations[arcId]; //! undefined
+        const arcAnnotations = annotations[arcId];
         const placeMarking = marking[placeId];
         arcIb[arcId] = Object.keys(arcAnnotations).reduce(
-          (arcBindings, annotationBs) => {
+          (arcBindings, annotationChunkBs) => {
             // const bindings = Engine.findBindings(
-            //   annotations[annotationBs],
+            //   annotations[annotationChunkBs],
             //   placeMarking
             // );
             // if (bindings.length) {
-            //   arcBindings[annotationBs] = bindings;
+            //   arcBindings[annotationChunkBs] = bindings;
             // }
 
             // or
 
             const bindings = Object.keys(placeMarking).reduce(
               (arcBsBindings, markingBs) => {
-                const tokenBindings = Engine.findBindings(
-                  arcAnnotations[annotationBs],
-                  placeMarking[markingBs]
+                const [isApplicable, tokenBindings] = this.findBindings(
+                  arcAnnotations[annotationChunkBs].value,
+                  placeMarking[markingBs].value
                 );
-                if (tokenBindings.length) {
+                if (isApplicable) {
                   arcBsBindings[markingBs] = tokenBindings;
                 }
                 return arcBsBindings;
               },
               {}
             );
-            arcBindings[annotationBs] = bindings;
+            // console.log('chunk bindings', bindings);
+            arcBindings[annotationChunkBs] = bindings;
 
             return arcBindings;
           },
@@ -369,63 +371,154 @@ class Engine {
     }, {});
   }
 
-  private static findBindings(
-    annotationBs,
-    tokenBs
-  ): Array<Record<string, unknown>> {
-    console.log('pair:', annotationBs, tokenBs);
-    return Object.keys(annotationBs).reduce((bindings, roleKey) => {
-      let key;
-      let testResult;
+  private findBindings(
+    annotationChunk,
+    token
+  ): [true, Record<string, unknown>] | [false] {
+    // console.log('pair:', annotationChunk, token);
+    return Object.keys(annotationChunk).reduce(
+      ([isApplicable, bindings], roleKey) => {
+        if (!isApplicable) return [false];
+        // annotation keys traversal
+        // console.log('roleKey', roleKey);
+        let key;
+        let testResult;
 
-      testResult = /^(.*)\/var$/.exec(roleKey);
-      if (testResult) {
-        [, key] = testResult;
-        const varName = annotationBs[roleKey];
-        if (key) {
-          console.log(`partial mapping of ${key} to the ${varName} variable`);
-        } else {
-          console.log(`complete mapping to the ${varName} variable`);
+        // role: variable
+        testResult = /^(.*)\/var$/.exec(roleKey);
+        if (testResult) {
+          [, key] = testResult;
+          const varName = annotationChunk[roleKey];
+          if (key) {
+            // ::<key>/var
+            if (typeof token[key] === 'undefined') {
+              return [false];
+            }
+            bindings[varName] = token[key];
+            // console.log(`partial mapping of ${key} to the ${varName} variable`);
+          } else {
+            // ::/var
+            bindings[varName] = token;
+            // console.log(`complete mapping to the ${varName} variable`);
+          }
+          return [true, bindings];
         }
-        return bindings;
-      }
 
-      testResult = /^(.*)\/rest$/.exec(roleKey);
-      if (testResult) {
-        [, key] = testResult;
-        const varName = annotationBs[roleKey];
-        console.log(`partial mapping from ${key} to the ${varName} variable`);
-        return bindings;
-      }
+        // role: rest
+        testResult = /^(.+)\/rest$/.exec(roleKey);
+        if (testResult) {
+          // ::<key>/rest
+          [, key] = testResult;
+          const varName = annotationChunk[roleKey];
+          if (Array.isArray(token)) {
+            // token is an array
+            if (Number.isNaN(Number(key))) {
+              return [false];
+            }
+            bindings[varName] = (<Array<unknown>>token).slice(key);
+          } else {
+            // token as a regular object
+            const tokenKeys = Object.keys(token);
+            const keyIndex = tokenKeys.indexOf(key);
+            if (~keyIndex) {
+              // ~ for -1 gives 0 -> token has no such key
+              return [false];
+            }
+            bindings[varName] = tokenKeys
+              .slice(keyIndex)
+              .reduce((rest, tokenKey) => {
+                rest[tokenKey] = token[tokenKey];
+                return rest;
+              }, {});
+          }
+          // console.log(`partial mapping from ${key} to the ${varName} variable`);
+          return [true, bindings];
+        }
 
-      testResult = /^(.*)\/expr$/.exec(roleKey);
-      if (testResult) {
-        [, key] = testResult;
-        const expression = annotationBs[roleKey];
-        // calculating expression value
-        if (key) {
-          console.log(
-            `partial mapping of ${key} using '${expression}' expression`
+        // role: expr
+        testResult = /^(.*)\/expr$/.exec(roleKey);
+        if (testResult) {
+          [, key] = testResult;
+          const expression = annotationChunk[roleKey];
+          const expressionValue = this.reasoner.processTermInEnvironment(
+            expression
           );
-        } else {
-          console.log(`complete mapping using '${expression}' expression`);
+          if (key && typeof token[key] === 'undefined') {
+            return [false];
+          }
+          if (typeof expressionValue === 'object') {
+            // sub annotation
+            const [isSubApplicable, subBindings] = this.findBindings(
+              expressionValue,
+              key ? token[key] : token
+            );
+            if (!isSubApplicable) {
+              return [false];
+            }
+            bindings = { ...bindings, ...subBindings };
+          } else {
+            // just a simple value
+            const tokenValue = key ? token[key] : token;
+            if (tokenValue !== expressionValue) {
+              return [false];
+            }
+          }
+          // ::<key>/expr
+          // console.log(
+          //   `partial mapping of ${key} using '${expression}' expression`
+          // );
+          // ::/expr
+          // console.log(`complete mapping using '${expression}' expression`);
+          return [true, bindings];
         }
-        return bindings;
-      }
 
-      testResult = /^\/const$/.exec(roleKey);
-      if (testResult) {
-        const constantValue = annotationBs[roleKey];
-        console.log(`comparation with '${constantValue}'`);
-        return bindings;
-      }
+        // role: val
+        testResult = /^\/val$/.exec(roleKey);
+        if (testResult) {
+          [, key] = testResult;
+          const expression = annotationChunk[roleKey];
+          const expressionValue = this.reasoner.processTermInEnvironment(
+            expression
+          );
+          if (key && typeof token[key] === 'undefined') {
+            return [false];
+          }
+          const tokenValue = key ? token[key] : token;
+          if (!isEqual(tokenValue, expressionValue)) {
+            return [false];
+          }
+          // console.log(`comparation with '${expression}'`);
+          return [true, bindings];
+        }
 
-      key = roleKey;
-      const subAnnotation = annotationBs[roleKey];
-      console.log(`comparation using '${subAnnotation}' annotation`);
-
-      return bindings;
-    }, []);
+        // role: regular
+        key = roleKey;
+        const annotationValue = annotationChunk[key];
+        if (typeof token[key] === 'undefined') {
+          return [false];
+        }
+        if (typeof annotationValue === 'object') {
+          // sub annotation
+          const [isSubApplicable, subBindings] = this.findBindings(
+            annotationValue,
+            token[key]
+          );
+          if (!isSubApplicable) {
+            return [false];
+          }
+          bindings = { ...bindings, ...subBindings };
+        } else {
+          // just a simple value
+          const tokenValue = key ? token[key] : token;
+          if (tokenValue !== annotationValue) {
+            return [false];
+          }
+        }
+        // console.log(`comparation using '${subAnnotation}' annotation`);
+        return [true, bindings];
+      },
+      [true, {}]
+    );
   }
 
   // private getBindings(pattern, tokens): Array<Record<string, unknown>> {

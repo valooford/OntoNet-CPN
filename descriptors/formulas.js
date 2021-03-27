@@ -59,7 +59,7 @@ function validate(data) {
 }
 
 // Constants
-const dataStructure = new Multiset(['{res: res, values: l}']);
+const data_structure = { 'res/var': 'res', 'values/var': 'l' };
 
 module.exports = {
   Alias,
@@ -84,5 +84,5 @@ module.exports = {
 
   validate,
 
-  dataStructure,
+  data_structure,
 };
