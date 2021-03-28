@@ -329,44 +329,62 @@ class Engine {
 
   private getIsolatedBindings(inputs, annotations, marking) {
     return Object.keys(inputs).reduce((ib, id) => {
-      ib[id] = Object.keys(inputs[id]).reduce((arcIb, arcId) => {
-        const placeId = inputs[id][arcId];
-        const arcAnnotations = annotations[arcId];
-        const placeMarking = marking[placeId];
-        arcIb[arcId] = Object.keys(arcAnnotations).reduce(
-          (arcBindings, annotationChunkBs) => {
-            // const bindings = Engine.findBindings(
-            //   annotations[annotationChunkBs],
-            //   placeMarking
-            // );
-            // if (bindings.length) {
-            //   arcBindings[annotationChunkBs] = bindings;
-            // }
+      // for every transition
+      const [hasBindings, bindings] = Object.keys(inputs[id]).reduce(
+        ([hasIb, arcIb], arcId) => {
+          // for every input arc
+          if (!hasIb) {
+            return [false];
+          }
+          const placeId = inputs[id][arcId];
+          const arcAnnotations = annotations[arcId];
+          const placeMarking = marking[placeId];
+          const [hasArcBindings, arcBindings] = Object.keys(
+            arcAnnotations
+          ).reduce(
+            ([hasArcB, arcB], annotationChunkBs) => {
+              // for every chunk of input arc annotation
+              if (!hasArcB) {
+                return [false];
+              }
+              const [isBindingsFound, chunkBindings] = Object.keys(
+                placeMarking
+              ).reduce(
+                ([hasApplicableTokens, arcBsBindings], markingBs) => {
+                  // for every token in the marking
+                  const [isApplicable, tokenBindings] = this.findBindings(
+                    arcAnnotations[annotationChunkBs].value,
+                    placeMarking[markingBs].value
+                  );
+                  if (isApplicable) {
+                    arcBsBindings[markingBs] = tokenBindings;
+                    return [true, arcBsBindings];
+                  }
+                  return [hasApplicableTokens, arcBsBindings];
+                },
+                [false, {}]
+              );
+              if (!isBindingsFound) {
+                return [false];
+              }
+              // console.log('chunk bindings', bindings);
+              arcB[annotationChunkBs] = chunkBindings;
 
-            // or
-
-            const bindings = Object.keys(placeMarking).reduce(
-              (arcBsBindings, markingBs) => {
-                const [isApplicable, tokenBindings] = this.findBindings(
-                  arcAnnotations[annotationChunkBs].value,
-                  placeMarking[markingBs].value
-                );
-                if (isApplicable) {
-                  arcBsBindings[markingBs] = tokenBindings;
-                }
-                return arcBsBindings;
-              },
-              {}
-            );
-            // console.log('chunk bindings', bindings);
-            arcBindings[annotationChunkBs] = bindings;
-
-            return arcBindings;
-          },
-          {}
-        );
-        return arcIb;
-      }, {});
+              return [true, arcB];
+            },
+            [true, {}]
+          );
+          if (!hasArcBindings) {
+            return [false];
+          }
+          arcIb[arcId] = arcBindings;
+          return [true, arcIb];
+        },
+        [true, {}]
+      );
+      if (hasBindings) {
+        ib[id] = bindings;
+      }
       return ib;
     }, {});
   }
