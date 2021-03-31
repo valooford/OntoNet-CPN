@@ -1,0 +1,16 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT *
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  ?binding rdf:type t:Binding;
+		   t:has_variable ?variable;
+		   t:has_data ?data;
+		   t:has_token ?token_bs;
+		   t:has_annotationChunk ?annotation_chunk_bs.
+  ?data rdf:type t:Data;
+        t:has_value ?value.
+}

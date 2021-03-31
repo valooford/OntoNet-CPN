@@ -210,4 +210,42 @@ export default {
         .join(' UNION ')}
     }`;
   },
+  'set-raw-bindings': (
+    bindings: Array<{
+      variableName: string;
+      value: string;
+      tokenUri: string;
+      annoChunkUri: string;
+    }>
+  ): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?binding rdf:type t:Binding;
+           t:has_variable ?variable;
+           t:has_data ?data;
+           t:has_token ?token_bs;
+           t:has_annotationChunk ?annotation_chunk_bs.
+      ?data rdf:type t:Data;
+            t:has_value ?value.
+    }
+    WHERE {
+      ${bindings.map(
+        (b) => `{
+        BIND(IRI(CONCAT(STR(a:), "binding_", STRUUID())) as ?binding)
+        BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?data)
+        ?variable rdf:type t:Variable;
+                t:has_value "${b.variableName}".
+      BIND("${b.value.replace(/"/g, '\\"')}" as ?value)
+      BIND(<${b.tokenUri}> as ?token_bs)
+      BIND(<${b.annoChunkUri}> as ?annotation_chunk_bs)
+      }`
+      ).join(`
+      UNION
+      `)}
+    }`;
+  },
 };

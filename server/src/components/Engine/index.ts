@@ -275,7 +275,51 @@ class Engine {
       annotations,
       marking
     );
-    console.log(isolatedBindings);
+    // console.log(isolatedBindings);
+
+    const isolatedBindingsList = <interfaces.isolatedBindingsListType>(
+      Object.values(isolatedBindings).reduce(
+        (transitionsIbList, transitionIb) => {
+          transitionsIbList.push(
+            ...Object.values(transitionIb).reduce((arcsIbList, arcIb) => {
+              arcsIbList.push(
+                ...Object.keys(arcIb).reduce(
+                  (annoChunksIbList, annoChunkUri) => {
+                    const annoChunkIb = arcIb[annoChunkUri];
+                    annoChunksIbList.push(
+                      ...Object.keys(annoChunkIb).reduce(
+                        (tokensIbList, tokenUri) => {
+                          const tokensIb = annoChunkIb[tokenUri];
+                          tokensIbList.push(
+                            ...Object.keys(tokensIb).map((variableName) => ({
+                              variableName,
+                              value: JSON.stringify(tokensIb[variableName]),
+                              tokenUri,
+                              annoChunkUri,
+                            }))
+                          );
+                          return tokensIbList;
+                        },
+                        []
+                      )
+                    );
+                    return annoChunksIbList;
+                  },
+                  []
+                )
+              );
+              return arcsIbList;
+            }, [])
+          );
+          return transitionsIbList;
+        },
+        []
+      )
+    );
+    // console.log('isolatedBindingsList', isolatedBindingsList);
+    this.sendUpdateRequest(queries['set-raw-bindings'](isolatedBindingsList));
+
+    // ...send reasoning SPARQL request
 
     // const { transitions, arcs, places } = this.netStructure;
     // or
@@ -327,7 +371,11 @@ class Engine {
     );
   }
 
-  private getIsolatedBindings(inputs, annotations, marking) {
+  private getIsolatedBindings(
+    inputs,
+    annotations,
+    marking
+  ): interfaces.isolatedBindings {
     return Object.keys(inputs).reduce((ib, id) => {
       // for every transition
       const [hasBindings, bindings] = Object.keys(inputs[id]).reduce(

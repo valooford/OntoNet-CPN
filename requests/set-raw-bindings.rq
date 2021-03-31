@@ -13,9 +13,9 @@ INSERT {
         t:has_value ?value.
 }
 WHERE {
-  BIND(IRI(CONCAT(STR(a:), "binding_", STRUUID())) as ?binding)
-  BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?data)
   {
+    BIND(IRI(CONCAT(STR(a:), "binding_", STRUUID())) as ?binding)
+    BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?data)
     ?variable rdf:type t:Variable;
 	          t:has_value "<var_name>".
 	BIND("<json_var_value>" as ?value)

@@ -45,3 +45,22 @@ export type initialStateResponse = {
     >;
   };
 };
+
+export type isolatedBindings = {
+  [transitionUri: string]: {
+    [arcUri: string]: {
+      [annotationChunkBsUri: string]: {
+        [tokenBsUri: string]: {
+          [variableName: string]: string;
+        };
+      };
+    };
+  };
+};
+
+export type isolatedBindingsListType = Array<{
+  variableName: string;
+  value: string;
+  tokenUri: string;
+  annoChunkUri: string;
+}>;
