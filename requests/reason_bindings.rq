@@ -10,5 +10,27 @@ INSERT {
   
 }
 WHERE {
+  # selection
+  ?binding rdf:type t:Binding;
+           t:has_data ?data;
+		   t:has_variable ?variable;
+		   t:has_token ?token_bs;
+		   t:has_annotationChunk ?annotation_bs.
+  FILTER NOT EXISTS {
+    ?transition_mode rdf:type t:TransitionMode;
+	                 t:has_binding ?binding.
+  }
+  ?data t:has_value ?value.
+  ?variable t:has_value ?variable_name.
+  ?token_bs t:has_data ?token_data;
+            t:has_multiplicity ?token_mul.
+  ?token_data t:has_value ?token_value.
+  ?annotation_bs t:has_multiplicity ?annotation_mul.
+  ?annotation_ms rdf:type t:Multiset;
+                 t:has_basisSet ?annotation_bs.
+  ?arc rdf:type t:Arc;
+       t:has_multisetOfTerms ?annotation_ms;
+	   t:has_targetNode ?transition.
   
+  # filtration
 }
