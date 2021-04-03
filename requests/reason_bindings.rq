@@ -7,7 +7,14 @@ DELETE {
   
 }
 INSERT {
-  
+  ?transition_modes_ms rdf:type t:Multiset;
+                       t:has_transition ?transition;
+                       t:has_basisSet ?transition_mode_bs.
+  ?transition_mode_bs rdf:type t:BasisSet;
+                      t:has_multiplicity ?transition_mode_mul;
+					  t:has_data ?transition_mode.
+  ?transition_mode rdf:type t:TransitionMode;
+                   t:has_binding ?binding.
 }
 WHERE {
   # selection
@@ -31,6 +38,10 @@ WHERE {
   ?arc rdf:type t:Arc;
        t:has_multisetOfTerms ?annotation_ms;
 	   t:has_targetNode ?transition.
+	   
+  BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?transition_modes_ms)
+  BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?transition_mode_bs)
+  BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
   
   # filtration
 }
