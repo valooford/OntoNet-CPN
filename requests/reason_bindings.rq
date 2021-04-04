@@ -11,37 +11,40 @@ INSERT {
                        t:has_transition ?transition;
                        t:has_basisSet ?transition_mode_bs.
   ?transition_mode_bs rdf:type t:BasisSet;
-                      t:has_multiplicity ?transition_mode_mul;
+                      t:has_multiplicity 1;
 					  t:has_data ?transition_mode.
   ?transition_mode rdf:type t:TransitionMode;
                    t:has_binding ?binding.
 }
 WHERE {
   # selection
-  ?binding rdf:type t:Binding;
-           t:has_data ?data;
-		   t:has_variable ?variable;
-		   t:has_token ?token_bs;
-		   t:has_annotationChunk ?annotation_bs.
-  FILTER NOT EXISTS {
-    ?transition_mode rdf:type t:TransitionMode;
-	                 t:has_binding ?binding.
-  }
-  ?data t:has_value ?value.
-  ?variable t:has_value ?variable_name.
-  ?token_bs t:has_data ?token_data;
-            t:has_multiplicity ?token_mul.
-  ?token_data t:has_value ?token_value.
-  ?annotation_bs t:has_multiplicity ?annotation_mul.
-  ?annotation_ms rdf:type t:Multiset;
-                 t:has_basisSet ?annotation_bs.
-  ?arc rdf:type t:Arc;
-       t:has_multisetOfTerms ?annotation_ms;
-	   t:has_targetNode ?transition.
-	   
-  BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?transition_modes_ms)
-  BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?transition_mode_bs)
+  ?transition rdf:type t:Transition.
   BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
+  {
+    SELECT *
+    WHERE {
+      ?arc rdf:type t:Arc;
+	       t:has_targetNode ?transition;
+           t:has_multisetOfTerms ?annotation_ms.
+      ?annotation_ms t:has_basisSet ?annotation_bs.
+      ?annotation_bs t:has_multiplicity ?annotation_mul.
+      ?binding rdf:type t:Binding;
+               t:has_data ?data;
+		       t:has_variable ?variable;
+		       t:has_token ?token_bs;
+		       t:has_annotationChunk ?annotation_bs.
+      # Bindings must be leaf (free)
+      FILTER NOT EXISTS {
+        ?transition_mode rdf:type t:TransitionMode;
+	                     t:has_binding ?binding.
+      }
+      ?data t:has_value ?value.
+      ?variable t:has_value ?variable_name.
+      ?token_bs t:has_data ?token_data;
+                t:has_multiplicity ?token_mul.
+      ?token_data t:has_value ?token_value.
+    }
+  }
   
   # filtration
 }
