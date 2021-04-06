@@ -18,18 +18,11 @@ INSERT {
 }
 WHERE {
   # selection
-  OPTIONAL {
-    VALUES ?a { "one" "two" "three" }
-  }
-  OPTIONAL {
-    VALUES ?b { "one" "two" "three" }
-  }
-  OPTIONAL {
-    VALUES ?c { "one" "two" "three" }
-  }
-  FILTER (
-    ?a != ?b && ?a != ?c && ?b != ?c
-  )
+  BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
+  VALUES ?a { "one" undef }
+  VALUES ?b { "two" undef }
+  VALUES ?c { "three" undef }
+  FILTER (BOUND(?a) || BOUND(?b) || BOUND(?c))
   
   # filtration
 }
