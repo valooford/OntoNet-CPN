@@ -248,4 +248,21 @@ export default {
       `)}
     }`;
   },
+  'get-leaf-bindings-ids': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT (?binding as ?id)
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?binding rdf:type t:Binding.
+      # Bindings must be leaf (free)
+      FILTER NOT EXISTS {
+        ?transition_mode rdf:type t:TransitionMode;
+                         t:has_binding ?binding.
+      }
+    }`
+  }
 };

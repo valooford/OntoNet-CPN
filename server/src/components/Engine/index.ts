@@ -317,7 +317,17 @@ class Engine {
       )
     );
     // console.log('isolatedBindingsList', isolatedBindingsList);
-    this.sendUpdateRequest(queries['set-raw-bindings'](isolatedBindingsList));
+    await this.sendUpdateRequest(
+      queries['set-raw-bindings'](isolatedBindingsList)
+    );
+
+    const leafBindingsResponse = await this.sendSelectRequest(
+      queries['get-leaf-bindings-ids']()
+    );
+    const leafBindings = leafBindingsResponse.data.results.bindings.map(
+      (b) => b.id.value
+    );
+    console.log('leafBindings: ', leafBindings);
 
     // ...send reasoning SPARQL request
 
