@@ -263,6 +263,40 @@ export default {
         ?transition_mode rdf:type t:TransitionMode;
                          t:has_binding ?binding.
       }
-    }`
-  }
+    }`;
+  },
+  'get-leaf-bindings-combinations': (
+    bindings: Record<string, string>
+  ): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    # Getting the combinations and disaggregating them back row by row
+    SELECT ?transition_mode ?binding
+    WHERE {
+      OPTIONAL {
+        BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
+      }
+      ${Object.keys(bindings)
+        .map(
+          (varName) => `VALUES ?${varName} { <${bindings[varName]}> <NULL> }`
+        )
+        .join('\n')}
+      FILTER (${Object.keys(bindings)
+        .map((varName) => `?${varName} != <NULL>`)
+        .join(' || ')})
+      
+      ${Object.keys(bindings)
+        .map(
+          (varName) => `{
+            VALUES ?${varName} { <${bindings[varName]}> }
+            BIND ("${varName} value" as ?binding)
+          }`
+        )
+        .join(' UNION ')}
+    }
+    ORDER BY ?transition_mode
+    `;
+  },
 };

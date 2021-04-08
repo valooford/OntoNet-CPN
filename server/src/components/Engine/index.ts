@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import FormData from 'form-data';
 import isEqual from 'lodash/isEqual';
 
+import { hashStr } from '../../utils';
 import Reasoner, { types as reasonerTypes } from '../Reasoner';
 import types from './types';
 import queries from './queries';
@@ -324,10 +325,20 @@ class Engine {
     const leafBindingsResponse = await this.sendSelectRequest(
       queries['get-leaf-bindings-ids']()
     );
-    const leafBindings = leafBindingsResponse.data.results.bindings.map(
-      (b) => b.id.value
+    const leafBindings = leafBindingsResponse.data.results.bindings
+      .map((b) => b.id.value)
+      .reduce((lb, b) => {
+        lb[hashStr(b)] = b;
+        return lb;
+      }, {});
+
+    const bindingsCombitationsRequest = await this.sendSelectRequest(
+      queries['get-leaf-bindings-combinations'](leafBindings)
     );
-    console.log('leafBindings: ', leafBindings);
+    const bindingsCombitations = bindingsCombitationsRequest.data.results.bindings.map(
+      Engine.getPayloadFromRaw
+    );
+    console.log('bindingsCombitations: ', bindingsCombitations);
 
     // ...send reasoning SPARQL request
 

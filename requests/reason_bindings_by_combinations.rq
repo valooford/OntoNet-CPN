@@ -26,28 +26,3 @@ WHERE {
   
   # filtration
 }
-
-
-# Example of getting the combinations and disaggregating them back row by row
-SELECT ?transition_mode ?binding
-WHERE {
-  OPTIONAL {
-    BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
-  }
-  VALUES ?a { "one" <NULL> }
-  VALUES ?b { "two" <NULL> }
-  VALUES ?c { "three" <NULL> }
-  FILTER (?a != <NULL> || ?b != <NULL> || ?c != <NULL>)
-  
-  {
-    VALUES ?a { "one" }
-    BIND ("a value" as ?binding)
-  } UNION {
-    VALUES ?b { "two" }
-    BIND ("b value" as ?binding)
-  } UNION {
-    VALUES ?c { "three" }
-    BIND ("c value" as ?binding)
-  }
-}
-ORDER BY ?transition_mode
