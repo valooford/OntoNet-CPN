@@ -332,13 +332,26 @@ class Engine {
         return lb;
       }, {});
 
-    const bindingsCombitationsRequest = await this.sendSelectRequest(
+    const bindingsCombitationsResponse = await this.sendSelectRequest(
       queries['get-leaf-bindings-combinations'](leafBindings)
     );
-    const bindingsCombitations = bindingsCombitationsRequest.data.results.bindings.map(
-      Engine.getPayloadFromRaw
-    );
-    console.log('bindingsCombitations: ', bindingsCombitations);
+    // const bindingsCombitations = bindingsCombitationsResponse.data.results.bindings.map(
+    //   Engine.getPayloadFromRaw
+    // );
+    // console.log('bindingsCombitations: ', bindingsCombitations);
+    const transitionModes = bindingsCombitationsResponse.data.results.bindings.reduce(
+      (tms, b) => {
+        const tmId = b['transition_mode'].value;
+        const value = b['binding'].value;
+        if (!tms[tmId]) {
+          tms[tmId] = [];
+        }
+        tms[tmId].push(value);
+        return tms;
+      },
+      {}
+    )
+    console.log('transitionModes: ', transitionModes);
 
     // ...send reasoning SPARQL request
 
