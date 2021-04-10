@@ -351,7 +351,8 @@ class Engine {
       },
       {}
     )
-    console.log('transitionModes: ', transitionModes);
+    // console.log('transitionModes: ', transitionModes);
+    console.log('transitionModes size: ', Object.keys(transitionModes).length);
 
     // ...send reasoning SPARQL request
 
