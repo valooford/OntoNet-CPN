@@ -323,7 +323,7 @@ class Engine {
     );
 
     const leafBindingsResponse = await this.sendSelectRequest(
-      queries['get-leaf-bindings-ids']()
+      queries['get-leaf-bindings']()
     );
     const leafBindings = leafBindingsResponse.data.results.bindings
       .map((b) => b.id.value)
@@ -350,7 +350,7 @@ class Engine {
         return tms;
       },
       {}
-    )
+    );
     // console.log('transitionModes: ', transitionModes);
     console.log('transitionModes size: ', Object.keys(transitionModes).length);
 

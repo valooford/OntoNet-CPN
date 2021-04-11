@@ -2,11 +2,17 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX t: <http://www.onto.net/core/>
 PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
-SELECT (?binding as ?id)
+SELECT ?transition ?annotation_bs ?token_bs (?binding as ?id)
 FROM <http://localhost:3030/ontonet/data/tbox>
 FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
-  ?binding rdf:type t:Binding.
+  ?arc rdf:type t:Arc;
+       t:has_targetNode ?transition;
+       t:has_multisetOfTerms ?annotation_ms.
+  ?annotation_ms t:has_basisSet ?annotation_bs.
+  ?binding rdf:type t:Binding;
+           t:has_token ?token_bs;
+           t:has_annotationChunk ?annotation_bs.
   # Bindings must be leaf (free)
   FILTER NOT EXISTS {
     ?transition_mode rdf:type t:TransitionMode;
