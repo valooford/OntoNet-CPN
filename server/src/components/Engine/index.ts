@@ -325,12 +325,34 @@ class Engine {
     const leafBindingsResponse = await this.sendSelectRequest(
       queries['get-leaf-bindings']()
     );
-    const leafBindings = leafBindingsResponse.data.results.bindings
-      .map((b) => b.id.value)
-      .reduce((lb, b) => {
-        lb[hashStr(b)] = b;
+    // const leafBindings = leafBindingsResponse.data.results.bindings
+    //   .map((b) => b.id.value)
+    //   .reduce((lb, b) => {
+    //     lb[hashStr(b)] = b;
+    //     return lb;
+    //   }, {});
+    const leafBindings = leafBindingsResponse.data.results.bindings.reduce(
+      (lb, row) => {
+        const {
+          transition,
+          annotation_bs,
+          token_bs,
+          id,
+        } = Engine.getPayloadFromRaw(row);
+        if (!lb[transition]) {
+          lb[transition] = {};
+        }
+        if (!lb[transition][annotation_bs]) {
+          lb[transition][annotation_bs] = {};
+        }
+        if (!lb[transition][annotation_bs][token_bs]) {
+          lb[transition][annotation_bs][token_bs] = [];
+        }
+        lb[transition][annotation_bs][token_bs].push(id);
         return lb;
-      }, {});
+      },
+      {}
+    );
 
     const bindingsCombitationsResponse = await this.sendSelectRequest(
       queries['get-leaf-bindings-combinations'](leafBindings)
