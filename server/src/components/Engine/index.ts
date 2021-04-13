@@ -346,35 +346,43 @@ class Engine {
           lb[transition][annotation_bs] = {};
         }
         if (!lb[transition][annotation_bs][token_bs]) {
-          lb[transition][annotation_bs][token_bs] = [];
+          lb[transition][annotation_bs][token_bs] = {};
         }
-        lb[transition][annotation_bs][token_bs].push(id);
+        lb[transition][annotation_bs][token_bs][hashStr(id)] = id;
         return lb;
       },
       {}
     );
 
-    const bindingsCombitationsResponse = await this.sendSelectRequest(
-      queries['get-leaf-bindings-combinations'](leafBindings)
-    );
-    // const bindingsCombitations = bindingsCombitationsResponse.data.results.bindings.map(
-    //   Engine.getPayloadFromRaw
+    // const bindingsCombitationsResponse = await this.sendSelectRequest(
+    //   queries['get-leaf-bindings-combinations'](leafBindings)
     // );
-    // console.log('bindingsCombitations: ', bindingsCombitations);
-    const transitionModes = bindingsCombitationsResponse.data.results.bindings.reduce(
-      (tms, b) => {
-        const tmId = b['transition_mode'].value;
-        const value = b['binding'].value;
-        if (!tms[tmId]) {
-          tms[tmId] = [];
-        }
-        tms[tmId].push(value);
-        return tms;
-      },
-      {}
+    // // const bindingsCombitations = bindingsCombitationsResponse.data.results.bindings.map(
+    // //   Engine.getPayloadFromRaw
+    // // );
+    // // console.log('bindingsCombitations: ', bindingsCombitations);
+    // const transitionModes = bindingsCombitationsResponse.data.results.bindings.reduce(
+    //   (tms, b) => {
+    //     const tmId = b['transition_mode'].value;
+    //     const value = b['binding'].value;
+    //     if (!tms[tmId]) {
+    //       tms[tmId] = [];
+    //     }
+    //     tms[tmId].push(value);
+    //     return tms;
+    //   },
+    //   {}
+    // );
+    // // console.log('transitionModes: ', transitionModes);
+    // console.log('transitionModes size: ', Object.keys(transitionModes).length);
+
+    // console.log(
+    //   'request: ',
+    //   queries['insert-leaf-bindings-combinations'](leafBindings)
+    // );
+    await this.sendUpdateRequest(
+      queries['insert-leaf-bindings-combinations'](leafBindings)
     );
-    // console.log('transitionModes: ', transitionModes);
-    console.log('transitionModes size: ', Object.keys(transitionModes).length);
 
     // ...send reasoning SPARQL request
 

@@ -272,38 +272,89 @@ export default {
     }
     `;
   },
-  'get-leaf-bindings-combinations': (
-    bindings: Record<string, string>
-  ): string => {
+  'insert-leaf-bindings-combinations': (bindingsData: {
+    [transition: string]: {
+      [annotation_bs: string]: {
+        [token_bs: string]: { [binding_var: string]: string };
+      };
+    };
+  }): string => {
     return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX t: <http://www.onto.net/core/>
     PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
     
-    # Getting the combinations and disaggregating them back row by row
-    SELECT ?transition_mode ?binding
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?transition_mode rdf:type t:TransitionMode;
+                       t:has_binding ?binding.
+    }
     WHERE {
-      OPTIONAL {
-        BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
-      }
-      ${Object.keys(bindings)
-        .map(
-          (varName) => `VALUES ?${varName} { <${bindings[varName]}> <NULL> }`
-        )
-        .join('\n')}
-      FILTER (${Object.keys(bindings)
-        .map((varName) => `?${varName} != <NULL>`)
-        .join(' || ')})
-      
-      ${Object.keys(bindings)
-        .map(
-          (varName) => `{
-            VALUES ?${varName} { <${bindings[varName]}> }
-            BIND ("${varName} value" as ?binding)
-          }`
-        )
+      # transition level
+      ${Object.keys(bindingsData)
+        .map((transitionId) => {
+          const annotations = bindingsData[transitionId];
+          const allBindings = Object.values(annotations).reduce(
+            (acc, tokens) => ({
+              ...acc,
+              ...Object.values(tokens).reduce(
+                (accB, bindings) => ({ ...accB, ...bindings }),
+                {}
+              ),
+            }),
+            {}
+          );
+          return `{
+          BIND(<${transitionId}> as ?transition)
+          
+          # annotation chunk level
+          ${Object.values(annotations)
+            .map((tokens) => {
+              return `{
+              ${Object.values(tokens)
+                .map((bindings) => {
+                  const [variables, ids] = Object.keys(bindings).reduce(
+                    (acc, variable) => {
+                      const id = bindings[variable];
+                      acc[0].push(variable);
+                      acc[1].push(id);
+                      return acc;
+                    },
+                    [[], []]
+                  );
+                  return `VALUES (${variables
+                    .map((v) => `?${v}`)
+                    .join(' ')}) { (${ids
+                    .map((v) => `<${v}>`)
+                    .join(' ')}) (${'t:NULL '
+                    .repeat(ids.length)
+                    .slice(0, -1)}) }`;
+                })
+                .join('\n')}
+              # at least one token was chosen
+              FILTER (${Object.values(tokens)
+                .map((bindings) => `?${Object.keys(bindings)[0]} != t:NULL`)
+                .join(' || ')})
+            }`;
+            })
+            .join('\n')}
+          
+          OPTIONAL {
+            BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
+          }
+          
+          ${Object.keys(allBindings)
+            .map((variable) => {
+              const id = allBindings[variable];
+              return `{
+              VALUES ?${variable} { <${id}> }
+              BIND (?${variable} as ?binding)
+            }`;
+            })
+            .join(' UNION ')}
+        }`;
+        })
         .join(' UNION ')}
     }
-    ORDER BY ?transition_mode
     `;
   },
 };

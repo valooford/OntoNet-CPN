@@ -1,0 +1,67 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+WITH <http://localhost:3030/ontonet/data/abox>
+DELETE {
+  
+}
+INSERT {
+  ?transition_mode rdf:type t:TransitionMode;
+                   t:has_binding ?binding.
+}
+WHERE {
+  # transition level
+  {
+    BIND(<transition> as ?transition)
+    
+    # annotation chunk level
+    {
+      VALUES (?b1_x ?b1_y) { (a:b1_x a:b1_y) (t:NULL t:NULL) }  # token1
+      VALUES (?b2_x ?b2_y) { (a:b2_x a:b2_y) (t:NULL t:NULL) }  # token2
+      # at least one token was chosen
+      FILTER (?b1_x != t:NULL || ?b2_x != t:NULL)
+    }
+    
+    {
+      VALUES (?b3_x) { (a:b3_x) (t:NULL) }  # token3
+      VALUES (?b4_x) { (a:b4_x) (t:NULL) }  # token4
+      # at least one token was chosen
+      FILTER (?b3_x != t:NULL || ?b4_x != t:NULL)
+    }
+	
+#    {
+#      # another annotation chunk
+#    }
+    
+    OPTIONAL {
+      BIND(IRI(CONCAT(STR(a:), "tm_", STRUUID())) as ?transition_mode)
+    }
+    
+    {
+      VALUES ?b1_x { a:b1_x }
+      BIND ("<b1_x>" as ?binding)
+    } UNION {
+      VALUES ?b1_y { a:b1_y }
+      BIND ("<b1_y>" as ?binding)
+    } UNION {
+      VALUES ?b2_x { a:b2_x }
+      BIND ("<b2_x>" as ?binding)
+    } UNION {
+      VALUES ?b2_y { a:b2_y }
+      BIND ("<b2_y>" as ?binding)
+    }
+    UNION
+    {
+      VALUES ?b3_x { a:b3_x }
+      BIND ("<b3_x>" as ?binding)
+    } UNION {
+      VALUES ?b4_x { a:b4_x }
+      BIND ("<b4_x>" as ?binding)
+    }
+  }
+#  UNION
+#  {
+#    # another transition
+#  }
+}
