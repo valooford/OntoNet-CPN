@@ -1,0 +1,44 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+#WITH <http://localhost:3030/ontonet/data/abox>
+#DELETE {
+#  ?del_transition_mode rdf:type t:TransitionMode;
+#                       t:has_binding ?binding.
+#}
+#SELECT ?del_transition_mode ?variable_name ?value
+#SELECT ?del_transition_mode ?variable1_name ?value1 ?variable2_name ?value2
+SELECT ?del_transition_mode
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  {
+    ?del_transition_mode rdf:type t:TransitionMode.
+
+    FILTER EXISTS {
+      # bindings do not match
+      ?del_transition_mode rdf:type t:TransitionMode;
+                           t:has_binding ?binding1;
+                           t:has_binding ?binding2.
+      FILTER (?binding1 != ?binding2)
+      ?binding1 t:has_variable ?variable1;
+                t:has_data ?data1.
+      ?binding2 t:has_variable ?variable2;
+                t:has_data ?data2.
+      ?variable1 t:has_value ?variable1_name.
+      ?variable2 t:has_value ?variable2_name.
+      FILTER (?variable1_name = ?variable2_name)
+      ?data1 t:has_value ?value1.
+      ?data2 t:has_value ?value2.
+      FILTER (?value1 != ?value2)
+    }
+  }
+  UNION
+  {
+    ?del_transition_mode rdf:type t:TransitionMode.
+    
+    FILTER (true)
+    # tokens not enough
+  }
+}
