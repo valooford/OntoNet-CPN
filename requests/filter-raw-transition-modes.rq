@@ -43,7 +43,8 @@ WHERE {
   }
 }
 
-SELECT ?anno_chunk_multiplicity ?token_multiplitity
+#SELECT ?anno_chunk_multiplicity ?token_multiplitity
+SELECT DISTINCT ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity (SUM(?token_multiplitity) as ?token_count)
 FROM <http://localhost:3030/ontonet/data/tbox>
 FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
@@ -52,5 +53,12 @@ WHERE {
   ?binding t:has_annotationChunk ?anno_chunk_bs;
            t:has_token ?token_bs.
   ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
-  ?token_bs t:has_multiplicity ?token_multiplitity.                
+  ?token_bs t:has_multiplicity ?token_multiplitity.
+  ?token_ms rdf:type t:Multiset;
+            t:has_basisSet ?token_bs.
+  ?marking_of_place rdf:type t:MarkingOfPlace;
+                    t:has_place ?place;
+                    t:has_multisetOfTokens ?token_ms.
+  
 }
+GROUP BY ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity
