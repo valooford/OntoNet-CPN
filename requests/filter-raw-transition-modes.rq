@@ -45,21 +45,22 @@ WHERE {
 
 #SELECT ?anno_chunk_multiplicity ?token_multiplitity
 #SELECT DISTINCT ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity (SUM(?token_multiplitity) as ?token_count)
-SELECT ?anno_chunk_bs ?reserve
+#SELECT ?anno_chunk_bs ?reserve
+SELECT ?token_bs (MIN(?reserve) as ?min_reserve)
 FROM <http://localhost:3030/ontonet/data/tbox>
 FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
-#  ?transition_mode rdf:type t:TransitionMode;
-#                   t:has_binding ?binding.
-#  ?binding t:has_annotationChunk ?anno_chunk_bs;
-#           t:has_token ?token_bs.
-#  ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
-#  ?token_bs t:has_multiplicity ?token_multiplitity.
-#  ?token_ms rdf:type t:Multiset;
-#            t:has_basisSet ?token_bs.
-#  ?marking_of_place rdf:type t:MarkingOfPlace;
-#                    t:has_place ?place;
-#                    t:has_multisetOfTokens ?token_ms.
+  ?transition_mode rdf:type t:TransitionMode;
+                   t:has_binding ?binding.
+  ?binding t:has_annotationChunk ?anno_chunk_bs;
+           t:has_token ?token_bs.
+  ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
+  ?token_bs t:has_multiplicity ?token_multiplitity.
+  ?token_ms rdf:type t:Multiset;
+            t:has_basisSet ?token_bs.
+  ?marking_of_place rdf:type t:MarkingOfPlace;
+                    t:has_place ?place;
+                    t:has_multisetOfTokens ?token_ms.
   
   {
     SELECT ?anno_chunk_bs ((SUM(?token_multiplitity) - ?anno_chunk_multiplicity) as ?reserve)
@@ -76,3 +77,4 @@ WHERE {
   }
 }
 #GROUP BY ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity
+GROUP BY ?token_bs
