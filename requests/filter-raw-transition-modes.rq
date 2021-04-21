@@ -46,23 +46,40 @@ WHERE {
 #SELECT ?anno_chunk_multiplicity ?token_multiplitity
 #SELECT DISTINCT ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity (SUM(?token_multiplitity) as ?token_count)
 #SELECT ?anno_chunk_bs ?reserve
-SELECT ?token_bs (MIN(?reserve) as ?min_reserve)
+#SELECT ?token_bs (MIN(?reserve) as ?min_reserve)
+SELECT ?a
 FROM <http://localhost:3030/ontonet/data/tbox>
 FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
-  ?transition_mode rdf:type t:TransitionMode;
-                   t:has_binding ?binding.
-  ?binding t:has_annotationChunk ?anno_chunk_bs;
-           t:has_token ?token_bs.
-  ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
-  ?token_bs t:has_multiplicity ?token_multiplitity.
-  ?token_ms rdf:type t:Multiset;
-            t:has_basisSet ?token_bs.
-  ?marking_of_place rdf:type t:MarkingOfPlace;
-                    t:has_place ?place;
-                    t:has_multisetOfTokens ?token_ms.
+#  ?transition_mode rdf:type t:TransitionMode;
+#                   t:has_binding ?binding.
+#  ?binding t:has_annotationChunk ?anno_chunk_bs;
+#           t:has_token ?token_bs.
+#  ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
+#  ?token_bs t:has_multiplicity ?token_multiplitity.
+#  ?token_ms rdf:type t:Multiset;
+#            t:has_basisSet ?token_bs.
+#  ?marking_of_place rdf:type t:MarkingOfPlace;
+#                    t:has_place ?place;
+#                    t:has_multisetOfTokens ?token_ms.
   
   {
+    # deficit
+    SELECT ?token_bs ((SUM(?anno_chunk_multiplicity) - ?token_multiplitity) as ?deficit)
+    WHERE {
+      ?transition_mode rdf:type t:TransitionMode;
+                       t:has_binding ?binding.
+      ?binding t:has_annotationChunk ?anno_chunk_bs;
+               t:has_token ?token_bs.
+      ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
+      ?token_bs t:has_multiplicity ?token_multiplitity.
+      
+    }
+    GROUP BY ?token_bs ?token_multiplitity
+  }
+  
+  {
+    # reserve
     SELECT ?anno_chunk_bs ((SUM(?token_multiplitity) - ?anno_chunk_multiplicity) as ?reserve)
     WHERE {
       ?transition_mode rdf:type t:TransitionMode;
@@ -75,6 +92,13 @@ WHERE {
     }
     GROUP BY ?anno_chunk_bs ?anno_chunk_multiplicity
   }
+  
+  {
+    SELECT ?deficit ?a
+    WHERE {
+      BIND(?deficit as ?a)
+    }
+  }
 }
 #GROUP BY ?place ?anno_chunk_bs ?token_bs ?anno_chunk_multiplicity
-GROUP BY ?token_bs
+#GROUP BY ?token_bs
