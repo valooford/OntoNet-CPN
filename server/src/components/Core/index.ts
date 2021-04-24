@@ -87,6 +87,10 @@ class Core {
         }
       }
     );
+    // firing have been triggered
+    this.cliEmitter.on(cliTypes.TRIGGER_FIRING, () => {
+      this.engineEmitter.emit(engineTypes.INITIATE_STEP);
+    });
   }
 
   private addWebServerEventListeners(): void {

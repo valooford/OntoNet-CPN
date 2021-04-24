@@ -19,6 +19,7 @@ const {
   ONTOLOGY_ABOX_UPLOADED,
   CONFIGURE_WITH_DESCRIPTOR,
   // VIEW_LOGS,
+  TRIGGER_FIRING,
 } = types;
 
 class CLI {
@@ -45,6 +46,10 @@ class CLI {
           value: ONTOLOGY_ABOX_UPLOADED,
         },
         // { name: 'View the server logs', value: VIEW_LOGS },
+        {
+          name: 'Trigger the transition firing',
+          value: TRIGGER_FIRING,
+        },
       ],
       prefix: '',
     },

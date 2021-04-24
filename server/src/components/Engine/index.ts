@@ -17,6 +17,7 @@ const {
   SPECIFY_ENDPOINT,
   UPLOAD_ONTOLOGY,
   FORWARD_SPARQL_REQUEST,
+  INITIATE_STEP,
 } = types;
 
 class Engine {
@@ -109,6 +110,15 @@ class Engine {
         // this.startReasoning();
       }
     );
+    // emulating a user's interaction: firing
+    this.emitter.on(INITIATE_STEP, async () => {
+      try {
+        await this.initiateRandomStep();
+        this.startReasoning();
+      } catch (e) {
+        console.log(`Error: "${e.message}"`);
+      }
+    });
   }
 
   private static getPayloadFromRaw(payloadRaw): Record<string, string> {
@@ -235,6 +245,10 @@ class Engine {
 
     // Finding enabled transitions
     this.formTransitionModes();
+    // ...
+  }
+
+  private async startReasoning(): Promise<void> {
     // ...
   }
 
@@ -653,16 +667,21 @@ class Engine {
     );
   }
 
-  // private getBindings(pattern, tokens): Array<Record<string, unknown>> {
-  //   const detachedBindings = pattern.basisSets.reduce(
-  //     (db, { data, multiplicity }) => {
-  //       // detachedBindings {}
-  //       Object.keys(data);
-  //       return db;
-  //     }
-  //   );
-  //   return null;
-  // }
+  private async initiateRandomStep(): Promise<void> {
+    const transitionModesResponse = await this.sendSelectRequest(
+      queries['get-leaf-transition-modes']()
+    );
+    const transitionModesIds = Object.values(
+      transitionModesResponse.data.results.bindings
+    ).map((b) => b.id.value);
+    if (!transitionModesIds.length)
+      throw Error('No leaf transition modes are available');
+
+    const modeIndex = Math.floor(transitionModesIds.length * Math.random());
+    await this.sendUpdateRequest(
+      queries['insert-firing'](transitionModesIds[modeIndex])
+    );
+  }
 }
 
 export default Engine;

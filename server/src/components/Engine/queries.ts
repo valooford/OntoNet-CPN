@@ -450,4 +450,60 @@ export default {
     }
     `;
   },
+  'get-leaf-transition-modes': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ?id
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?transition_mode rdf:type t:TransitionMode.
+      # Transition modes must be leaf (free)
+      FILTER NOT EXISTS {
+        ?firing rdf:type t:Firing;
+                t:has_multisetOfTransitionModes ?multiset_tm.
+        ?multiset_tm t:has_basisSet ?basis_set_tm.
+        ?basis_set_tm t:has_data ?transition_mode.
+      }
+      BIND (?transition_mode as ?id)
+    }
+    `;
+  },
+  'insert-firing': (transitionModeId: string): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?cpn t:has_firing ?firing.
+      ?firing rdf:type t:Firing;
+              t:has_sourceMarking ?marking;
+              t:has_multisetOfTransitionModes ?multiset_tm.
+      ?multiset_tm t:has_basisSet ?basis_set_tm.
+      ?basis_set_tm t:has_data ?transition_mode.
+    }
+    #SELECT *
+    #FROM <http://localhost:3030/ontonet/data/tbox>
+    #FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      GRAPH <http://localhost:3030/ontonet/data/tbox> {
+          ?cpn rdf:type t:CPN.
+      }
+      ?cpn t:has_marking ?marking.
+      FILTER NOT EXISTS {
+        ?cpn t:has_firing ?other_firing.
+        ?other_firing t:has_sourceMarking ?marking.
+      }
+      ?transition_mode rdf:type t:TransitionMode. # replace this to the explicit <id>
+      BIND (<${transitionModeId}> as ?transitionMode)
+      
+      BIND(IRI(CONCAT(STR(a:), "firing_", STRUUID())) as ?firing)
+      BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset_tm)
+      BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?basis_set_tm)
+    }
+    `;
+  },
 };
