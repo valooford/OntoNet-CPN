@@ -385,6 +385,7 @@ class Engine {
     );
 
     // ...send reasoning SPARQL request
+    await this.sendUpdateRequest(queries['filter-raw-transition-modes']());
 
     // const { transitions, arcs, places } = this.netStructure;
     // or

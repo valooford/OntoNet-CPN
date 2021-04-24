@@ -286,7 +286,8 @@ export default {
     WITH <http://localhost:3030/ontonet/data/abox>
     INSERT {
       ?transition_mode rdf:type t:TransitionMode;
-                       t:has_binding ?binding.
+                       t:has_binding ?binding;
+                       t:has_transition ?transition.
     }
     WHERE {
       # transition level
@@ -354,6 +355,98 @@ export default {
         }`;
         })
         .join(' UNION ')}
+    }
+    `;
+  },
+  'filter-raw-transition-modes': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    DELETE {
+      ?transition_mode rdf:type t:TransitionMode;
+                       t:has_binding ?binding;
+               t:has_transition ?transition.
+    }
+    WHERE {
+      {
+        SELECT DISTINCT ?transition_mode
+        WHERE {
+          {
+            # bindings do not match
+            ?transition_mode rdf:type t:TransitionMode.
+            FILTER EXISTS {
+              ?transition_mode rdf:type t:TransitionMode;
+                                   t:has_binding ?binding1;
+                                   t:has_binding ?binding2.
+              FILTER (?binding1 != ?binding2)
+              ?binding1 t:has_variable ?variable1;
+                        t:has_data ?data1.
+              ?binding2 t:has_variable ?variable2;
+                        t:has_data ?data2.
+              ?variable1 t:has_value ?variable1_name.
+              ?variable2 t:has_value ?variable2_name.
+              FILTER (?variable1_name = ?variable2_name)
+              ?data1 t:has_value ?value1.
+              ?data2 t:has_value ?value2.
+              FILTER (?value1 != ?value2)
+            }
+          }
+          UNION
+          {
+            # not enough tokens
+            {
+              SELECT ?transition_mode ((?n + SUM(?diff)) as ?res)
+              WHERE {
+                {
+                  SELECT DISTINCT ?transition_mode ?anno_chunk_bs ?token_bs
+                  WHERE {
+                    ?transition_mode rdf:type t:TransitionMode;
+                                     t:has_binding ?binding.
+                    ?binding t:has_annotationChunk ?anno_chunk_bs;
+                             t:has_token ?token_bs.
+                  }
+                }
+    
+                ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
+                ?token_bs t:has_multiplicity ?token_multiplitity.
+    
+                BIND (?anno_chunk_multiplicity as ?k)
+                BIND (?token_multiplitity as ?n)
+    
+                {
+                  SELECT DISTINCT ?anno_chunk_bs (SUM(?n) as ?sum_n)
+                  WHERE {
+                    {
+                      SELECT DISTINCT ?anno_chunk_bs ?token_bs
+                      WHERE {
+                        ?transition_mode t:has_binding ?binding.
+                        ?binding t:has_annotationChunk ?anno_chunk_bs;
+                                 t:has_token ?token_bs.
+                      }
+                    }
+                    ?token_bs t:has_multiplicity ?token_multiplitity.
+                    BIND (?token_multiplitity as ?n)
+                  }
+                  GROUP BY ?anno_chunk_bs
+                }
+                BIND ((?sum_n - ?n - ?k) as ?diff)
+              }
+              GROUP BY ?transition_mode ?token_bs ?n
+            }
+            FILTER (?res < 0)
+          }
+        }
+      }
+      
+      {
+        ?transition_mode t:has_binding ?binding.
+      }
+      UNION
+      {
+        ?transition_mode t:has_transition ?transition.
+      }
     }
     `;
   },

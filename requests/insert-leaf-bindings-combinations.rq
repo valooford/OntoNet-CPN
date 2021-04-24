@@ -8,7 +8,8 @@ DELETE {
 }
 INSERT {
   ?transition_mode rdf:type t:TransitionMode;
-                   t:has_binding ?binding.
+                   t:has_binding ?binding;
+				   t:has_transition ?transition.
 }
 WHERE {
   # transition level
