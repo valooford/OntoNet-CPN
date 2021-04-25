@@ -20,7 +20,7 @@ class Reasoner {
     });
   }
 
-  public processTermInEnvironment(term: string): unknown {
+  public processTermInEnvironment(term: string, extendedEnv = {}): unknown {
     return new Function(
       'env',
       `
@@ -28,7 +28,7 @@ class Reasoner {
           return ${term};
         }
       `
-    )(this.formulas);
+    )({ ...extendedEnv, ...this.formulas });
   }
 
   processTerms(terms: interfaces.Terms): interfaces.ProcessedTerms {

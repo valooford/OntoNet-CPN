@@ -1,0 +1,16 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT ?type ?id
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  ?firing rdf:type t:Firing.
+  FILTER NOT EXISTS {
+    # last not processed firing
+    ?firing t:has_targetMarking ?marking.
+  }
+  BIND ("firing" as ?type)
+  BIND (?firing as ?id)
+}

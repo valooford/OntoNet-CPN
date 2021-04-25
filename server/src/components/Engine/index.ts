@@ -10,6 +10,7 @@ import Reasoner, { types as reasonerTypes } from '../Reasoner';
 import types from './types';
 import queries from './queries';
 import * as interfaces from './interfaces';
+import { bind } from 'lodash';
 
 const {
   VALIDATE_ENDPOINT,
@@ -249,7 +250,181 @@ class Engine {
   }
 
   private async startReasoning(): Promise<void> {
-    // ...
+    const reasoningIssuesResponse = await this.sendSelectRequest(
+      queries['analyze-ontology']()
+    );
+    const reasoningIssues = Object.values(
+      reasoningIssuesResponse.data.results.bindings
+    ).map(Engine.getPayloadFromRaw);
+    for (let i = 0; i < reasoningIssues.length; i += 1) {
+      const { type, ...payload } = reasoningIssues[i];
+      switch (type) {
+        case 'firing': {
+          const { id } = payload;
+          const firingDataResponse = await this.sendSelectRequest(
+            queries['get-firing-data'](id)
+          );
+          const {
+            decodings: setsDecodings,
+            transition: transitionId,
+            bindings: firingBindings,
+            ...firingData
+          } = Object.values(firingDataResponse.data.results.bindings)
+            .map(Engine.getPayloadFromRaw)
+            .reduce(
+              (acc, { type: fdType, ...data }) => {
+                switch (fdType) {
+                  case 'multiplicity': {
+                    const { id, value } = data;
+                    const { multiplicities, decodings } = acc;
+                    const hashId = hashStr(id);
+                    multiplicities[hashId] = +value;
+                    decodings[hashId] = id;
+                    break;
+                  }
+                  case 'relation': {
+                    const { anno_chunk_bs, token_bs } = data;
+                    const { tokensRelations, chunksRelations } = acc;
+                    const [chunkIdHash, tokenIdHash] = [
+                      hashStr(anno_chunk_bs),
+                      hashStr(token_bs),
+                    ];
+                    if (!chunksRelations[chunkIdHash]) {
+                      chunksRelations[chunkIdHash] = [];
+                    }
+                    chunksRelations[chunkIdHash].push(tokenIdHash);
+                    if (!tokensRelations[tokenIdHash]) {
+                      tokensRelations[tokenIdHash] = [];
+                    }
+                    tokensRelations[tokenIdHash].push(chunkIdHash);
+                    break;
+                  }
+                  case 'transition': {
+                    const { id } = data;
+                    acc.transition = id;
+                    break;
+                  }
+                  case 'binding': {
+                    const { variable_name, value } = data;
+                    const { bindings } = acc;
+                    bindings[variable_name] = JSON.parse(value);
+                    break;
+                  }
+                }
+                return acc;
+              },
+              {
+                multiplicities: {},
+                decodings: {},
+                chunksRelations: {},
+                tokensRelations: {},
+                transition: null,
+                bindings: {},
+              }
+            );
+          const removingTokensCountsResponse = await this.sendSelectRequest(
+            queries['get-removing-tokens-counts'](firingData)
+          );
+          const removingTokensCounts = Engine.getPayloadFromRaw(
+            removingTokensCountsResponse.data.results.bindings[0]
+          );
+          const countsByTokens = Object.keys(removingTokensCounts).reduce(
+            (acc, tokenIdHash) => {
+              acc[setsDecodings[tokenIdHash]] = +removingTokensCounts[
+                tokenIdHash
+              ];
+              return acc;
+            },
+            {}
+          );
+          // console.log('countsByTokens: ', countsByTokens);
+
+          const outputTokens = this.formOutputTokens(
+            transitionId,
+            firingBindings
+          );
+          // console.log('outputTokens: ', outputTokens);
+
+          break;
+        }
+      }
+    }
+  }
+
+  private formOutputTokens(
+    transitionId: string,
+    bindings: {
+      [variableName: string]: { value: unknown; multiplicity: number };
+    }
+  ): { [placeId: string]: Array<unknown> } {
+    const { outputs } = this.netStructure.transitions[transitionId];
+    return outputs.reduce((acc, { arc, place }) => {
+      acc[place] = Object.values(this.netStructure.arcs[arc].basisSets).map(
+        ({ value, multiplicity }) => {
+          return {
+            value: JSON.stringify(this.formTokenByAnnotation(value, bindings)),
+            multiplicity,
+          };
+        }
+      );
+      return acc;
+    }, {});
+  }
+
+  private formTokenByAnnotation(annotationChunk, bindings): unknown {
+    const tokenInitialValue = annotationChunk.map ? [] : {};
+    return Object.keys(annotationChunk).reduce((tokenValue, roleKey) => {
+      // annotation keys traversal
+      let key;
+      let testResult;
+
+      // role: expr
+      testResult = /^(.*)\/expr$/.exec(roleKey);
+      if (testResult) {
+        [, key] = testResult;
+        const expression = annotationChunk[roleKey];
+        const expressionValue = this.reasoner.processTermInEnvironment(
+          expression,
+          bindings
+        );
+        if (typeof expressionValue === 'object') {
+          // sub annotation
+          const value = this.formTokenByAnnotation(expressionValue, bindings);
+          if (key) {
+            tokenValue[key] = value;
+            return tokenValue;
+          }
+          return value;
+        }
+        // just a simple value
+        if (key) {
+          tokenValue[key] = expressionValue;
+          return tokenValue;
+        }
+        return expressionValue;
+      }
+
+      // role: val
+      testResult = /^(.*)\/val$/.exec(roleKey);
+      if (testResult) {
+        [, key] = testResult;
+        const expression = annotationChunk[roleKey];
+        const expressionValue = this.reasoner.processTermInEnvironment(
+          expression,
+          bindings
+        );
+        if (key) {
+          tokenValue[key] = expressionValue;
+          return tokenValue;
+        }
+        return expressionValue;
+      }
+
+      // role: regular
+      key = roleKey;
+      tokenValue[key] = annotationChunk[key];
+      return tokenValue;
+    }, tokenInitialValue);
   }
 
   private async formTransitionModes(): Promise<unknown> {
@@ -259,13 +434,12 @@ class Engine {
     //   console.log(`${id} multisets: `, marking[id]);
     // });
 
-    const annotations = Object.keys(this.netStructure.arcs).reduce(
-      (anno, id) => {
-        anno[id] = this.netStructure.arcs[id].basisSets;
-        return anno;
-      },
-      {}
-    );
+    const annotations: {
+      [arcId: string]: string | Record<string, string>;
+    } = Object.keys(this.netStructure.arcs).reduce((anno, id) => {
+      anno[id] = this.netStructure.arcs[id].basisSets;
+      return anno;
+    }, {});
     // console.log('ANNOTATIONS');
     // Object.keys(annotations).forEach((id) => {
     //   console.log(`${id} annotation: `, annotations[id]);
@@ -619,7 +793,7 @@ class Engine {
         }
 
         // role: val
-        testResult = /^\/val$/.exec(roleKey);
+        testResult = /^(.*)\/val$/.exec(roleKey);
         if (testResult) {
           [, key] = testResult;
           const expression = annotationChunk[roleKey];

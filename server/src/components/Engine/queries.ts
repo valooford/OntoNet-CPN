@@ -483,7 +483,8 @@ export default {
               t:has_sourceMarking ?marking;
               t:has_multisetOfTransitionModes ?multiset_tm.
       ?multiset_tm t:has_basisSet ?basis_set_tm.
-      ?basis_set_tm t:has_data ?transition_mode.
+      ?basis_set_tm t:has_data ?transition_mode;
+                    t:has_multiplicity 1.
     }
     #SELECT *
     #FROM <http://localhost:3030/ontonet/data/tbox>
@@ -504,6 +505,196 @@ export default {
       BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset_tm)
       BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?basis_set_tm)
     }
+    `;
+  },
+  'analyze-ontology': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ?type ?id
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?firing rdf:type t:Firing.
+      FILTER NOT EXISTS {
+        # last not processed firing
+        ?firing t:has_targetMarking ?marking.
+      }
+      BIND ("firing" as ?type)
+      BIND (?firing as ?id)
+    }
+    `;
+  },
+  'get-firing-data': (firingId: string): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ?type
+    ?id
+    ?variable_name ?value
+    ?anno_chunk_bs ?token_bs
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      <${firingId}> t:has_multisetOfTransitionModes ?multiset.
+      ?multiset t:has_basisSet ?basis_set.
+      ?basis_set t:has_data ?transition_mode.
+      
+      {
+        BIND ("multiplicity" as ?type)
+        {
+          SELECT DISTINCT ?transition_mode ?id ?value
+          WHERE {
+            ?transition_mode t:has_binding ?binding.
+            {
+              ?binding t:has_annotationChunk ?anno_chunk_bs.
+              ?anno_chunk_bs t:has_multiplicity ?anno_chunk_multiplicity.
+              BIND (?anno_chunk_bs as ?id)
+              BIND (?anno_chunk_multiplicity as ?value)
+            }
+            UNION
+            {
+              ?binding t:has_token ?token_bs.
+              ?token_bs t:has_multiplicity ?token_multiplicity.
+              BIND (?token_bs as ?id)
+              BIND (?token_multiplicity as ?value)
+            }
+          }
+        }
+      }
+      UNION
+      {
+        BIND ("relation" as ?type)
+        {
+          SELECT DISTINCT ?transition_mode ?anno_chunk_bs ?token_bs
+          WHERE {
+            ?transition_mode t:has_binding ?binding.
+            ?binding t:has_annotationChunk ?anno_chunk_bs;
+                     t:has_token ?token_bs.
+          }
+        }
+      }
+      UNION
+      {
+        BIND ("transition" as ?type)
+        {
+          SELECT ?transition_mode ?id
+          WHERE {
+            ?transition_mode t:has_transition ?transition.
+            BIND (?transition as ?id)
+          }
+        }
+      }
+      UNION
+      {
+        BIND ("binding" as ?type)
+        {
+          SELECT DISTINCT ?transition_mode ?variable_name ?value
+          WHERE {
+            ?transition_mode t:has_binding ?binding.
+            ?binding t:has_variable ?variable;
+                 t:has_data ?data.
+            ?variable t:has_value ?variable_name.
+            ?data t:has_value ?value.
+          }
+        }
+      }
+    }
+    ORDER BY ?type
+    `;
+  },
+  'get-removing-tokens-counts': ({
+    multiplicities,
+    chunksRelations,
+    tokensRelations,
+  }: {
+    multiplicities: Record<string, number>;
+    chunksRelations: Record<string, Array<string>>;
+    tokensRelations: Record<string, Array<string>>;
+  }): string => {
+    const chunksIds = Object.keys(chunksRelations);
+    const tokensIds = Object.keys(tokensRelations);
+    const chunksVariables = chunksIds.map((id) => `?${id}`).join(' ');
+    const tokensVariables = tokensIds.map((id) => `?${id}`).join(' ');
+
+    const getNumbersSequence = (end): string => {
+      const numbers = [];
+      for (let i = 0; i <= end; i += 1) {
+        numbers.push(i);
+      }
+      return numbers.join(' ');
+    };
+
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ${tokensVariables} # ?n1 ?n2 ?n3
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ${chunksIds
+        .map((id) => `BIND (${multiplicities[id]} as ?${id})`)
+        .join('\n')}
+      # BIND (2 as ?k1)
+      # BIND (4 as ?k2)
+      # BIND (1 as ?k3)
+      
+      {
+        SELECT
+        ${tokensVariables} # ?n1 ?n2 ?n3
+        ${chunksVariables} # ?k1 ?k2 ?k3
+        WHERE {
+          ${tokensIds
+            .map((tId) => {
+              const tokenMultiplicity = multiplicities[tId];
+              const relatedChunksIds = tokensRelations[tId];
+              return `{
+                ${relatedChunksIds
+                  .map((chId) => {
+                    const chunkMultiplicity = multiplicities[chId];
+                    return `VALUES ?ch${tId}_${chId} { ${getNumbersSequence(
+                      Math.min(tokenMultiplicity, chunkMultiplicity)
+                    )} }`;
+                  })
+                  .join('\n')}
+                # VALUES ?ch21 { 0 1 2 }   #chunk1, mul: 2, [0, 2]
+                # VALUES ?ch22 { 0 1 2 3 } #chunk2, mul: 4, [0, 3]
+                BIND (${relatedChunksIds
+                  .map((chId) => `?ch${tId}_${chId}`)
+                  .join(' + ')} as ?${tId})
+                # BIND (?ch21 + ?ch22 as ?n2)
+                FILTER (?${tId} <= ${tokenMultiplicity})
+                # FILTER (?n2 <= 3) #mul: 3, got 2nd combination if mul: 4
+              }`;
+            })
+            .join('\n')}
+          
+          {
+            #token2
+            VALUES ?ch21 { 0 1 2 }   #chunk1, mul: 2, [0, 2]
+            VALUES ?ch22 { 0 1 2 3 } #chunk2, mul: 4, [0, 3]
+            BIND (?ch21 + ?ch22 as ?n2)
+            FILTER (?n2 <= 3) #mul: 3, got 2nd combination if mul: 4
+          }
+          
+          ${chunksIds
+            .map((chId) => {
+              const relatedTokensIds = chunksRelations[chId];
+              return `BIND ((${relatedTokensIds
+                .map((tId) => `?ch${tId}_${chId}`)
+                .join(' + ')}) as ?${chId})`;
+            })
+            .join('\n')}
+          # BIND ((?ch11 + ?ch21) as ?k1)
+          # BIND ((?ch22 + ?ch32) as ?k2)
+          # BIND ((?ch33) as ?k3)
+        }
+      }
+    }
+    LIMIT 1
     `;
   },
 };

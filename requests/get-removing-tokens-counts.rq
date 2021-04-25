@@ -1,0 +1,47 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+SELECT ?n1 ?n2 ?n3
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  BIND (2 as ?k1)
+  BIND (4 as ?k2)
+  BIND (1 as ?k3)
+  
+  {
+    SELECT
+    ?n1 ?n2 ?n3
+    ?k1 ?k2 ?k3
+    WHERE {
+      {
+        #token1
+        VALUES ?ch11 { 0 1 2 } #chunk1, mul: 2, [0, 2]
+        BIND (?ch11 as ?n1)
+        FILTER (?n1 <= 2) #mul: 2
+      }
+      
+      {
+        #token2
+        VALUES ?ch21 { 0 1 2 }   #chunk1, mul: 2, [0, 2]
+        VALUES ?ch22 { 0 1 2 3 } #chunk2, mul: 4, [0, 3]
+        BIND (?ch21 + ?ch22 as ?n2)
+        FILTER (?n2 <= 3) #mul: 3, got 2nd combination if mul: 4
+      }
+      
+      {
+        #token3
+        VALUES ?ch32 { 0 1 2 } #chunk2, mul: 4, [0, 2]
+        VALUES ?ch33 { 0 1 }   #chunk3, mul: 1, [0, 1]
+        BIND (?ch32 + ?ch33 as ?n3)
+        FILTER (?n3 <= 2) #mul: 2
+      }
+      
+      BIND ((?ch11 + ?ch21) as ?k1)
+      BIND ((?ch22 + ?ch32) as ?k2)
+      BIND ((?ch33) as ?k3)
+    }
+  }
+}
+LIMIT 1

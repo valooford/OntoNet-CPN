@@ -1,5 +1,5 @@
 type NetElement = {
-  [key: string]: string | Record<string, string>;
+  [key: string]: string | Record<string, unknown>;
 };
 export type NetStructure = {
   transitions: Record<
