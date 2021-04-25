@@ -1,0 +1,67 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+WITH <http://localhost:3030/ontonet/data/abox>
+DELETE {
+  
+}
+INSERT {
+  
+}
+#SELECT *
+#FROM <http://localhost:3030/ontonet/data/tbox>
+#FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  {
+    # tokens to remove
+  }
+  UNION
+  {
+    GRAPH <http://localhost:3030/ontonet/data/tbox> {
+        ?cpn rdf:type t:CPN.
+    }
+    # tokens to insert
+  }
+};
+WITH <http://localhost:3030/ontonet/data/abox>
+DELETE {
+  ?transition_mode rdf:type t:TransitionMode;
+                   t:has_transition ?transition;
+                   t:has_binding ?binding.
+}
+#SELECT *
+#FROM <http://localhost:3030/ontonet/data/tbox>
+#FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  # leaf transition modes
+  ?transition_mode rdf:type t:TransitionMode.
+  FILTER NOT EXISTS {
+    ?firing rdf:type t:Firing;
+            t:has_multisetOfTransitionModes ?multiset_tm.
+    ?multiset_tm t:has_basisSet ?basis_set_tm.
+    ?basis_set_tm t:has_data ?transition_mode.
+  }
+};
+WITH <http://localhost:3030/ontonet/data/abox>
+DELETE {
+  ?binding rdf:type t:Binding;
+           t:has_variable ?variable;
+           t:has_data ?data;
+           t:has_annotationChunk ?anno_chunk_bs;
+           t:has_token ?token_bs.
+  ?data rdf:type t:Data;
+        t:has_value ?value.
+}
+#SELECT *
+#FROM <http://localhost:3030/ontonet/data/tbox>
+#FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  # leaf bindings
+  ?binding rdf:type t:Binding;
+           t:has_variable ?variable;
+           t:has_data ?data;
+           t:has_annotationChunk ?anno_chunk_bs;
+           t:has_token ?token_bs.
+  ?data t:has_value ?value.
+}
