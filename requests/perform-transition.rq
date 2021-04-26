@@ -3,9 +3,6 @@ PREFIX t: <http://www.onto.net/core/>
 PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
 WITH <http://localhost:3030/ontonet/data/abox>
-DELETE {
-  
-}
 INSERT {
   
 }
@@ -13,19 +10,21 @@ INSERT {
 #FROM <http://localhost:3030/ontonet/data/tbox>
 #FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
+  # new cpn marking including old and new place markings
   {
-    # tokens to remove
+    # new input places markings (removing tokens)
   }
   UNION
   {
     GRAPH <http://localhost:3030/ontonet/data/tbox> {
         ?cpn rdf:type t:CPN.
     }
-    # tokens to insert
+    # new output places markings (adding tokens)
   }
 };
 WITH <http://localhost:3030/ontonet/data/abox>
 DELETE {
+  # removing unused transition modes
   ?transition_mode rdf:type t:TransitionMode;
                    t:has_transition ?transition;
                    t:has_binding ?binding.
@@ -45,6 +44,7 @@ WHERE {
 };
 WITH <http://localhost:3030/ontonet/data/abox>
 DELETE {
+  # removing unused bindings
   ?binding rdf:type t:Binding;
            t:has_variable ?variable;
            t:has_data ?data;
