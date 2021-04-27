@@ -4,22 +4,39 @@ PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
 WITH <http://localhost:3030/ontonet/data/abox>
 INSERT {
-  
+  ?cpn t:has_marking ?marking.
+  ?firing t:has_targetMarking ?marking. # replace ?firing with <firing-uri>
+  ?marking rdf:type t:Marking;
+           t:includes_markingOfPlace ?stable_marking_of_place;
+           t:includes_markingOfPlace ?new_marking_of_place.
+  ?new_marking_of_place rdf:type t:MarkingOfPlace;
+                        t:has_place ?place;
+                        t:has_multisetOfTokens ?multiset.
+  ?multiset rdf:type t:Multiset;
+            t:has_basisSet ?basis_set.
+  ?basis_set rdf:type t:BasisSet;
+             t:has_multiplicity ?multiplicity;
+             t:has_data ?bs_data.
+  ?bs_data rdf:type t:Data;
+           t:has_value ?bs_data_value.
 }
 #SELECT *
 #FROM <http://localhost:3030/ontonet/data/tbox>
 #FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
   # new cpn marking including old and new place markings
+  BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
   {
     # new input places markings (removing tokens)
+    VALUES (?token_bs ?minus) { (<token1> 1) (<token2> 3) (<token3> 1) }
   }
   UNION
   {
-    GRAPH <http://localhost:3030/ontonet/data/tbox> {
-        ?cpn rdf:type t:CPN.
-    }
+#    GRAPH <http://localhost:3030/ontonet/data/tbox> {
+#        ?cpn rdf:type t:CPN.
+#    }
     # new output places markings (adding tokens)
+    VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
   }
 };
 WITH <http://localhost:3030/ontonet/data/abox>
