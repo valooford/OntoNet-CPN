@@ -11,10 +11,10 @@ INSERT {
            t:includes_markingOfPlace ?new_marking_of_place.
   ?new_marking_of_place rdf:type t:MarkingOfPlace;
                         t:has_place ?place;
-                        t:has_multisetOfTokens ?multiset.
-  ?multiset rdf:type t:Multiset;
-            t:has_basisSet ?basis_set.
-  ?basis_set rdf:type t:BasisSet;
+                        t:has_multisetOfTokens ?new_multiset.
+  ?new_multiset rdf:type t:Multiset;
+                t:has_basisSet ?basis_set. # token_bs
+  ?basis_set rdf:type t:BasisSet;          # token_bs
              t:has_multiplicity ?multiplicity;
              t:has_data ?bs_data.
   ?bs_data rdf:type t:Data;
@@ -24,11 +24,23 @@ INSERT {
 #FROM <http://localhost:3030/ontonet/data/tbox>
 #FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
+  # new marking
+  # old and new markings of places
+  # (?) brand new multisets and basis sets
+  # new data
+
   # new cpn marking including old and new place markings
   BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
   {
-    # new input places markings (removing tokens)
-    VALUES (?token_bs ?minus) { (<token1> 1) (<token2> 3) (<token3> 1) }
+    ?marking_of_place rdf:type t:MarkingOfPlace;
+	                  t:has_place ?place;
+	                  t:has_multisetOfTokens ?multiset.
+    {
+	  ?multiset t:has_basisSet ?token_bs.
+      # new input places markings (removing tokens)
+	  BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
+      VALUES (?token_bs ?minus) { (<token1> 1) (<token2> 3) (<token3> 1) }
+	}
   }
   UNION
   {
