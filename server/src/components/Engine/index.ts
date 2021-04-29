@@ -10,7 +10,6 @@ import Reasoner, { types as reasonerTypes } from '../Reasoner';
 import types from './types';
 import queries from './queries';
 import * as interfaces from './interfaces';
-import { bind } from 'lodash';
 
 const {
   VALIDATE_ENDPOINT,

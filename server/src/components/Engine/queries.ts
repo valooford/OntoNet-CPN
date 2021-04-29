@@ -131,7 +131,20 @@ export default {
     calculatedTerms,
     aboxEndpointURL,
     tboxEndpointURL,
-  }) => {
+  }: {
+    calculatedTerms: {
+      [termId: string]:
+        | {
+            basisSets: Array<{
+              data: unknown;
+              multiplicity: number;
+            }>;
+          }
+        | unknown;
+    };
+    aboxEndpointURL: string;
+    tboxEndpointURL: string;
+  }): string => {
     return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX t: <http://www.onto.net/core/>
     PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
@@ -172,7 +185,14 @@ export default {
       )
       ${Object.keys(calculatedTerms)
         .map((termId) => {
-          const multiset = calculatedTerms[termId];
+          const multiset = <
+            {
+              basisSets: Array<{
+                data: unknown;
+                multiplicity: number;
+              }>;
+            }
+          >calculatedTerms[termId];
           return `{
           OPTIONAL {
             ?place rdf:type t:Place;
