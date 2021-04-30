@@ -94,3 +94,61 @@ WHERE {
            t:has_token ?token_bs.
   ?data t:has_value ?value.
 }
+
+# BIND TESTS
+# =================================================
+
+SELECT *
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
+WHERE {
+  # N1
+#  {
+#    BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?binded) # 1
+#    {
+#      VALUES ?a {1 2 3 4 5} # 5
+#    }
+#  }
+  
+#  {
+#    BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?binded) # 1
+#    {
+#      SELECT *
+#      WHERE {
+#      	VALUES ?a {1 2 3 4 5} # 5
+#      }
+#    }
+#  }
+  
+  # N2
+#  {
+#    BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?binded) # 1
+#    {
+#      BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?nested) # 1
+#      VALUES ?a {1 2 3 4 5} # 5
+#    }
+#  }
+  
+#  {
+#    BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?binded) # 1
+#    {
+#      BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?nested) # 1
+#      {
+#        VALUES ?a {1 2 3 4 5} # 5
+#      }
+#    }
+#  }
+  
+#  {
+#    BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?binded) # 1
+#    {
+#      BIND(IRI(CONCAT(STR(a:), "test_", STRUUID())) as ?nested) # 1
+#      {
+#        SELECT *
+#        WHERE {
+#          VALUES ?a {1 2 3 4 5} # 5
+#        }
+#      }
+#    }
+#  }
+}
