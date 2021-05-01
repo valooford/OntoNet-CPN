@@ -5,18 +5,21 @@ PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 WITH <http://localhost:3030/ontonet/data/abox>
 INSERT {
   ?cpn t:has_marking ?marking.
-  ?firing t:has_targetMarking ?marking. # replace ?firing with <firing-uri>
-  ?marking rdf:type t:Marking;
-           t:includes_markingOfPlace ?stable_marking_of_place;
+  <firing-uri> t:has_targetMarking ?marking.
+  ?marking rdf:type t:Marking.
+    
+  ?marking t:includes_markingOfPlace ?stable_marking_of_place;
            t:includes_markingOfPlace ?new_marking_of_place.
+  
   ?new_marking_of_place rdf:type t:MarkingOfPlace;
                         t:has_place ?place;
-                        t:has_multisetOfTokens ?new_multiset.
-  ?new_multiset rdf:type t:Multiset;
-                t:has_basisSet ?basis_set. # token_bs
-  ?basis_set rdf:type t:BasisSet;          # token_bs
-             t:has_multiplicity ?multiplicity;
-             t:has_data ?bs_data.
+                        t:has_multisetOfTokens ?multiset.
+  ?multiset rdf:type t:Multiset.
+    
+  ?multiset t:has_basisSet ?token_bs. # token_bs
+  ?token_bs rdf:type t:BasisSet;          # token_bs
+            t:has_multiplicity ?multiplicity;
+            t:has_data ?bs_data.
   ?bs_data rdf:type t:Data;
            t:has_value ?bs_data_value.
 }
@@ -24,10 +27,34 @@ INSERT {
 #FROM <http://localhost:3030/ontonet/data/tbox>
 #FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
-  # new marking
-  # old and new markings of places
-  # (?) brand new multisets and basis sets
-  # new data
+  BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
+#  <firing-uri> t:has_targetMarking ?source_marking.
+  ?firing rdf:type t:Firing;                                          #temp
+          t:has_sourceMarking ?source_marking.                        #temp
+  FILTER NOT EXISTS { ?firing t:has_targetMarking ?target_marking }   #temp
+  {
+#    GRAPH <http://localhost:3030/ontonet/data/tbox> {
+        ?cpn rdf:type t:CPN.
+#    }
+  }
+  UNION
+  {
+    ?source_marking t:includes_markingOfPlace ?marking_of_place.
+    ?marking_of_place t:has_place ?place;
+                      t:has_multisetOfTokens ?multiset.
+    ?multiset t:has_basisSet ?token_bs.
+    
+    VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
+    {
+      #stable
+    }
+    UNION
+    {
+      #new
+    }
+  }
+
+  
 
   # new cpn marking including old and new place markings
   BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
@@ -50,50 +77,50 @@ WHERE {
     # new output places markings (adding tokens)
     VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
   }
-};
-WITH <http://localhost:3030/ontonet/data/abox>
-DELETE {
-  # removing unused transition modes
-  ?transition_mode rdf:type t:TransitionMode;
-                   t:has_transition ?transition;
-                   t:has_binding ?binding.
 }
-#SELECT *
-#FROM <http://localhost:3030/ontonet/data/tbox>
-#FROM <http://localhost:3030/ontonet/data/abox>
-WHERE {
-  # leaf transition modes
-  ?transition_mode rdf:type t:TransitionMode.
-  FILTER NOT EXISTS {
-    ?firing rdf:type t:Firing;
-            t:has_multisetOfTransitionModes ?multiset_tm.
-    ?multiset_tm t:has_basisSet ?basis_set_tm.
-    ?basis_set_tm t:has_data ?transition_mode.
-  }
-};
-WITH <http://localhost:3030/ontonet/data/abox>
-DELETE {
-  # removing unused bindings
-  ?binding rdf:type t:Binding;
-           t:has_variable ?variable;
-           t:has_data ?data;
-           t:has_annotationChunk ?anno_chunk_bs;
-           t:has_token ?token_bs.
-  ?data rdf:type t:Data;
-        t:has_value ?value.
-}
-#SELECT *
-#FROM <http://localhost:3030/ontonet/data/tbox>
-#FROM <http://localhost:3030/ontonet/data/abox>
-WHERE {
-  # leaf bindings
-  ?binding rdf:type t:Binding;
-           t:has_variable ?variable;
-           t:has_data ?data;
-           t:has_annotationChunk ?anno_chunk_bs;
-           t:has_token ?token_bs.
-  ?data t:has_value ?value.
-}
+#WITH <http://localhost:3030/ontonet/data/abox>
+#DELETE {
+#  # removing unused transition modes
+#  ?transition_mode rdf:type t:TransitionMode;
+#                   t:has_transition ?transition;
+#                   t:has_binding ?binding.
+#}
+##SELECT *
+##FROM <http://localhost:3030/ontonet/data/tbox>
+##FROM <http://localhost:3030/ontonet/data/abox>
+#WHERE {
+#  # leaf transition modes
+#  ?transition_mode rdf:type t:TransitionMode.
+#  FILTER NOT EXISTS {
+#    ?firing rdf:type t:Firing;
+#            t:has_multisetOfTransitionModes ?multiset_tm.
+#    ?multiset_tm t:has_basisSet ?basis_set_tm.
+#    ?basis_set_tm t:has_data ?transition_mode.
+#  }
+#};
+#WITH <http://localhost:3030/ontonet/data/abox>
+#DELETE {
+#  # removing unused bindings
+#  ?binding rdf:type t:Binding;
+#           t:has_variable ?variable;
+#           t:has_data ?data;
+#           t:has_annotationChunk ?anno_chunk_bs;
+#           t:has_token ?token_bs.
+#  ?data rdf:type t:Data;
+#        t:has_value ?value.
+#}
+##SELECT *
+##FROM <http://localhost:3030/ontonet/data/tbox>
+##FROM <http://localhost:3030/ontonet/data/abox>
+#WHERE {
+#  # leaf bindings
+#  ?binding rdf:type t:Binding;
+#           t:has_variable ?variable;
+#           t:has_data ?data;
+#           t:has_annotationChunk ?anno_chunk_bs;
+#           t:has_token ?token_bs.
+#  ?data t:has_value ?value.
+#}
 
 # BIND TESTS
 # =================================================
