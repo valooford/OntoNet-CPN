@@ -2,35 +2,37 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX t: <http://www.onto.net/core/>
 PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
-WITH <http://localhost:3030/ontonet/data/abox>
-INSERT {
-  ?cpn t:has_marking ?marking.
-  <firing-uri> t:has_targetMarking ?marking.
-  ?marking rdf:type t:Marking.
-    
-  ?marking t:includes_markingOfPlace ?stable_marking_of_place;
-           t:includes_markingOfPlace ?new_marking_of_place.
-  
-  ?new_marking_of_place rdf:type t:MarkingOfPlace;
-                        t:has_place ?place;
-                        t:has_multisetOfTokens ?multiset.
-  ?multiset rdf:type t:Multiset.
-    
-  ?multiset t:has_basisSet ?token_bs. # token_bs
-  ?token_bs rdf:type t:BasisSet;          # token_bs
-            t:has_multiplicity ?multiplicity;
-            t:has_data ?bs_data.
-  ?bs_data rdf:type t:Data;
-           t:has_value ?bs_data_value.
-}
-#SELECT *
-#FROM <http://localhost:3030/ontonet/data/tbox>
-#FROM <http://localhost:3030/ontonet/data/abox>
+#WITH <http://localhost:3030/ontonet/data/abox>
+#INSERT {
+#  ?cpn t:has_marking ?marking.
+#  <firing-uri> t:has_targetMarking ?marking.
+#  ?marking rdf:type t:Marking.
+#    
+#  ?marking t:includes_markingOfPlace ?stable_marking_of_place;
+#           t:includes_markingOfPlace ?new_marking_of_place.
+#  
+#  ?new_marking_of_place rdf:type t:MarkingOfPlace;
+#                        t:has_place ?place;
+#                        t:has_multisetOfTokens ?new_multiset.
+#  ?new_multiset rdf:type t:Multiset.
+#    
+#  ?new_multiset t:has_basisSet ?stable_token_bs;
+#                t:has_basisSet ?new_token_bs.
+#
+#  ?new_token_bs rdf:type t:BasisSet;
+#                t:has_multiplicity ?multiplicity;
+#                t:has_data ?bs_data.
+#  ?bs_data rdf:type t:Data;
+#           t:has_value ?bs_data_value.
+#}
+SELECT *
+FROM <http://localhost:3030/ontonet/data/tbox>
+FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
   BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
 #  <firing-uri> t:has_targetMarking ?source_marking.
-  ?firing rdf:type t:Firing;                                          #temp
-          t:has_sourceMarking ?source_marking.                        #temp
+  ?firing rdf:type t:Firing.                                          #temp
+#         t:has_sourceMarking ?source_marking.                        #temp
   FILTER NOT EXISTS { ?firing t:has_targetMarking ?target_marking }   #temp
   {
 #    GRAPH <http://localhost:3030/ontonet/data/tbox> {
@@ -39,43 +41,99 @@ WHERE {
   }
   UNION
   {
-    ?source_marking t:includes_markingOfPlace ?marking_of_place.
-    ?marking_of_place t:has_place ?place;
-                      t:has_multisetOfTokens ?multiset.
-    ?multiset t:has_basisSet ?token_bs.
+    ?firing t:has_sourceMarking ?source_marking. #temp
     
-    VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
     {
-      #stable
+      #stable mop
+      ?source_marking t:includes_markingOfPlace ?marking_of_place.
+      
+      MINUS {
+        # minus mop with tokens being removed
+        ?marking_of_place t:has_multisetOfTokens ?multiset.
+        ?multiset t:has_basisSet ?token_bs.
+#        VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
+        VALUES ?token_bs { <token1> <token2> <token3> }
+      }
+      
+      MINUS {
+        # minus mop with tokens being inserted
+        ?marking_of_place t:has_place ?place.
+#        VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
+        VALUES ?place { <place1> t:pl_P1 }
+      }
+      
+      BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?stable_marking_of_place)
     }
     UNION
     {
-      #new
+      #new mop
+      ?source_marking t:includes_markingOfPlace ?marking_of_place.
+      
+      FILTER(
+        EXISTS {
+          # tokens are being removed
+          ?marking_of_place t:has_multisetOfTokens ?multiset.
+          ?multiset t:has_basisSet ?token_bs.
+#          VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
+          VALUES ?token_bs { <token1> <token2> <token3> }
+        } 
+        || EXISTS {
+          # tokens are being inserted
+          ?marking_of_place t:has_place ?place.
+#          VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
+          VALUES ?place { <place1> t:pl_P1 }
+        }
+      )
+      
+      BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
+      ?marking_of_place t:has_place ?place;
+                        t:has_multisetOfTokens ?multiset.
+      BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
+      
+      {
+        # stable bs
+        ?multiset t:has_basisSet ?token_bs.
+
+        MINUS {
+          # minus tokens being removed
+          VALUES ?token_bs { <token1> <token2> <token3> }
+        }
+
+        MINUS {
+          # minus tokens being inserted
+          ?token_bs t:has_data ?token_data.
+          ?token_data t:has_value ?token_value.
+          VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+        }
+
+        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?stable_token_bs)
+      }
+      UNION
+      {
+        # new bs
+        ?multiset t:has_basisSet ?token_bs.
+
+        FILTER(
+          EXISTS {
+			VALUES ?token_bs { <token1> <token2> <token3> }
+          } 
+          || EXISTS {
+			?token_bs t:has_data ?token_data.
+            ?token_data t:has_value ?token_value.
+            VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+          }
+        )
+        
+        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+        ?token_bs t:has_multiplicity ?token_multiplicity;
+                  t:has_data ?token_data.
+        ?token_data t:has_value ?token_value.
+        
+      }
+        
+      
+        
     }
-  }
-
-  
-
-  # new cpn marking including old and new place markings
-  BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
-  {
-    ?marking_of_place rdf:type t:MarkingOfPlace;
-	                  t:has_place ?place;
-	                  t:has_multisetOfTokens ?multiset.
-    {
-	  ?multiset t:has_basisSet ?token_bs.
-      # new input places markings (removing tokens)
-	  BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
-      VALUES (?token_bs ?minus) { (<token1> 1) (<token2> 3) (<token3> 1) }
-	}
-  }
-  UNION
-  {
-#    GRAPH <http://localhost:3030/ontonet/data/tbox> {
-#        ?cpn rdf:type t:CPN.
-#    }
-    # new output places markings (adding tokens)
-    VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
   }
 }
 #WITH <http://localhost:3030/ontonet/data/abox>
