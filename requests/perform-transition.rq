@@ -23,7 +23,7 @@ PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 #                t:has_multiplicity ?multiplicity;
 #                t:has_data ?bs_data.
 #  ?bs_data rdf:type t:Data;
-#           t:has_value ?bs_data_value.
+#           t:has_value ?token_value.
 #}
 SELECT *
 FROM <http://localhost:3030/ontonet/data/tbox>
@@ -128,11 +128,37 @@ WHERE {
         ?token_bs t:has_multiplicity ?token_multiplicity;
                   t:has_data ?token_data.
         ?token_data t:has_value ?token_value.
+        BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+        
+#        ?multiplicity, ?bs_data, ?bs_data_value
+        OPTIONAL {
+          # tokens to remove
+          VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
+        }
+        
+        OPTIONAL {
+          # tokens to insert
+          VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
+        }
+        
+        BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
+        FILTER (?multiplicity > 0)
         
       }
+      UNION
+      {
+        # brand new bs
+        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+        VALUES (?place ?token_value ?multiplicity) { (t:pl_P1 "\"Hellooo\"" 1) }
+        MINUS {
+          ?multiset t:has_basisSet ?token_bs.
+          ?token_bs t:has_data ?token_data.
+          ?token_data t:has_value ?token_value.
+        }
         
+        BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+      }
       
-        
     }
   }
 }
