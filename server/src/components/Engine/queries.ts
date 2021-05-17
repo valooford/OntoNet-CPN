@@ -717,4 +717,199 @@ export default {
     LIMIT 1
     `;
   },
+  'perform-transition': (firing: string): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?cpn t:has_marking ?marking.
+      <firing-uri> t:has_targetMarking ?marking.
+      ?marking rdf:type t:Marking.
+        
+      ?marking t:includes_markingOfPlace ?stable_marking_of_place;
+               t:includes_markingOfPlace ?new_marking_of_place.
+      
+      ?new_marking_of_place rdf:type t:MarkingOfPlace;
+                            t:has_place ?place;
+                            t:has_multisetOfTokens ?new_multiset.
+      ?new_multiset rdf:type t:Multiset.
+        
+      ?new_multiset t:has_basisSet ?stable_token_bs;
+                    t:has_basisSet ?new_token_bs.
+    
+      ?new_token_bs rdf:type t:BasisSet;
+                    t:has_multiplicity ?multiplicity;
+                    t:has_data ?bs_data.
+      ?bs_data rdf:type t:Data;
+               t:has_value ?token_value.
+    }
+    WHERE {
+      BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
+      <${firing}> t:has_targetMarking ?source_marking.
+      {
+        GRAPH <http://localhost:3030/ontonet/data/tbox> {
+            ?cpn rdf:type t:CPN.
+        }
+      }
+      UNION
+      {
+        <${firing}> t:has_sourceMarking ?source_marking.
+        
+        {
+          #stable mop
+          ?source_marking t:includes_markingOfPlace ?marking_of_place.
+          
+          MINUS {
+            # minus mop with tokens being removed
+            ?marking_of_place t:has_multisetOfTokens ?multiset.
+            ?multiset t:has_basisSet ?token_bs.
+            VALUES ?token_bs { <token1> <token2> <token3> }
+          }
+          
+          MINUS {
+            # minus mop with tokens being inserted
+            ?marking_of_place t:has_place ?place.
+            VALUES ?place { <place1> a:pl_P1 }
+          }
+          
+          BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?stable_marking_of_place)
+        }
+        UNION
+        {
+          #new mop
+          ?source_marking t:includes_markingOfPlace ?marking_of_place.
+          
+          FILTER(
+            EXISTS {
+              # tokens are being removed
+              ?marking_of_place t:has_multisetOfTokens ?multiset.
+              ?multiset t:has_basisSet ?token_bs.
+              VALUES ?token_bs { <token1> <token2> <token3> }
+            } 
+            || EXISTS {
+              # tokens are being inserted
+              ?marking_of_place t:has_place ?place.
+              VALUES ?place { <place1> a:pl_P1 }
+            }
+          )
+          
+          BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
+          ?marking_of_place t:has_place ?place;
+                            t:has_multisetOfTokens ?multiset.
+          BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
+          
+          {
+            # stable bs
+            ?multiset t:has_basisSet ?token_bs.
+    
+            MINUS {
+              # minus tokens being removed
+              VALUES ?token_bs { <token1> <token2> <token3> }
+            }
+    
+            MINUS {
+              # minus tokens being inserted
+              ?token_bs t:has_data ?token_data.
+              ?token_data t:has_value ?token_value.
+              VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+            }
+    
+            BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?stable_token_bs)
+          }
+          UNION
+          {
+            # new bs
+            ?multiset t:has_basisSet ?token_bs.
+    
+            FILTER(
+              EXISTS {
+                VALUES ?token_bs { <token1> <token2> <token3> }
+              } 
+              || EXISTS {
+                ?token_bs t:has_data ?token_data.
+                ?token_data t:has_value ?token_value.
+                VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+              }
+            )
+            
+            BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+            ?token_bs t:has_multiplicity ?token_multiplicity;
+                      t:has_data ?token_data.
+            ?token_data t:has_value ?token_value.
+            BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+            
+            OPTIONAL {
+              # tokens to remove
+              VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
+            }
+            
+            OPTIONAL {
+              # tokens to insert
+              VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
+            }
+            
+            BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
+            FILTER (?multiplicity > 0)
+            
+          }
+          UNION
+          {
+            # brand new bs
+            BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+            VALUES (?place ?token_value ?multiplicity) { (a:pl_P1 "\"Hellooo\"" 1) }
+            MINUS {
+              ?multiset t:has_basisSet ?token_bs.
+              ?token_bs t:has_data ?token_data.
+              ?token_data t:has_value ?token_value.
+            }
+            
+            BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+          }
+        }
+      }
+    };
+    WITH <http://localhost:3030/ontonet/data/abox>
+    DELETE {
+      # removing unused transition modes
+      ?transition_mode rdf:type t:TransitionMode;
+                       t:has_transition ?transition;
+                       t:has_binding ?binding.
+    }
+    WHERE {
+      # leaf transition modes
+      ?transition_mode rdf:type t:TransitionMode.
+      FILTER NOT EXISTS {
+        ?firing rdf:type t:Firing;
+                t:has_multisetOfTransitionModes ?multiset_tm.
+        ?multiset_tm t:has_basisSet ?basis_set_tm.
+        ?basis_set_tm t:has_data ?transition_mode.
+      }
+    };
+    WITH <http://localhost:3030/ontonet/data/abox>
+    DELETE {
+      # removing unused bindings
+      ?binding rdf:type t:Binding;
+               t:has_variable ?variable;
+               t:has_data ?data;
+               t:has_annotationChunk ?anno_chunk_bs;
+               t:has_token ?token_bs.
+      ?data rdf:type t:Data;
+            t:has_value ?value.
+    }
+    WHERE {
+      # leaf bindings
+      ?binding rdf:type t:Binding;
+               t:has_variable ?variable;
+               t:has_data ?data;
+               t:has_annotationChunk ?anno_chunk_bs;
+               t:has_token ?token_bs.
+      ?data t:has_value ?value.
+      FILTER NOT EXISTS {
+        ?transition_mode rdf:type t:TransitionMode;
+                         t:has_binding ?binding.
+      }
+    }`;
+  },
 };
