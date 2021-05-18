@@ -717,7 +717,26 @@ export default {
     LIMIT 1
     `;
   },
-  'perform-transition': (firing: string): string => {
+  'perform-transition': (
+    firing: string,
+    removingTokens: { [tokenId: string]: number },
+    insertionTokens: {
+      [placeId: string]: Array<{ value: string; multiplicity: number }>;
+    }
+  ): string => {
+    const removingTokensUUIDs = Object.keys(removingTokens)
+      .map((id) => `<${id}>`)
+      .join(' ');
+    const insertionTokensUUIDs = Object.keys(insertionTokens)
+      .map((id) => `<${id}>`)
+      .join(' ');
+    const insertionTokensPlacesAndValues = Object.keys(insertionTokens)
+      .map((placeId) =>
+        insertionTokens[placeId]
+          .map(({ value }) => `(<${placeId}> "${value}")`)
+          .join(' ')
+      )
+      .join(' ');
     return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX t: <http://www.onto.net/core/>
     PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
@@ -725,7 +744,7 @@ export default {
     WITH <http://localhost:3030/ontonet/data/abox>
     INSERT {
       ?cpn t:has_marking ?marking.
-      <firing-uri> t:has_targetMarking ?marking.
+      <${firing}> t:has_targetMarking ?marking.
       ?marking rdf:type t:Marking.
         
       ?marking t:includes_markingOfPlace ?stable_marking_of_place;
@@ -765,16 +784,18 @@ export default {
             # minus mop with tokens being removed
             ?marking_of_place t:has_multisetOfTokens ?multiset.
             ?multiset t:has_basisSet ?token_bs.
-            VALUES ?token_bs { <token1> <token2> <token3> }
+            VALUES ?token_bs { ${removingTokensUUIDs} }
+            # VALUES ?token_bs { <token1> <token2> <token3> }
           }
           
           MINUS {
             # minus mop with tokens being inserted
             ?marking_of_place t:has_place ?place.
-            VALUES ?place { <place1> a:pl_P1 }
+            VALUES ?place { ${insertionTokensUUIDs} }
+            # VALUES ?place { <place1> a:pl_P1 }
           }
           
-          BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?stable_marking_of_place)
+          BIND(?marking_of_place as ?stable_marking_of_place)
         }
         UNION
         {
@@ -786,12 +807,14 @@ export default {
               # tokens are being removed
               ?marking_of_place t:has_multisetOfTokens ?multiset.
               ?multiset t:has_basisSet ?token_bs.
-              VALUES ?token_bs { <token1> <token2> <token3> }
+              VALUES ?token_bs { ${removingTokensUUIDs} }
+              # VALUES ?token_bs { <token1> <token2> <token3> }
             } 
             || EXISTS {
               # tokens are being inserted
               ?marking_of_place t:has_place ?place.
-              VALUES ?place { <place1> a:pl_P1 }
+              VALUES ?place { ${insertionTokensUUIDs} }
+              # VALUES ?place { <place1> a:pl_P1 }
             }
           )
           
@@ -806,14 +829,15 @@ export default {
     
             MINUS {
               # minus tokens being removed
-              VALUES ?token_bs { <token1> <token2> <token3> }
+              VALUES ?token_bs { ${removingTokensUUIDs} }
             }
     
             MINUS {
               # minus tokens being inserted
               ?token_bs t:has_data ?token_data.
               ?token_data t:has_value ?token_value.
-              VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+              VALUES (?place ?token_value) { ${insertionTokensPlacesAndValues} }
+              # VALUES (?place ?token_value) { (<pl1> "{json: \"string\"}") (<pl2> "\"representation\"") }
             }
     
             BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?stable_token_bs)
