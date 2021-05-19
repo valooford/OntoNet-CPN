@@ -344,6 +344,10 @@ class Engine {
           );
           // console.log('outputTokens: ', outputTokens);
 
+          this.sendUpdateRequest(
+            queries['perform-transition'](id, countsByTokens, outputTokens)
+          );
+
           break;
         }
       }
@@ -355,13 +359,15 @@ class Engine {
     bindings: {
       [variableName: string]: { value: unknown; multiplicity: number };
     }
-  ): { [placeId: string]: Array<unknown> } {
+  ): { [placeId: string]: Array<{ value: string; multiplicity: number }> } {
     const { outputs } = this.netStructure.transitions[transitionId];
     return outputs.reduce((acc, { arc, place }) => {
       acc[place] = Object.values(this.netStructure.arcs[arc].basisSets).map(
         ({ value, multiplicity }) => {
           return {
-            value: JSON.stringify(this.formTokenByAnnotation(value, bindings)),
+            value: JSON.stringify(
+              this.formTokenByAnnotation(value, bindings)
+            ).replace(/"/g, '\\"'),
             multiplicity,
           };
         }

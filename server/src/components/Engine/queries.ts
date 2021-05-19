@@ -725,15 +725,28 @@ export default {
     }
   ): string => {
     const removingTokensUUIDs = Object.keys(removingTokens)
-      .map((id) => `<${id}>`)
+      .map((tokenId) => `<${tokenId}>`)
+      .join(' ');
+    const removingTokensWithMultiplicities = Object.keys(removingTokens)
+      .map((tokenId) => `(<${tokenId}> ${removingTokens[tokenId]})`)
       .join(' ');
     const insertionTokensUUIDs = Object.keys(insertionTokens)
-      .map((id) => `<${id}>`)
+      .map((placeId) => `<${placeId}>`)
       .join(' ');
     const insertionTokensPlacesAndValues = Object.keys(insertionTokens)
       .map((placeId) =>
         insertionTokens[placeId]
           .map(({ value }) => `(<${placeId}> "${value}")`)
+          .join(' ')
+      )
+      .join(' ');
+    const insertionTokensPlacesWithData = Object.keys(insertionTokens)
+      .map((placeId) =>
+        insertionTokens[placeId]
+          .map(
+            ({ value, multiplicity }) =>
+              `(<${placeId}> "${value}" ${multiplicity})`
+          )
           .join(' ')
       )
       .join(' ');
@@ -854,7 +867,8 @@ export default {
               || EXISTS {
                 ?token_bs t:has_data ?token_data.
                 ?token_data t:has_value ?token_value.
-                VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+                VALUES (?place ?token_value) { ${insertionTokensPlacesAndValues} }
+                # VALUES (?place ?token_value) { (<pl1> "{json: \"string\"}") (<pl2> "\"representation\"") }
               }
             )
             
@@ -866,12 +880,14 @@ export default {
             
             OPTIONAL {
               # tokens to remove
-              VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
+              VALUES (?token_bs ?del_multiplicity) { ${removingTokensWithMultiplicities} }
+              # VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
             }
             
             OPTIONAL {
               # tokens to insert
-              VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
+              VALUES (?place ?token_value ?add_multiplicity) { ${insertionTokensPlacesWithData} }
+              # VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
             }
             
             BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
@@ -882,7 +898,7 @@ export default {
           {
             # brand new bs
             BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
-            VALUES (?place ?token_value ?multiplicity) { (a:pl_P1 "\"Hellooo\"" 1) }
+            VALUES (?place ?token_value ?multiplicity) { ${insertionTokensPlacesWithData} }
             MINUS {
               ?multiset t:has_basisSet ?token_bs.
               ?token_bs t:has_data ?token_data.
