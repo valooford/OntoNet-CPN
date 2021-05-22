@@ -30,7 +30,7 @@
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/P1_initial-tokens-term">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
         <core:has_value>new Multiset(new BasisSet(new Data({
-  count: 1,
+  count: 0,
   res: &quot;Unknown&quot;,
   values: []
 })))</core:has_value>
@@ -363,6 +363,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/tr_T2">
         <rdf:type rdf:resource="http://www.onto.net/core/Transition"/>
+        <core:has_code rdf:resource="http://www.onto.net/abox/heads-and-tails/trcode_T2"/>
         <core:has_guard rdf:resource="http://www.onto.net/abox/heads-and-tails/trguard_T2"/>
         <core:has_name>T2</core:has_name>
     </owl:NamedIndividual>
@@ -383,7 +384,16 @@
 
     <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/trcode_T1">
         <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
-        <core:has_value>res = res === &quot;Heads&quot; ? &quot;Tails&quot; : &quot;Heads&quot;;</core:has_value>
+        <core:has_value>bindings.res = bindings.res === &quot;Heads&quot; ? &quot;Tails&quot; : &quot;Heads&quot;;</core:has_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.onto.net/abox/heads-and-tails/trcode_T2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.onto.net/abox/heads-and-tails/trcode_T2">
+        <rdf:type rdf:resource="http://www.onto.net/core/Term"/>
+        <core:has_value>bindings.res = bindings.res === &quot;Unknown&quot; ? getRandomRes() : bindings.res;</core:has_value>
     </owl:NamedIndividual>
     
 
