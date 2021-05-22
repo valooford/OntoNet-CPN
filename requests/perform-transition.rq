@@ -26,140 +26,136 @@ INSERT {
            t:has_value ?token_value.
 }
 #SELECT *
+#SELECT ?marking ?stable_marking_of_place ?new_marking_of_place ?place ?new_multiset ?stable_token_bs ?new_token_bs ?multiplicity ?bs_data ?token_value
 #FROM <http://localhost:3030/ontonet/data/tbox>
 #FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
   BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
-#  <firing-uri> t:has_targetMarking ?source_marking.
+#  <firing-uri> t:has_sourceMarking ?source_marking.
   ?firing rdf:type t:Firing.                                          #temp
 #         t:has_sourceMarking ?source_marking.                        #temp
   FILTER NOT EXISTS { ?firing t:has_targetMarking ?target_marking }   #temp
-  {
-#    GRAPH <http://localhost:3030/ontonet/data/tbox> {
-        ?cpn rdf:type t:CPN.
-#    }
-  }
-  UNION
-  {
-    ?firing t:has_sourceMarking ?source_marking. #temp
+#  GRAPH <http://localhost:3030/ontonet/data/tbox> {
+    ?cpn rdf:type t:CPN.
+#  }
     
-    {
-      #stable mop
-      ?source_marking t:includes_markingOfPlace ?marking_of_place.
-      
-      MINUS {
-        # minus mop with tokens being removed
-        ?marking_of_place t:has_multisetOfTokens ?multiset.
-        ?multiset t:has_basisSet ?token_bs.
+	{
+		#stable mop
+		?source_marking t:includes_markingOfPlace ?marking_of_place.
+		
+		MINUS {
+			# minus mop with tokens being removed
+			?marking_of_place t:has_multisetOfTokens ?multiset.
+			?multiset t:has_basisSet ?token_bs.
 #        VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
-        VALUES ?token_bs { <token1> <token2> <token3> }
-      }
-      
-      MINUS {
-        # minus mop with tokens being inserted
-        ?marking_of_place t:has_place ?place.
-#        VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
-        VALUES ?place { <place1> a:pl_P1 }
-      }
-      
-      BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?stable_marking_of_place)
-    }
-    UNION
-    {
-      #new mop
-      ?source_marking t:includes_markingOfPlace ?marking_of_place.
-      
-      FILTER(
-        EXISTS {
-          # tokens are being removed
-          ?marking_of_place t:has_multisetOfTokens ?multiset.
-          ?multiset t:has_basisSet ?token_bs.
-#          VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
-          VALUES ?token_bs { <token1> <token2> <token3> }
-        } 
-        || EXISTS {
-          # tokens are being inserted
-          ?marking_of_place t:has_place ?place.
-#          VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
-          VALUES ?place { <place1> a:pl_P1 }
-        }
-      )
-      
-      BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
-      ?marking_of_place t:has_place ?place;
-                        t:has_multisetOfTokens ?multiset.
-      BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
-      
-      {
-        # stable bs
-        ?multiset t:has_basisSet ?token_bs.
-
-        MINUS {
-          # minus tokens being removed
-          VALUES ?token_bs { <token1> <token2> <token3> }
-        }
-
-        MINUS {
-          # minus tokens being inserted
-          ?token_bs t:has_data ?token_data.
-          ?token_data t:has_value ?token_value.
-          VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
-        }
-
-        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?stable_token_bs)
-      }
-      UNION
-      {
-        # new bs
-        ?multiset t:has_basisSet ?token_bs.
-
-        FILTER(
-          EXISTS {
 			VALUES ?token_bs { <token1> <token2> <token3> }
-          } 
-          || EXISTS {
-			?token_bs t:has_data ?token_data.
-            ?token_data t:has_value ?token_value.
-            VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
-          }
-        )
-        
-        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
-        ?token_bs t:has_multiplicity ?token_multiplicity;
-                  t:has_data ?token_data.
-        ?token_data t:has_value ?token_value.
-        BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
-        
-#        ?multiplicity, ?bs_data, ?bs_data_value
-        OPTIONAL {
-          # tokens to remove
-          VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
-        }
-        
-        OPTIONAL {
-          # tokens to insert
-          VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
-        }
-        
-        BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
-        FILTER (?multiplicity > 0)
-        
-      }
-      UNION
-      {
-        # brand new bs
-        BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
-        VALUES (?place ?token_value ?multiplicity) { (a:pl_P1 "\"Hellooo\"" 1) }
-        MINUS {
-          ?multiset t:has_basisSet ?token_bs.
-          ?token_bs t:has_data ?token_data.
-          ?token_data t:has_value ?token_value.
-        }
-        
-        BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
-      }
-    }
-  }
+		}
+		
+		MINUS {
+			# minus mop with tokens being inserted
+			?marking_of_place t:has_place ?place.
+#        VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
+			VALUES ?place { <place1> a:pl_P1 }
+		}
+		
+		BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?stable_marking_of_place)
+	}
+	UNION
+	{
+		#new mop
+		?source_marking t:includes_markingOfPlace ?marking_of_place.
+		
+		FILTER(
+			EXISTS {
+				# tokens are being removed
+				?marking_of_place t:has_multisetOfTokens ?multiset.
+				?multiset t:has_basisSet ?token_bs.
+#          VALUES (?token_bs ?count) { (<token1> 1) (<token2> 3) (<token3> 1) }
+				VALUES ?token_bs { <token1> <token2> <token3> }
+			} 
+			|| EXISTS {
+				# tokens are being inserted
+				?marking_of_place t:has_place ?place.
+#          VALUES (?place ?value ?multiplicity) { (<place1> "\"Hello\"" 1) }
+				VALUES ?place { <place1> a:pl_P1 }
+			}
+		)
+		
+		BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
+		?marking_of_place t:has_place ?place;
+											t:has_multisetOfTokens ?multiset.
+		BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
+		
+		OPTIONAL {
+			{
+			# stable bs
+			?multiset t:has_basisSet ?token_bs.
+
+			MINUS {
+				# minus tokens being removed
+				VALUES ?token_bs { <token1> <token2> <token3> }
+			}
+
+			MINUS {
+				# minus tokens being inserted
+				?token_bs t:has_data ?token_data.
+				?token_data t:has_value ?token_value.
+				VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+			}
+
+			BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?stable_token_bs)
+			}
+			UNION
+			{
+			# new bs
+			?multiset t:has_basisSet ?token_bs.
+
+			FILTER(
+				EXISTS {
+				VALUES ?token_bs { <token1> <token2> <token3> }
+				} 
+				|| EXISTS {
+				?token_bs t:has_data ?token_data.
+				?token_data t:has_value ?token_value.
+				VALUES ?token_value { "{json: \"string\"}" "\"representation\"" }
+				}
+			)
+			
+			BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+			?token_bs t:has_multiplicity ?token_multiplicity;
+						t:has_data ?token_data.
+			?token_data t:has_value ?token_value.
+			BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+			
+	#        ?multiplicity, ?bs_data, ?bs_data_value
+			OPTIONAL {
+				# tokens to remove
+				VALUES (?token_bs ?del_multiplicity) { (<token1> 1) (<token2> 3) (<token3> 1) }
+			}
+			
+			OPTIONAL {
+				# tokens to insert
+				VALUES (?place ?token_value ?add_multiplicity) { (<place1> "\"Hello\"" 1) }
+			}
+			
+			BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
+			FILTER (?multiplicity > 0)
+			}
+			UNION
+			{
+			# brand new bs
+			BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
+			VALUES (?place ?token_value ?multiplicity) { (a:pl_P1 "\"Hellooo\"" 1) }
+			MINUS {
+				?multiset t:has_basisSet ?token_bs.
+				?token_bs t:has_data ?token_data.
+				?token_data t:has_value ?token_value.
+			}
+			
+			BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
+			}
+		}
+	}
 };
 WITH <http://localhost:3030/ontonet/data/abox>
 DELETE {

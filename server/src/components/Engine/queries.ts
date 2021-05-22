@@ -502,8 +502,10 @@ export default {
       ?firing rdf:type t:Firing;
               t:has_sourceMarking ?marking;
               t:has_multisetOfTransitionModes ?multiset_tm.
-      ?multiset_tm t:has_basisSet ?basis_set_tm.
-      ?basis_set_tm t:has_data ?transition_mode;
+      ?multiset_tm rdf:type t:Multiset;
+                   t:has_basisSet ?basis_set_tm.
+      ?basis_set_tm rdf:type t:BasisSet;
+                    t:has_data ?transition_mode;
                     t:has_multiplicity 1.
     }
     #SELECT *
@@ -518,8 +520,7 @@ export default {
         ?cpn t:has_firing ?other_firing.
         ?other_firing t:has_sourceMarking ?marking.
       }
-      ?transition_mode rdf:type t:TransitionMode. # replace this to the explicit <id>
-      BIND (<${transitionModeId}> as ?transitionMode)
+      BIND (<${transitionModeId}> as ?transition_mode)
       
       BIND(IRI(CONCAT(STR(a:), "firing_", STRUUID())) as ?firing)
       BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?multiset_tm)
@@ -779,63 +780,59 @@ export default {
     }
     WHERE {
       BIND(IRI(CONCAT(STR(a:), "marking_", STRUUID())) as ?marking)
-      <${firing}> t:has_targetMarking ?source_marking.
+      <${firing}> t:has_sourceMarking ?source_marking.
+      GRAPH <http://localhost:3030/ontonet/data/tbox> {
+        ?cpn rdf:type t:CPN.
+      }
+      
       {
-        GRAPH <http://localhost:3030/ontonet/data/tbox> {
-            ?cpn rdf:type t:CPN.
+        #stable mop
+        ?source_marking t:includes_markingOfPlace ?marking_of_place.
+        
+        MINUS {
+          # minus mop with tokens being removed
+          ?marking_of_place t:has_multisetOfTokens ?multiset.
+          ?multiset t:has_basisSet ?token_bs.
+          VALUES ?token_bs { ${removingTokensUUIDs} }
+          # VALUES ?token_bs { <token1> <token2> <token3> }
         }
+        
+        MINUS {
+          # minus mop with tokens being inserted
+          ?marking_of_place t:has_place ?place.
+          VALUES ?place { ${insertionTokensUUIDs} }
+          # VALUES ?place { <place1> a:pl_P1 }
+        }
+        
+        BIND(?marking_of_place as ?stable_marking_of_place)
       }
       UNION
       {
-        <${firing}> t:has_sourceMarking ?source_marking.
+        #new mop
+        ?source_marking t:includes_markingOfPlace ?marking_of_place.
         
-        {
-          #stable mop
-          ?source_marking t:includes_markingOfPlace ?marking_of_place.
-          
-          MINUS {
-            # minus mop with tokens being removed
+        FILTER(
+          EXISTS {
+            # tokens are being removed
             ?marking_of_place t:has_multisetOfTokens ?multiset.
             ?multiset t:has_basisSet ?token_bs.
             VALUES ?token_bs { ${removingTokensUUIDs} }
             # VALUES ?token_bs { <token1> <token2> <token3> }
-          }
-          
-          MINUS {
-            # minus mop with tokens being inserted
+          } 
+          || EXISTS {
+            # tokens are being inserted
             ?marking_of_place t:has_place ?place.
             VALUES ?place { ${insertionTokensUUIDs} }
             # VALUES ?place { <place1> a:pl_P1 }
           }
-          
-          BIND(?marking_of_place as ?stable_marking_of_place)
-        }
-        UNION
-        {
-          #new mop
-          ?source_marking t:includes_markingOfPlace ?marking_of_place.
-          
-          FILTER(
-            EXISTS {
-              # tokens are being removed
-              ?marking_of_place t:has_multisetOfTokens ?multiset.
-              ?multiset t:has_basisSet ?token_bs.
-              VALUES ?token_bs { ${removingTokensUUIDs} }
-              # VALUES ?token_bs { <token1> <token2> <token3> }
-            } 
-            || EXISTS {
-              # tokens are being inserted
-              ?marking_of_place t:has_place ?place.
-              VALUES ?place { ${insertionTokensUUIDs} }
-              # VALUES ?place { <place1> a:pl_P1 }
-            }
-          )
-          
-          BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
-          ?marking_of_place t:has_place ?place;
-                            t:has_multisetOfTokens ?multiset.
-          BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
-          
+        )
+        
+        BIND(IRI(CONCAT(STR(a:), "mop_", STRUUID())) as ?new_marking_of_place)
+        ?marking_of_place t:has_place ?place;
+                          t:has_multisetOfTokens ?multiset.
+        BIND(IRI(CONCAT(STR(a:), "mul_", STRUUID())) as ?new_multiset)
+        
+        OPTIONAL {
           {
             # stable bs
             ?multiset t:has_basisSet ?token_bs.
@@ -862,7 +859,7 @@ export default {
     
             FILTER(
               EXISTS {
-                VALUES ?token_bs { <token1> <token2> <token3> }
+                VALUES ?token_bs { ${removingTokensUUIDs} }
               } 
               || EXISTS {
                 ?token_bs t:has_data ?token_data.
@@ -892,7 +889,6 @@ export default {
             
             BIND ((?token_multiplicity - ?del_multiplicity + ?add_multiplicity) as ?multiplicity)
             FILTER (?multiplicity > 0)
-            
           }
           UNION
           {

@@ -54,8 +54,8 @@ const Values = List(String);
 const Data = Record({ count: Count, res: String, values: Values });
 
 // Functions
-function validate(data) {
-  return { ...data, values: data.values.slice(0, 5) }; // last 5 results
+function validate({ count, res, list }) {
+  return { count, res, values: list.slice(0, 5) }; // last 5 results
 }
 
 // Constants

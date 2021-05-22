@@ -8,8 +8,10 @@ INSERT {
   ?firing rdf:type t:Firing;
           t:has_sourceMarking ?marking;
           t:has_multisetOfTransitionModes ?multiset_tm.
-  ?multiset_tm t:has_basisSet ?basis_set_tm.
-  ?basis_set_tm t:has_data ?transition_mode;
+  ?multiset_tm rdf:type t:Multiset;
+	             t:has_basisSet ?basis_set_tm.
+  ?basis_set_tm rdf:type t:BasisSet;
+	              t:has_data ?transition_mode;
                 t:has_multiplicity 1.
 }
 #SELECT *

@@ -344,9 +344,11 @@ class Engine {
           );
           // console.log('outputTokens: ', outputTokens);
 
-          this.sendUpdateRequest(
+          await this.sendUpdateRequest(
             queries['perform-transition'](id, countsByTokens, outputTokens)
           );
+
+          this.formTransitionModes();
 
           break;
         }
