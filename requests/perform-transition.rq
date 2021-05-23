@@ -144,7 +144,6 @@ WHERE {
 			UNION
 			{
 			# brand new bs
-			BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
 			VALUES (?place ?token_value ?multiplicity) { (a:pl_P1 "\"Hellooo\"" 1) }
 			MINUS {
 				?multiset t:has_basisSet ?token_bs.
@@ -152,6 +151,7 @@ WHERE {
 				?token_data t:has_value ?token_value.
 			}
 			
+			BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
 			BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
 			}
 		}

@@ -37,6 +37,22 @@ class Reasoner {
       return processedTerms;
     }, {});
   }
+
+  applyCodeToBindings(
+    code: string,
+    bindings: Record<string, { value: unknown; multiplicity: number }>
+  ): Record<string, { value: unknown; multiplicity: number }> {
+    return new Function(
+      'env',
+      'bindings',
+      `
+        with(env) {
+          ${code}
+          return bindings;
+        }
+      `
+    )(this.formulas, bindings);
+  }
 }
 
 export default Reasoner;

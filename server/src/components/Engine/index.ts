@@ -338,12 +338,21 @@ class Engine {
           );
           // console.log('countsByTokens: ', countsByTokens);
 
+          const { code } = this.netStructure.transitions[transitionId];
+          const finalFiringBindings = code
+            ? this.reasoner.applyCodeToBindings(code, firingBindings)
+            : firingBindings;
+
           const outputTokens = this.formOutputTokens(
             transitionId,
-            firingBindings
+            finalFiringBindings
           );
           // console.log('outputTokens: ', outputTokens);
 
+          // console.log('perform transition request ============');
+          // console.log(
+          //   queries['perform-transition'](id, countsByTokens, outputTokens)
+          // );
           await this.sendUpdateRequest(
             queries['perform-transition'](id, countsByTokens, outputTokens)
           );

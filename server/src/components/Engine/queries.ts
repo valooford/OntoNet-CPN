@@ -893,7 +893,6 @@ export default {
           UNION
           {
             # brand new bs
-            BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
             VALUES (?place ?token_value ?multiplicity) { ${insertionTokensPlacesWithData} }
             MINUS {
               ?multiset t:has_basisSet ?token_bs.
@@ -901,6 +900,7 @@ export default {
               ?token_data t:has_value ?token_value.
             }
             
+            BIND(IRI(CONCAT(STR(a:), "bs_", STRUUID())) as ?new_token_bs)
             BIND(IRI(CONCAT(STR(a:), "data_", STRUUID())) as ?bs_data)
           }
         }
