@@ -1,0 +1,12 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+WITH <http://localhost:3030/ontonet/data/abox>
+DELETE {
+  ?transition_mode rdf:type t:TransitionMode;
+	                 t:has_binding ?binding.
+}
+WHERE {
+  VALUES ?transition_mode { <tm_1> <tm_2> <tm_3> }
+}

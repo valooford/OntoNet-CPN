@@ -2,17 +2,13 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX t: <http://www.onto.net/core/>
 PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
-SELECT ?type ?id
+SELECT ?id ?type ?place ?module_uri
 FROM <http://localhost:3030/ontonet/data/tbox>
 FROM <http://localhost:3030/ontonet/data/abox>
 WHERE {
-  {
-	  ?firing rdf:type t:Firing.
-		FILTER NOT EXISTS {
-			# last not processed firing
-			?firing t:has_targetMarking ?marking.
-		}
-		BIND ("firing" as ?type)
-		BIND (?firing as ?id)
-	}
+	?port rdf:type t:Port;
+				t:has_type ?type;
+				t:has_place ?place;
+				t:connected_to ?module_uri.
+	BIND (?port as ?id)
 }
