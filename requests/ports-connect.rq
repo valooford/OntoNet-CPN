@@ -1,0 +1,21 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX t: <http://www.onto.net/core/>
+PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+
+WITH <http://localhost:3030/ontonet/data/abox>
+INSERT {
+  ?port_to_connect t:connected_to ?module_uri.
+}
+DELETE {
+  ?port_to_disconnect t:connected_to ?module_uri.
+}
+WHERE {
+  {
+	  VALUES (?port_to_connect ?module_uri) { (<port_1> "module-uri". ) }
+	}
+	UNION
+	{
+	  VALUES ?port_to_disconnect { <port_2> }
+		?port_to_disconnect t:connected_to ?module_uri.
+	}
+}

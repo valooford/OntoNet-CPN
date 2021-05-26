@@ -4,18 +4,18 @@ PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
 
 WITH <http://localhost:3030/ontonet/data/abox>
 INSERT {
-  ?port_to_reserve t:reserved_with ?module_uri.
+  ?port_to_reserve t:reserved_with ?hash.
 }
 DELETE {
-  ?port_to_free t:reserved_with ?module_uri.
+  ?port_to_free t:reserved_with ?hash.
 }
 WHERE {
   {
-	  VALUES (?port_to_reserve ?module_uri) { (<port_1> "some-url/hash". ) }
+	  VALUES (?port_to_reserve ?hash) { (<port_1> "hash". ) }
 	}
 	UNION
 	{
 	  VALUES ?port_to_free { <port_2> }
-		?port_to_free t:reserved_with ?module_uri.
+		?port_to_free t:reserved_with ?hash.
 	}
 }
