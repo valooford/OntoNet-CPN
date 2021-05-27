@@ -11,7 +11,7 @@ DELETE {
 }
 WHERE {
   {
-	  VALUES (?port_to_connect ?module_uri) { (<port_1> "module-uri". ) }
+	  VALUES (?port_to_connect ?module_uri) { (<port_1> "module-uri") }
 	}
 	UNION
 	{

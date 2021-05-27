@@ -948,4 +948,82 @@ export default {
       }
     }`;
   },
+  'ports-reserve': (
+    portReservation: { [portId: string]: string },
+    freePorts: string[]
+  ): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?port_to_reserve t:reserved_with ?hash.
+    }
+    DELETE {
+      ?port_to_free t:reserved_with ?hash.
+    }
+    WHERE {
+      {
+        VALUES (?port_to_reserve ?hash) { ${Object.keys(portReservation)
+          .map((id) => `( <${id}> "${portReservation[id]}" )`)
+          .join(' ')} }
+      }
+      UNION
+      {
+        VALUES ?port_to_free { ${freePorts.map((id) => `<${id}>`).join(' ')} }
+        ?port_to_free t:reserved_with ?hash.
+      }
+    }
+    `;
+  },
+  'ports-connect': (
+    portConnections: { [portId: string]: string },
+    disconnectingPorts: string[]
+  ): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    WITH <http://localhost:3030/ontonet/data/abox>
+    INSERT {
+      ?port_to_connect t:connected_to ?module_uri.
+    }
+    DELETE {
+      ?port_to_disconnect t:connected_to ?module_uri.
+    }
+    WHERE {
+      {
+        VALUES (?port_to_connect ?module_uri) { ${Object.keys(portConnections)
+          .map((id) => `( <${id}> <${portConnections[id]}> )`)
+          .join(' ')} }
+      }
+      UNION
+      {
+        VALUES ?port_to_disconnect { ${disconnectingPorts
+          .map((id) => `<${id}>`)
+          .join(' ')} }
+        ?port_to_disconnect t:connected_to ?module_uri.
+      }
+    }
+    `;
+  },
+  'get-ports': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ?id ?type ?place ?module_uri
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?port rdf:type t:Port;
+            t:has_type ?type;
+            t:has_place ?place;
+      OPTIONAL {
+        ?port t:connected_to ?module_uri.
+      }
+      BIND (?port as ?id)
+    }`;
+  },
 };
