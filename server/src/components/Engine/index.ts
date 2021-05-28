@@ -591,6 +591,26 @@ class Engine {
     // ...send reasoning SPARQL request
     await this.sendUpdateRequest(queries['filter-raw-transition-modes']());
 
+    const transitionModesResponse = this.sendSelectRequest(
+      queries['get-transition-modes']()
+    );
+
+    const transitionModes = (
+      await transitionModesResponse
+    ).data.results.bindings.reduce((acc, row) => {
+      const {
+        transition_mode,
+        type,
+        variable_name,
+        value,
+      } = Engine.getPayloadFromRaw(row);
+      if (!acc[transition_mode]) {
+        acc[transition_mode] = {};
+      }
+      acc[transition_mode][variable_name] = value;
+      return acc;
+    }, {});
+
     // const { transitions, arcs, places } = this.netStructure;
     // or
     // getting basisSets for places and arcs directly from ontology

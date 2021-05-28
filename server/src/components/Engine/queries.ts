@@ -470,6 +470,33 @@ export default {
     }
     `;
   },
+  'get-transition-modes': (): string => {
+    return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX t: <http://www.onto.net/core/>
+    PREFIX a: <http://www.onto.net/abox/heads-and-tails/>
+    
+    SELECT ?transition_mode ?type ?variable_name ?value
+    FROM <http://localhost:3030/ontonet/data/tbox>
+    FROM <http://localhost:3030/ontonet/data/abox>
+    WHERE {
+      ?transition_mode rdf:type t:TransitionMode;
+      {
+        ?transition_mode t:has_transition ?transition;
+        BIND("transition" as ?type)
+      }
+      UNION
+      {
+        ?transition_mode t:has_transition ?transition;
+                         t:has_binding ?binding.
+        ?binding t:has_variable ?variable;
+                 t:has_data ?data.
+        ?variable t:has_value ?variable_name.
+        ?data t:has_value ?value.
+        BIND("binding" as ?type)
+      }
+    }
+    SORT BY ?transition_mode`;
+  },
   'get-leaf-transition-modes': (): string => {
     return `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX t: <http://www.onto.net/core/>
